@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -26,67 +26,313 @@
     />
 
     <style>
+      /* ====== ROOT VARIABLES ====== */
       :root {
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --light: #f8fafc;
-        --dark: #1e293b;
+        --primary: #3a86ff;
+        --primary-dark: #2667cc;
+        --primary-light: rgba(58, 134, 255, 0.1);
+        --secondary: #8338ec;
+        --secondary-dark: #5a2ca3;
+        --accent: #ff006e;
+        --success: #38b000;
+        --warning: #ffbe0b;
+        --danger: #fb5607;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+        --card-bg: #ffffff;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1),
+          0 4px 6px rgba(0, 0, 0, 0.05);
+        --radius: 10px;
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      [data-theme="dark"] {
+        --primary: #5a9cff;
+        --primary-dark: #3a86ff;
+        --primary-light: rgba(90, 156, 255, 0.15);
+        --secondary: #9d4edd;
+        --secondary-dark: #8338ec;
+        --accent: #ff4081;
+        --success: #4cd964;
+        --warning: #ffd166;
+        --danger: #ff6b6b;
+        --light: #121212;
+        --dark: #f8f9fa;
+        --gray-100: #1e1e1e;
+        --gray-200: #2d2d2d;
+        --gray-300: #3d3d3d;
+        --gray-400: #4d4d4d;
+        --gray-500: #6b6b6b;
+        --gray-600: #8a8a8a;
+        --gray-700: #a8a8a8;
+        --gray-800: #c7c7c7;
+        --gray-900: #e5e5e5;
+        --card-bg: #1a1a1a;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.35),
+          0 4px 6px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ====== BASE STYLES ====== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+        line-height: 1.6;
         min-height: 100vh;
         display: flex;
-        align-items: center;
-        padding: 20px;
-        font-family: "DM Sans", sans-serif;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      .auth-container {
-        max-width: 500px;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--dark);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      a:hover {
+        color: var(--primary);
+      }
+
+      .container {
+        max-width: 1200px;
         margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ====== THEME TOGGLE ====== */
+      .theme-toggle {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 9999;
+      }
+
+      .theme-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        z-index: 9999;
+      }
+
+      .theme-btn:hover {
+        transform: rotate(30deg) scale(1.1);
+        box-shadow: 0 8px 20px rgba(58, 134, 255, 0.3);
+      }
+
+      #moonIcon {
+        display: none;
+      }
+
+      [data-theme="dark"] #sunIcon {
+        display: none;
+      }
+
+      [data-theme="dark"] #moonIcon {
+        display: block;
+      }
+
+      /* ====== NAVIGATION ====== */
+      .navbar {
+        padding: 1rem 0;
+        background-color: var(--card-bg) !important;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .brand-text {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-left: 0.5rem;
+      }
+
+      .navbar-nav .nav-link {
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        margin: 0 0.25rem;
+        color: var(--dark);
+        transition: var(--transition);
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background-color: var(--primary-light);
+        color: var(--primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .nav-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid var(--gray-300);
+        background: transparent;
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-icon:hover {
+        background-color: var(--primary);
+        color: white;
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--danger);
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ====== AUTH SECTIONS ====== */
+      .auth-section {
+        padding: 5rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(58, 134, 255, 0.08),
+          rgba(131, 56, 236, 0.08)
+        );
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
       }
 
       .auth-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--gray-200);
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
       }
 
-      .auth-logo {
-        text-align: center;
-        margin-bottom: 25px;
-      }
-
-      .auth-logo img {
-        height: 70px;
-        width: auto;
-        object-fit: contain;
-        display: block;
-        margin: auto;
-      }
-
-      .auth-header {
-        text-align: center;
-        margin-bottom: 25px;
-      }
-
-      .auth-header h2 {
+      .auth-card h2 {
         color: var(--dark);
-        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        position: relative;
+        padding-bottom: 0.75rem;
+      }
+
+      .auth-card h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      .auth-card p {
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: block;
       }
 
       .form-control {
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid #d1d5db;
-        transition: all 0.3s;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--gray-300);
+        border-radius: var(--radius);
+        background-color: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+        font-size: 1rem;
+        width: 100%;
       }
 
       .form-control:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+        outline: none;
+        background-color: var(--card-bg);
+      }
+
+      .password-wrapper {
+        position: relative;
       }
 
       .password-toggle {
@@ -96,150 +342,524 @@
         transform: translateY(-50%);
         background: none;
         border: none;
-        color: #64748b;
+        color: var(--gray-500);
         cursor: pointer;
+        z-index: 2;
       }
 
       .btn-primary {
-        background: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         border: none;
-        padding: 12px;
-        border-radius: 10px;
+        color: white;
         font-weight: 600;
-        transition: 0.3s;
+        padding: 0.75rem 2rem;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       .btn-primary:hover {
-        background: var(--primary-dark);
         transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(58, 134, 255, 0.3);
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--secondary-dark)
+        );
+      }
+
+      .social-login {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn-social {
+        padding: 0.75rem;
+        border-radius: var(--radius);
+        border: 2px solid var(--gray-300);
+        background: transparent;
+        color: var(--dark);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .btn-social:hover {
+        border-color: var(--primary);
+        background-color: var(--primary-light);
+        transform: translateY(-2px);
+      }
+
+      .btn-google:hover {
+        border-color: #db4437;
+        background-color: rgba(219, 68, 55, 0.1);
+      }
+
+      .btn-facebook:hover {
+        border-color: #1877f2;
+        background-color: rgba(24, 119, 242, 0.1);
       }
 
       .auth-footer {
         text-align: center;
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid #e5e7eb;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--gray-300);
+        color: var(--gray-600);
       }
 
-      .social-login {
+      .auth-footer a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .auth-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .form-check-input:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+      }
+
+      /* ====== FOOTER ====== */
+      .footer {
+        background: var(--card-bg);
+        border-top: 1px solid var(--gray-200);
+        padding: 3rem 0 2rem;
+        margin-top: auto;
+      }
+
+      .footer-logo {
         display: flex;
-        gap: 10px;
-        margin-top: 20px;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        margin-bottom: 1.5rem;
       }
 
-      .btn-google {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px;
+      .footer-text {
+        color: var(--gray-600);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
       }
 
-      .btn-facebook {
-        background: #1877f2;
-        color: #fff;
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
+      .footer h5 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        color: var(--dark);
+        font-weight: 700;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-links a {
+        color: var(--gray-600);
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gray-100);
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--gray-200);
+        text-align: center;
+        color: var(--gray-600);
+        font-size: 0.9rem;
+      }
+
+      /* ====== RESPONSIVE DESIGN ====== */
+      @media (max-width: 768px) {
+        .auth-section {
+          padding: 3rem 0;
+        }
+
+        .auth-card {
+          padding: 2rem;
+        }
+
+        .theme-toggle {
+          top: 20px;
+          right: 20px;
+        }
+
+        .theme-btn {
+          width: 45px;
+          height: 45px;
+        }
+
+        .social-login {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .auth-card {
+          padding: 1.5rem;
+        }
+
+        .auth-card h2 {
+          font-size: 1.75rem;
+        }
       }
     </style>
   </head>
-
-  <body>
-    <div class="auth-container">
-      <div class="auth-card">
-        <!-- FIXED IMAGE -->
-        <div class="auth-logo">
-          <a href="index.html">
-            <img src="./images/main-logo.png" alt="TechStore Logo" />
-          </a>
-        </div>
-
-        <div class="auth-header">
-          <h2>Create Account</h2>
-          <p>Join TechStore for exclusive deals and updates</p>
-        </div>
-
-        <form id="signupForm">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-control" required />
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" required />
-            </div>
-          </div>
-
-          <label class="form-label mt-3">Email Address</label>
-          <input type="email" class="form-control" required />
-
-          <label class="form-label mt-3">Phone Number</label>
-          <input type="tel" class="form-control" required />
-
-          <div class="position-relative mt-3">
-            <label class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              required
-            />
-            <button
-              type="button"
-              class="password-toggle"
-              onclick="togglePassword('password')"
-            >
-              <i class="far fa-eye"></i>
-            </button>
-          </div>
-
-          <div class="position-relative mt-3">
-            <label class="form-label">Confirm Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="confirmPassword"
-              required
-            />
-            <button
-              type="button"
-              class="password-toggle"
-              onclick="togglePassword('confirmPassword')"
-            >
-              <i class="far fa-eye"></i>
-            </button>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100 mt-4">
-            Create Account
-          </button>
-        </form>
-
-        <div class="social-login">
-          <button class="btn-google">
-            <i class="fab fa-google me-2"></i> Google
-          </button>
-          <button class="btn-facebook">
-            <i class="fab fa-facebook-f me-2"></i> Facebook
-          </button>
-        </div>
-
-        <div class="auth-footer">
-          <span
-            >Already have an account?
-            <a href="login.html" class="text-primary fw-bold">Sign In</a></span
-          >
-        </div>
-      </div>
+  <body data-theme="light">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="sunIcon"></i>
+        <i class="fas fa-moon" id="moonIcon"></i>
+      </button>
     </div>
 
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <i class="fas fa-microchip fa-2x" style="color: var(--primary)"></i>
+          <span class="brand-text ms-2">TechStore</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#products">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <button class="nav-icon" id="searchToggle">
+              <i class="fas fa-search"></i>
+            </button>
+            <a href="login.html" class="nav-icon">
+              <i class="fas fa-user"></i>
+            </a>
+            <button class="nav-icon cart-btn" id="cartToggle">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Signup Section -->
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-card">
+          <h2>Create Account</h2>
+          <p>Join TechStore for exclusive deals and updates</p>
+
+          <form id="signupForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" required />
+            </div>
+
+            <div class="form-group mt-3">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" required />
+            </div>
+
+            <div class="form-group mt-3 password-wrapper">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('password')"
+              >
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+
+            <div class="form-group mt-3 password-wrapper">
+              <label class="form-label">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('confirmPassword')"
+              >
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="terms"
+                required
+              />
+              <label class="form-check-label" for="terms">
+                I agree to the
+                <a href="#" class="text-primary">Terms & Conditions</a> and
+                <a href="#" class="text-primary">Privacy Policy</a>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">
+              <i class="fas fa-user-plus"></i> Create Account
+            </button>
+
+            <div class="social-login">
+              <button type="button" class="btn-social btn-google">
+                <i class="fab fa-google" style="color: #db4437"></i> Google
+              </button>
+              <button type="button" class="btn-social btn-facebook">
+                <i class="fab fa-facebook-f" style="color: #1877f2"></i>
+                Facebook
+              </button>
+            </div>
+
+            <div class="auth-footer">
+              <span
+                >Already have an account?
+                <a href="login.html" class="text-primary fw-bold">Sign In</a></span
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-4">
+            <a href="index.html" class="footer-logo">
+              <i
+                class="fas fa-microchip fa-2x"
+                style="color: var(--primary)"
+              ></i>
+              <span class="brand-text">TechStore</span>
+            </a>
+            <p class="footer-text mt-3">
+              Your one-stop destination for premium electronics and gadgets at
+              unbeatable prices. We bring you the future, today.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://www.facebook.com/tanzeelahmedpov"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com/TanzeelOnX" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/tanzeelahmedpov"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#products">Products</a></li>
+              <li><a href="index.html#sale">Sale</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Support</h5>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 mb-4">
+            <h5>Contact Info</h5>
+            <div class="footer-contact">
+              <p class="mb-2">
+                <i class="fas fa-envelope me-2"></i>
+                <a href="mailto:tanzeel.ahmed.se@gmail.com"
+                  >tanzeel.ahmed.se@gmail.com</a
+                >
+              </p>
+              <p class="mb-2">
+                <i class="fas fa-phone me-2"></i>
+                <a href="tel:+923001234567">+92 300 1234567</a>
+              </p>
+              <p class="mb-0">
+                <i class="fas fa-map-marker-alt me-2"></i>
+                123 Tech Street, Digital City, Pakistan
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-      function togglePassword(id) {
-        const input = document.getElementById(id);
+      // Theme Toggle Functionality
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+
+      // Check local storage for saved theme
+      const savedTheme = localStorage.getItem("techstore-theme") || "light";
+      body.setAttribute("data-theme", savedTheme);
+
+      // Set initial icon state
+      if (savedTheme === "dark") {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      } else {
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      }
+
+      // Theme toggle event
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("techstore-theme", newTheme);
+
+        // Update icons
+        if (newTheme === "dark") {
+          sunIcon.style.display = "none";
+          moonIcon.style.display = "block";
+        } else {
+          sunIcon.style.display = "block";
+          moonIcon.style.display = "none";
+        }
+
+        // Add animation effect
+        themeToggle.style.transform = "rotate(360deg) scale(1.1)";
+        setTimeout(() => {
+          themeToggle.style.transform = "";
+        }, 500);
+      });
+
+      // Password toggle function
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
         const icon = input.nextElementSibling.querySelector("i");
 
         if (input.type === "password") {
@@ -251,19 +871,51 @@
         }
       }
 
+      // Form Submission
       document
         .getElementById("signupForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
+
+          const password = document.getElementById("password");
+          const confirmPassword = document.getElementById("confirmPassword");
 
           if (password.value !== confirmPassword.value) {
             alert("Passwords do not match!");
             return;
           }
 
-          alert("Account created successfully!");
-          window.location.href = "login.html";
+          if (!document.getElementById("terms").checked) {
+            alert("Please agree to the Terms & Conditions");
+            return;
+          }
+
+          // Show success message
+          alert("Account created successfully! Redirecting to login...");
+          
+          // In real app, you would submit to server here
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 1500);
         });
+
+      // Cart count update (placeholder)
+      function updateCartCount() {
+        const cartCount = document.querySelector(".cart-count");
+        const cart = JSON.parse(localStorage.getItem("techstore-cart")) || [];
+        const totalItems = cart.reduce(
+          (sum, item) => sum + (item.quantity || 1),
+          0
+        );
+
+        if (cartCount) {
+          cartCount.textContent = totalItems;
+          cartCount.style.display = totalItems > 0 ? "flex" : "none";
+        }
+      }
+
+      // Initialize cart count
+      updateCartCount();
     </script>
   </body>
 </html>
