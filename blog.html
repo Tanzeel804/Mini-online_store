@@ -32,143 +32,271 @@
     <link rel="stylesheet" href="style.css" />
 
     <style>
-      :root {
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --secondary: #10b981;
-        --accent: #f59e0b;
-        --danger: #ef4444;
-        --light: #f8fafc;
-        --dark: #1e293b;
-        --gray: #64748b;
-        --card-bg: #ffffff;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        --radius: 12px;
-        --transition: all 0.3s ease;
-      }
-
-      [data-theme="dark"] {
-        --light: #0f172a;
-        --dark: #f1f5f9;
-        --card-bg: #1e293b;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        --gray: #94a3b8;
-      }
-
-      /* Theme Toggle Fix */
-      .theme-toggle {
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        z-index: 9999;
-      }
-
-      .theme-btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--primary);
-        border: none;
+      /* Blog Page Specific Styles */
+      .blog-hero {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
         color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-        box-shadow: var(--shadow);
-        z-index: 9999;
+        padding: 100px 0;
+        text-align: center;
       }
 
-      .theme-btn:hover {
-        transform: rotate(30deg) scale(1.1);
-      }
-
-      #moonIcon {
-        display: none;
-      }
-
-      [data-theme="dark"] #sunIcon {
-        display: none;
-      }
-
-      [data-theme="dark"] #moonIcon {
-        display: block;
-      }
-
-      /* Blog Specific Animations */
-      .blog-card:hover {
-        transform: translateY(-10px) rotate(1deg);
-      }
-
-      .read-more-btn {
-        position: relative;
+      .blog-card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
         overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        height: 100%;
+        margin-bottom: 30px;
       }
 
-      .read-more-btn span {
+      .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .blog-image {
+        height: 250px;
+        overflow: hidden;
         position: relative;
-        z-index: 2;
       }
 
-      .read-more-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
+      .blog-image img {
         width: 100%;
         height: 100%;
-        background: var(--primary-dark);
-        transition: var(--transition);
-        z-index: 1;
+        object-fit: cover;
+        transition: transform 0.5s ease;
       }
 
-      .read-more-btn:hover::before {
-        left: 0;
+      .blog-card:hover .blog-image img {
+        transform: scale(1.1);
+      }
+
+      .blog-category {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .blog-content {
+        padding: 25px;
+      }
+
+      .blog-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        color: var(--dark);
+      }
+
+      .blog-excerpt {
+        color: var(--gray);
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .blog-meta {
+        color: var(--gray);
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .blog-meta i {
+        margin-right: 5px;
+      }
+
+      .read-more {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .read-more:hover {
+        color: var(--primary-dark);
+        transform: translateX(5px);
+      }
+
+      .read-more i {
+        margin-left: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .read-more:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Sidebar Styles */
+      .sidebar-widget {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+      }
+
+      .widget-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        color: var(--dark);
+      }
+
+      .categories-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .categories-list li {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--gray);
+      }
+
+      .categories-list li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .categories-list a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--dark);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .categories-list a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .count {
+        background: var(--primary);
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .recent-post {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid var(--gray);
+      }
+
+      .recent-post:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .recent-post a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .recent-post a:hover {
+        color: var(--primary);
+      }
+
+      .recent-post img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 15px;
+      }
+
+      .recent-post h6 {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+
+      .recent-post small {
+        color: var(--gray);
+        font-size: 0.8rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tag {
+        background: var(--light);
+        color: var(--dark);
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
       }
 
       .tag:hover {
-        transform: translateY(-3px) rotate(2deg);
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
       }
 
-      /* Floating Animation for Featured Post */
-      @keyframes floatFeatured {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-10px) rotate(1deg);
-        }
+      /* Pagination */
+      .pagination .page-link {
+        color: var(--primary);
+        border: 1px solid var(--gray);
       }
 
-      .featured-post {
-        animation: floatFeatured 6s ease-in-out infinite;
+      .pagination .page-item.active .page-link {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: white;
       }
 
-      /* Pulse Animation for New Badge */
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
+      .pagination .page-link:hover {
+        background-color: var(--light);
+        border-color: var(--primary);
       }
 
-      .new-badge {
-        animation: pulse 2s infinite;
-      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .blog-hero {
+          padding: 60px 0;
+        }
 
-      /* Scroll Animation for Blog Cards */
-      .blog-card {
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        .blog-image {
+          height: 200px;
+        }
+
+        .blog-content {
+          padding: 20px;
+        }
+
+        .sidebar-widget {
+          padding: 20px;
+        }
       }
     </style>
   </head>
@@ -184,7 +312,7 @@
     <!-- Top Notification Bar -->
     <div class="top-notice">
       <p>
-        🎉 Read our latest tech insights! <a href="#featured">Featured Post</a>
+        🎉 Read our latest tech articles! <a href="#featured">Featured Post</a>
       </p>
     </div>
 
@@ -298,14 +426,16 @@
     </nav>
 
     <!-- Blog Hero -->
-    <section class="blog-hero py-5" data-aos="fade-up">
+    <section class="blog-hero">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">TechStore Blog</h1>
+          <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 fw-bold mb-4" data-aos="fade-up">
+              TechStore Blog
+            </h1>
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
-              Stay updated with the latest technology trends, reviews, and
-              insights from our experts.
+              Discover the latest technology trends, expert reviews, and helpful
+              guides.
             </p>
             <div
               class="input-group mb-3 mx-auto"
@@ -318,11 +448,7 @@
                 class="form-control"
                 placeholder="Search articles..."
               />
-              <button
-                class="btn btn-primary"
-                type="button"
-                onclick="searchBlog()"
-              >
+              <button class="btn btn-light" type="button">
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -338,30 +464,22 @@
           <!-- Main Content -->
           <div class="col-lg-8">
             <!-- Featured Post -->
-            <div
-              class="blog-card mb-5 featured-post"
-              id="featured"
-              data-aos="zoom-in"
-            >
+            <div class="blog-card" id="featured" data-aos="fade-up">
               <div class="blog-image">
                 <img
                   src="./images/blog-featured.jpg"
                   alt="Featured Post"
                   onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
                 />
-                <span class="blog-category new-badge">Featured</span>
+                <span class="blog-category">Featured</span>
               </div>
               <div class="blog-content">
                 <div class="blog-meta">
                   <span
                     ><i class="far fa-calendar me-1"></i> October 15, 2024</span
                   >
-                  <span class="ms-3"
-                    ><i class="far fa-user me-1"></i> Tanzeel Ahmed</span
-                  >
-                  <span class="ms-3"
-                    ><i class="far fa-comments me-1"></i> 24 Comments</span
-                  >
+                  <span><i class="far fa-user me-1"></i> Tanzeel Ahmed</span>
+                  <span><i class="far fa-comments me-1"></i> 24 Comments</span>
                 </div>
                 <h2 class="blog-title">
                   The Future of Smartphones: AI Integration and Beyond
@@ -369,25 +487,19 @@
                 <p class="blog-excerpt">
                   Discover how artificial intelligence is revolutionizing
                   smartphone technology. From predictive text to advanced
-                  photography, AI is changing how we interact with our devices.
-                  In this comprehensive guide, we explore the latest
-                  developments and what the future holds.
+                  photography, AI is changing how we interact with our
+                  devices...
                 </p>
-                <button
-                  class="btn btn-primary read-more-btn"
-                  onclick="readArticle('ai-smartphones')"
-                >
-                  <span
-                    >Read Full Article <i class="fas fa-arrow-right ms-2"></i
-                  ></span>
-                </button>
+                <a href="#" class="read-more">
+                  Read Full Article <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
             </div>
 
             <!-- Blog Posts Grid -->
             <div class="row">
-              <div class="col-md-6 mb-4" data-aos="fade-up">
-                <div class="blog-card h-100" onclick="animateBlogCard(this)">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog1.jpg"
@@ -408,26 +520,17 @@
                     </h3>
                     <p class="blog-excerpt">
                       Find the perfect laptop for your academic needs with our
-                      comprehensive guide to the best student laptops.
+                      comprehensive guide.
                     </p>
-                    <button
-                      class="btn btn-outline-primary read-more-btn"
-                      onclick="readArticle('student-laptops')"
-                    >
-                      <span
-                        >Read More <i class="fas fa-arrow-right ms-1"></i
-                      ></span>
-                    </button>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div
-                class="col-md-6 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div class="blog-card h-100" onclick="animateBlogCard(this)">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog2.jpg"
@@ -448,26 +551,17 @@
                     </h3>
                     <p class="blog-excerpt">
                       We tested the new Apple Watch Series 9 for two weeks.
-                      Here's our honest review of its features and performance.
+                      Here's our honest review.
                     </p>
-                    <button
-                      class="btn btn-outline-primary read-more-btn"
-                      onclick="readArticle('apple-watch-review')"
-                    >
-                      <span
-                        >Read More <i class="fas fa-arrow-right ms-1"></i
-                      ></span>
-                    </button>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div
-                class="col-md-6 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div class="blog-card h-100" onclick="animateBlogCard(this)">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog3.jpg"
@@ -488,26 +582,17 @@
                     </h3>
                     <p class="blog-excerpt">
                       Simple yet effective tips to make your smartphone battery
-                      last longer throughout the day.
+                      last longer.
                     </p>
-                    <button
-                      class="btn btn-outline-primary read-more-btn"
-                      onclick="readArticle('battery-tips')"
-                    >
-                      <span
-                        >Read More <i class="fas fa-arrow-right ms-1"></i
-                      ></span>
-                    </button>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div
-                class="col-md-6 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <div class="blog-card h-100" onclick="animateBlogCard(this)">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog4.jpg"
@@ -526,16 +611,11 @@
                     <h3 class="blog-title">Best Gaming Accessories for 2024</h3>
                     <p class="blog-excerpt">
                       Level up your gaming experience with these must-have
-                      accessories for serious gamers.
+                      accessories.
                     </p>
-                    <button
-                      class="btn btn-outline-primary read-more-btn"
-                      onclick="readArticle('gaming-accessories')"
-                    >
-                      <span
-                        >Read More <i class="fas fa-arrow-right ms-1"></i
-                      ></span>
-                    </button>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -543,9 +623,11 @@
 
             <!-- Pagination -->
             <nav aria-label="Blog navigation" class="mt-5">
-              <ul class="pagination justify-content-center" data-aos="fade-up">
+              <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  <a class="page-link" href="#" tabindex="-1">
+                    <i class="fas fa-chevron-left"></i>
+                  </a>
                 </li>
                 <li class="page-item active">
                   <a class="page-link" href="#">1</a>
@@ -553,7 +635,9 @@
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#" onclick="nextPage()">Next</a>
+                  <a class="page-link" href="#">
+                    <i class="fas fa-chevron-right"></i>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -562,117 +646,74 @@
           <!-- Sidebar -->
           <div class="col-lg-4">
             <!-- Categories Widget -->
-            <div class="sidebar-widget mb-4" data-aos="fade-left">
-              <h4 class="widget-title">
-                <i class="fas fa-folder me-2"></i> Categories
-              </h4>
+            <div class="sidebar-widget" data-aos="fade-left">
+              <h4 class="widget-title">Categories</h4>
               <ul class="categories-list">
                 <li>
-                  <a href="#" onclick="filterByCategory('smartphones')"
-                    >Smartphones <span class="count">12</span></a
-                  >
+                  <a href="#">Smartphones <span class="count">12</span></a>
                 </li>
                 <li>
-                  <a href="#" onclick="filterByCategory('laptops')"
-                    >Laptops <span class="count">8</span></a
-                  >
+                  <a href="#">Laptops <span class="count">8</span></a>
                 </li>
                 <li>
-                  <a href="#" onclick="filterByCategory('watches')"
-                    >Smart Watches <span class="count">6</span></a
-                  >
+                  <a href="#">Smart Watches <span class="count">6</span></a>
                 </li>
                 <li>
-                  <a href="#" onclick="filterByCategory('accessories')"
-                    >Accessories <span class="count">15</span></a
-                  >
+                  <a href="#">Accessories <span class="count">15</span></a>
                 </li>
                 <li>
-                  <a href="#" onclick="filterByCategory('gaming')"
-                    >Gaming <span class="count">9</span></a
-                  >
+                  <a href="#">Gaming <span class="count">9</span></a>
                 </li>
                 <li>
-                  <a href="#" onclick="filterByCategory('news')"
-                    >Technology News <span class="count">21</span></a
-                  >
+                  <a href="#">Technology News <span class="count">21</span></a>
                 </li>
               </ul>
             </div>
 
             <!-- Recent Posts -->
             <div
-              class="sidebar-widget mb-4"
+              class="sidebar-widget"
               data-aos="fade-left"
               data-aos-delay="100"
             >
-              <h4 class="widget-title">
-                <i class="fas fa-history me-2"></i> Recent Posts
-              </h4>
+              <h4 class="widget-title">Recent Posts</h4>
               <div class="recent-posts">
-                <div
-                  class="recent-post mb-3"
-                  onclick="readArticle('iphone-review')"
-                >
-                  <a href="#" class="d-flex align-items-center">
+                <div class="recent-post">
+                  <a href="#">
                     <img
                       src="./images/blog-small1.jpg"
                       alt="Recent Post"
-                      width="60"
-                      height="60"
-                      class="rounded me-3"
                       onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
                     />
                     <div>
-                      <h6 class="mb-1">iPhone 15 Pro Max Review</h6>
-                      <small class="text-muted"
-                        ><i class="far fa-calendar me-1"></i> Sep 20,
-                        2024</small
-                      >
+                      <h6>iPhone 15 Pro Max Review</h6>
+                      <small>Sep 20, 2024</small>
                     </div>
                   </a>
                 </div>
-                <div
-                  class="recent-post mb-3"
-                  onclick="readArticle('wireless-earbuds')"
-                >
-                  <a href="#" class="d-flex align-items-center">
+                <div class="recent-post">
+                  <a href="#">
                     <img
                       src="./images/blog-small2.jpg"
                       alt="Recent Post"
-                      width="60"
-                      height="60"
-                      class="rounded me-3"
                       onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
                     />
                     <div>
-                      <h6 class="mb-1">Best Wireless Earbuds 2024</h6>
-                      <small class="text-muted"
-                        ><i class="far fa-calendar me-1"></i> Sep 15,
-                        2024</small
-                      >
+                      <h6>Best Wireless Earbuds 2024</h6>
+                      <small>Sep 15, 2024</small>
                     </div>
                   </a>
                 </div>
-                <div
-                  class="recent-post mb-3"
-                  onclick="readArticle('android-14')"
-                >
-                  <a href="#" class="d-flex align-items-center">
+                <div class="recent-post">
+                  <a href="#">
                     <img
                       src="./images/blog-small3.jpg"
                       alt="Recent Post"
-                      width="60"
-                      height="60"
-                      class="rounded me-3"
                       onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
                     />
                     <div>
-                      <h6 class="mb-1">Android 14 Features Explained</h6>
-                      <small class="text-muted"
-                        ><i class="far fa-calendar me-1"></i> Sep 10,
-                        2024</small
-                      >
+                      <h6>Android 14 Features Explained</h6>
+                      <small>Sep 10, 2024</small>
                     </div>
                   </a>
                 </div>
@@ -681,66 +722,45 @@
 
             <!-- Tags Widget -->
             <div
-              class="sidebar-widget mb-4"
+              class="sidebar-widget"
               data-aos="fade-left"
               data-aos-delay="200"
             >
-              <h4 class="widget-title">
-                <i class="fas fa-tags me-2"></i> Popular Tags
-              </h4>
+              <h4 class="widget-title">Popular Tags</h4>
               <div class="tags">
-                <a href="#" class="tag" onclick="filterByTag('smartphone')"
-                  >Smartphone</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('review')"
-                  >Review</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('apple')">Apple</a>
-                <a href="#" class="tag" onclick="filterByTag('android')"
-                  >Android</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('gaming')"
-                  >Gaming</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('laptop')"
-                  >Laptop</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('tips')">Tips</a>
-                <a href="#" class="tag" onclick="filterByTag('technology')"
-                  >Technology</a
-                >
-                <a href="#" class="tag" onclick="filterByTag('innovation')"
-                  >Innovation</a
-                >
+                <a href="#" class="tag">Smartphone</a>
+                <a href="#" class="tag">Review</a>
+                <a href="#" class="tag">Apple</a>
+                <a href="#" class="tag">Android</a>
+                <a href="#" class="tag">Gaming</a>
+                <a href="#" class="tag">Laptop</a>
+                <a href="#" class="tag">Tips</a>
+                <a href="#" class="tag">Technology</a>
+                <a href="#" class="tag">Innovation</a>
               </div>
             </div>
 
             <!-- Newsletter Widget -->
             <div
-              class="sidebar-widget bg-primary text-white p-4 rounded"
+              class="sidebar-widget bg-primary text-white"
               data-aos="fade-left"
               data-aos-delay="300"
             >
-              <h4 class="widget-title text-white">
-                <i class="fas fa-envelope me-2"></i> Subscribe
-              </h4>
+              <h4 class="widget-title text-white">Subscribe</h4>
               <p class="mb-3">
                 Get the latest tech news and updates directly in your inbox.
               </p>
-              <form class="newsletter-form" id="blogNewsletter">
+              <form class="newsletter-form">
                 <div class="mb-3">
                   <input
                     type="email"
                     class="form-control"
                     placeholder="Your email address"
                     required
-                    id="blogEmail"
                   />
                 </div>
                 <button type="submit" class="btn btn-light w-100">
-                  <span
-                    >Subscribe Now <i class="fas fa-paper-plane ms-2"></i
-                  ></span>
+                  Subscribe Now
                 </button>
               </form>
             </div>
@@ -749,7 +769,7 @@
       </div>
     </section>
 
-    <!-- Footer (Same as index.html) -->
+    <!-- Footer -->
     <footer class="footer py-5">
       <div class="container">
         <div class="row">
@@ -763,31 +783,23 @@
               unbeatable prices.
             </p>
             <div class="social-links mt-3">
-              <a
-                href="https://www.facebook.com/tanzeelahmedpov"
-                target="_blank"
-                title="Facebook"
+              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
                 ><i class="fab fa-facebook"></i
               ></a>
-              <a
-                href="https://twitter.com/TanzeelOnX"
-                target="_blank"
-                title="Twitter"
+              <a href="https://twitter.com/TanzeelOnX" target="_blank"
                 ><i class="fab fa-twitter"></i
               ></a>
               <a
                 href="https://www.instagram.com/tanzeelahmedpov"
                 target="_blank"
-                title="Instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
               <a
                 href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
                 target="_blank"
-                title="LinkedIn"
                 ><i class="fab fa-linkedin"></i
               ></a>
-              <a href="https://www.youtube.com" target="_blank" title="YouTube"
+              <a href="https://www.youtube.com" target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
             </div>
@@ -796,83 +808,33 @@
           <div class="col-lg-2 col-md-4 mb-4">
             <h5>Quick Links</h5>
             <ul class="footer-links">
-              <li>
-                <a href="index.html"><i class="fas fa-home me-2"></i> Home</a>
-              </li>
-              <li>
-                <a href="index.html#products"
-                  ><i class="fas fa-mobile-alt me-2"></i> Products</a
-                >
-              </li>
-              <li>
-                <a href="index.html#sale"
-                  ><i class="fas fa-tag me-2"></i> Sale</a
-                >
-              </li>
-              <li>
-                <a href="blog.html"><i class="fas fa-blog me-2"></i> Blog</a>
-              </li>
-              <li>
-                <a href="contact.html"
-                  ><i class="fas fa-address-book me-2"></i> Contact</a
-                >
-              </li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#products">Products</a></li>
+              <li><a href="index.html#sale">Sale</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-4 mb-4">
             <h5>Categories</h5>
             <ul class="footer-links">
-              <li>
-                <a href="index.html#mobiles"
-                  ><i class="fas fa-mobile me-2"></i> Smartphones</a
-                >
-              </li>
-              <li>
-                <a href="index.html#watches"
-                  ><i class="fas fa-clock me-2"></i> Smart Watches</a
-                >
-              </li>
-              <li>
-                <a href="index.html#laptops"
-                  ><i class="fas fa-laptop me-2"></i> Laptops</a
-                >
-              </li>
-              <li>
-                <a href="index.html#accessories"
-                  ><i class="fas fa-headphones me-2"></i> Accessories</a
-                >
-              </li>
-              <li>
-                <a href="index.html#gadgets"
-                  ><i class="fas fa-gamepad me-2"></i> Gaming</a
-                >
-              </li>
+              <li><a href="index.html#mobiles">Smartphones</a></li>
+              <li><a href="index.html#watches">Smart Watches</a></li>
+              <li><a href="index.html#laptops">Laptops</a></li>
+              <li><a href="index.html#accessories">Accessories</a></li>
+              <li><a href="index.html#gadgets">Gadgets</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-4 mb-4">
             <h5>Support</h5>
             <ul class="footer-links">
-              <li>
-                <a href="#"
-                  ><i class="fas fa-question-circle me-2"></i> Help Center</a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  ><i class="fas fa-shipping-fast me-2"></i> Track Order</a
-                >
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-undo me-2"></i> Returns</a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-truck me-2"></i> Shipping</a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-info-circle me-2"></i> FAQs</a>
-              </li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">FAQs</a></li>
             </ul>
           </div>
 
@@ -893,10 +855,6 @@
                 <i class="fas fa-map-marker-alt me-2"></i>
                 123 Tech Street, Digital City
               </li>
-              <li class="mt-3">
-                <i class="fas fa-user me-2"></i>
-                <span>Developer: Tanzeel Ahmed</span>
-              </li>
             </ul>
           </div>
         </div>
@@ -906,31 +864,21 @@
         <div class="row">
           <div class="col-md-6">
             <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
-            <p class="mb-0 mt-2">
-              <small
-                >Developed with <i class="fas fa-heart text-danger"></i> by
-                <a
-                  href="https://tanzeel804.github.io/portfolio-main/"
-                  target="_blank"
-                  >Tanzeel Ahmed</a
-                ></small
-              >
-            </p>
           </div>
           <div class="col-md-6 text-md-end">
             <div class="payment-methods">
               <span class="me-2">We accept:</span>
-              <i class="fab fa-cc-visa me-2" title="Visa"></i>
-              <i class="fab fa-cc-mastercard me-2" title="Mastercard"></i>
-              <i class="fab fa-cc-paypal me-2" title="PayPal"></i>
-              <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+              <i class="fab fa-cc-visa me-2"></i>
+              <i class="fab fa-cc-mastercard me-2"></i>
+              <i class="fab fa-cc-paypal me-2"></i>
+              <i class="fab fa-cc-apple-pay"></i>
             </div>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Cart Sidebar (Same as index.html) -->
+    <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
       <div class="cart-header">
         <h4><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
@@ -958,315 +906,130 @@
     <script>
       // Initialize AOS
       AOS.init({
-          duration: 1000,
-          once: true,
-          offset: 100
+        duration: 1000,
+        once: true,
+        offset: 100,
       });
 
-      // Initialize theme toggle
-      const themeToggle = document.getElementById('themeToggle');
+      // Theme toggle functionality
+      const themeToggle = document.getElementById("themeToggle");
       const body = document.body;
-      const savedTheme = localStorage.getItem('theme') || 'light';
+      const savedTheme = localStorage.getItem("theme") || "light";
 
-      body.setAttribute('data-theme', savedTheme);
+      body.setAttribute("data-theme", savedTheme);
 
-      themeToggle.addEventListener('click', () => {
-          const currentTheme = body.getAttribute('data-theme');
-          const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
 
-          body.setAttribute('data-theme', newTheme);
-          localStorage.setItem('theme', newTheme);
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
 
-          themeToggle.style.transform = 'rotate(360deg)';
-          setTimeout(() => {
-              themeToggle.style.transform = '';
-          }, 500);
+        themeToggle.style.transform = "rotate(360deg)";
+        setTimeout(() => {
+          themeToggle.style.transform = "";
+        }, 500);
       });
 
-      // Blog specific JavaScript functions
-      function animateBlogCard(element) {
-          element.style.transform = 'translateY(-15px) rotate(2deg)';
-          element.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+      // Search toggle functionality
+      const searchToggle = document.getElementById("searchToggle");
+      const searchBar = document.getElementById("searchBar");
 
-          setTimeout(() => {
-              element.style.transform = 'translateY(-10px) rotate(1deg)';
-              setTimeout(() => {
-                  element.style.transform = '';
-              }, 300);
-          }, 300);
-      }
+      if (searchToggle && searchBar) {
+        searchToggle.addEventListener("click", () => {
+          searchBar.classList.toggle("active");
+        });
 
-      function readArticle(articleId) {
-          // Animation for reading article
-          const notification = document.createElement('div');
-          notification.className = 'notification';
-          notification.innerHTML = `
-              <i class="fas fa-book-reader me-2"></i>
-              <span>Loading article: "${articleId.replace('-', ' ')}"</span>
-          `;
-
-          notification.style.cssText = `
-              position: fixed;
-              top: 20px;
-              right: 20px;
-              background: var(--primary);
-              color: white;
-              padding: 15px 20px;
-              border-radius: var(--radius);
-              display: flex;
-              align-items: center;
-              gap: 10px;
-              z-index: 10000;
-              animation: slideInRight 0.3s ease;
-              box-shadow: var(--shadow);
-          `;
-
-          document.body.appendChild(notification);
-
-          // Simulate article loading
-          setTimeout(() => {
-              notification.innerHTML = `
-                  <i class="fas fa-check-circle me-2"></i>
-                  <span>Article loaded! (Demo Mode)</span>
-              `;
-              notification.style.background = '#10b981';
-
-              setTimeout(() => {
-                  notification.style.animation = 'slideOutRight 0.3s ease';
-                  setTimeout(() => {
-                      notification.remove();
-                  }, 300);
-              }, 2000);
-          }, 1000);
-      }
-
-      function searchBlog() {
-          const searchInput = document.querySelector('.blog-hero input');
-          const searchTerm = searchInput.value.trim();
-
-          if (searchTerm) {
-              const notification = document.createElement('div');
-              notification.className = 'notification';
-              notification.innerHTML = `
-                  <i class="fas fa-search me-2"></i>
-                  <span>Searching for: "${searchTerm}"</span>
-              `;
-
-              notification.style.cssText = `
-                  position: fixed;
-                  top: 20px;
-                  right: 20px;
-                  background: var(--accent);
-                  color: white;
-                  padding: 15px 20px;
-                  border-radius: var(--radius);
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  z-index: 10000;
-                  animation: slideInRight 0.3s ease;
-                  box-shadow: var(--shadow);
-              `;
-
-              document.body.appendChild(notification);
-
-              setTimeout(() => {
-                  notification.innerHTML = `
-                      <i class="fas fa-info-circle me-2"></i>
-                      <span>Found 5 articles for: "${searchTerm}"</span>
-                  `;
-                  notification.style.background = var('--primary');
-
-                  setTimeout(() => {
-                      notification.style.animation = 'slideOutRight 0.3s ease';
-                      setTimeout(() => {
-                          notification.remove();
-                      }, 300);
-                  }, 2000);
-              }, 1500);
+        // Close search when clicking outside
+        document.addEventListener("click", (e) => {
+          if (
+            !searchToggle.contains(e.target) &&
+            !searchBar.contains(e.target)
+          ) {
+            searchBar.classList.remove("active");
           }
+        });
       }
 
-      function filterByCategory(category) {
-          // Animation for category filter
-          const tags = document.querySelectorAll('.tag');
-          tags.forEach(tag => {
-              tag.style.transform = 'scale(0.95)';
-              setTimeout(() => {
-                  tag.style.transform = '';
-              }, 300);
-          });
+      // Cart toggle functionality
+      const cartToggle = document.getElementById("cartToggle");
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartOverlay = document.getElementById("cartOverlay");
+      const closeCart = document.querySelector(".close-cart");
 
-          readArticle(category);
+      function openCart() {
+        cartSidebar.classList.add("active");
+        cartOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
 
-      function filterByTag(tag) {
-          // Animation for tag filter
-          const tagElement = event.target;
-          tagElement.style.transform = 'translateY(-5px) scale(1.2)';
-          tagElement.style.background = 'var(--primary)';
-          tagElement.style.color = 'white';
-
-          setTimeout(() => {
-              tagElement.style.transform = '';
-              setTimeout(() => {
-                  tagElement.style.background = '';
-                  tagElement.style.color = '';
-              }, 300);
-          }, 500);
-
-          readArticle(tag);
+      function closeCartFunc() {
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+        document.body.style.overflow = "";
       }
 
-      function nextPage() {
-          // Animation for pagination
-          const nextBtn = document.querySelector('.page-link:last-child');
-          nextBtn.style.transform = 'translateX(5px)';
-
-          setTimeout(() => {
-              nextBtn.style.transform = '';
-
-              // Show loading animation
-              const notification = document.createElement('div');
-              notification.className = 'notification';
-              notification.innerHTML = `
-                  <i class="fas fa-spinner fa-spin me-2"></i>
-                  <span>Loading next page...</span>
-              `;
-
-              notification.style.cssText = `
-                  position: fixed;
-                  top: 20px;
-                  right: 20px;
-                  background: var(--primary);
-                  color: white;
-                  padding: 15px 20px;
-                  border-radius: var(--radius);
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  z-index: 10000;
-                  animation: slideInRight 0.3s ease;
-                  box-shadow: var(--shadow);
-              `;
-
-              document.body.appendChild(notification);
-
-              setTimeout(() => {
-                  notification.style.animation = 'slideOutRight 0.3s ease';
-                  setTimeout(() => {
-                      notification.remove();
-                      alert('This is a demo. Next page would load more articles.');
-                  }, 300);
-              }, 1500);
-          }, 300);
-      }
+      if (cartToggle) cartToggle.addEventListener("click", openCart);
+      if (closeCart) closeCart.addEventListener("click", closeCartFunc);
+      if (cartOverlay) cartOverlay.addEventListener("click", closeCartFunc);
 
       // Newsletter form submission
-      document.getElementById('blogNewsletter').addEventListener('submit', function(e) {
+      const newsletterForms = document.querySelectorAll(".newsletter-form");
+      newsletterForms.forEach((form) => {
+        form.addEventListener("submit", function (e) {
           e.preventDefault();
-          const email = document.getElementById('blogEmail').value;
+          const email = this.querySelector('input[type="email"]').value;
 
           if (email) {
-              // Animation for subscription
-              const submitBtn = this.querySelector('button');
-              const originalText = submitBtn.innerHTML;
+            // Show success message
+            const originalHTML = this.innerHTML;
+            this.innerHTML = `
+                        <div class="text-center">
+                            <i class="fas fa-check-circle fa-2x mb-3"></i>
+                            <p class="mb-0">Thank you for subscribing!</p>
+                        </div>
+                    `;
 
-              submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Subscribing...';
-              submitBtn.disabled = true;
-
-              setTimeout(() => {
-                  submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Subscribed!';
-                  submitBtn.style.background = '#10b981';
-
-                  setTimeout(() => {
-                      submitBtn.innerHTML = originalText;
-                      submitBtn.disabled = false;
-                      submitBtn.style.background = '';
-                      this.reset();
-
-                      // Show success notification
-                      const notification = document.createElement('div');
-                      notification.className = 'notification';
-                      notification.innerHTML = `
-                          <i class="fas fa-check-circle me-2"></i>
-                          <span>Thank you for subscribing to our blog!</span>
-                      `;
-
-                      notification.style.cssText = `
-                          position: fixed;
-                          top: 20px;
-                          right: 20px;
-                          background: #10b981;
-                          color: white;
-                          padding: 15px 20px;
-                          border-radius: var(--radius);
-                          display: flex;
-                          align-items: center;
-                          gap: 10px;
-                          z-index: 10000;
-                          animation: slideInRight 0.3s ease;
-                          box-shadow: var(--shadow);
-                      `;
-
-                      document.body.appendChild(notification);
-
-                      setTimeout(() => {
-                          notification.style.animation = 'slideOutRight 0.3s ease';
-                          setTimeout(() => {
-                              notification.remove();
-                          }, 300);
-                      }, 3000);
-                  }, 1500);
-              }, 1000);
+            setTimeout(() => {
+              this.innerHTML = originalHTML;
+              this.reset();
+            }, 3000);
           }
+        });
       });
 
-      // Add CSS for notification animation if not exists
-      if (!document.querySelector('#blogAnimations')) {
-          const style = document.createElement('style');
-          style.id = 'blogAnimations';
-          style.textContent = `
-              @keyframes slideInRight {
-                  from { transform: translateX(100%); opacity: 0; }
-                  to { transform: translateX(0); opacity: 1; }
-              }
-              @keyframes slideOutRight {
-                  from { transform: translateX(0); opacity: 1; }
-                  to { transform: translateX(100%); opacity: 0; }
-              }
+      // Blog card click animation
+      const blogCards = document.querySelectorAll(".blog-card");
+      blogCards.forEach((card) => {
+        card.addEventListener("click", function (e) {
+          if (!e.target.closest("a") && !e.target.closest("button")) {
+            this.style.transform = "scale(0.98)";
+            setTimeout(() => {
+              this.style.transform = "";
+            }, 200);
+          }
+        });
+      });
 
-              /* Hover effects for blog cards */
-              .blog-card {
-                  transition: transform 0.3s ease, box-shadow 0.3s ease;
-              }
+      // Read more button animation
+      const readMoreLinks = document.querySelectorAll(".read-more");
+      readMoreLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          this.style.color = "var(--primary-dark)";
+          this.querySelector("i").style.transform = "translateX(10px)";
 
-              .blog-card:hover .blog-title {
-                  color: var(--primary);
-              }
+          setTimeout(() => {
+            this.style.color = "";
+            this.querySelector("i").style.transform = "";
+            alert(
+              "This is a demo. In a real blog, this would open the full article."
+            );
+          }, 300);
+        });
+      });
 
-              .read-more-btn {
-                  transition: all 0.3s ease;
-                  position: relative;
-                  overflow: hidden;
-              }
-
-              .read-more-btn:hover {
-                  padding-right: 30px;
-              }
-
-              .read-more-btn:hover i {
-                  transform: translateX(5px);
-              }
-
-              .read-more-btn i {
-                  transition: transform 0.3s ease;
-              }
-          `;
-          document.head.appendChild(style);
-      }
-
-      console.log('Blog page initialized with animations!');
+      console.log("Blog page loaded successfully!");
     </script>
   </body>
 </html>
