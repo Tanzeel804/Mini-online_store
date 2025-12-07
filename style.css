@@ -128,7 +128,6 @@ a:hover {
   justify-content: center;
   transition: var(--transition);
   box-shadow: var(--shadow);
-  z-index: 9999;
 }
 
 .theme-btn:hover {
@@ -375,7 +374,7 @@ a:hover {
   }
 }
 
-/* ====== FEATURES SECTION ====== */
+/* ===== FEATURES ===== */
 .feature-card {
   background: var(--card-bg);
   padding: 30px;
@@ -404,7 +403,7 @@ a:hover {
   color: var(--primary);
 }
 
-/* ====== PRODUCTS SECTION ====== */
+/* ===== PRODUCTS ===== */
 .products-section {
   background-color: var(--light);
 }
@@ -477,7 +476,7 @@ a:hover {
   gap: 10px;
 }
 
-/* ====== CATEGORIES SECTION ====== */
+/* ===== CATEGORIES ===== */
 .category-card {
   display: block;
   background: var(--card-bg);
@@ -513,7 +512,7 @@ a:hover {
   transition: var(--transition);
 }
 
-/* ====== SALE BANNER ====== */
+/* ===== SALE BANNER ===== */
 .sale-banner {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -584,7 +583,7 @@ a:hover {
   }
 }
 
-/* ====== TESTIMONIALS SECTION ====== */
+/* ===== TESTIMONIALS ===== */
 .testimonial-card {
   background: var(--card-bg);
   padding: 30px;
@@ -616,7 +615,7 @@ a:hover {
   object-fit: cover;
 }
 
-/* ====== DEVELOPER SECTION ====== */
+/* ===== DEVELOPER SECTION ===== */
 .developer-card {
   background: var(--card-bg);
   padding: 40px;
@@ -724,7 +723,7 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
-/* ====== NEWSLETTER SECTION ====== */
+/* ===== NEWSLETTER ===== */
 .newsletter-section {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
 }
@@ -743,7 +742,7 @@ a:hover {
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-/* ====== FOOTER ====== */
+/* ===== FOOTER ===== */
 .footer {
   background: var(--card-bg);
   border-top: 1px solid var(--gray);
@@ -838,7 +837,7 @@ a:hover {
   color: var(--primary);
 }
 
-/* ====== CONTACT PAGE STYLES ====== */
+/* ===== CONTACT PAGE ===== */
 .contact-hero {
   padding: 80px 0;
 }
@@ -875,7 +874,7 @@ a:hover {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* FAQ Section */
+/* FAQ */
 .accordion-button {
   padding: 15px;
   font-weight: 600;
@@ -893,7 +892,7 @@ a:hover {
   background-color: var(--light);
 }
 
-/* ====== BLOG PAGE STYLES ====== */
+/* ===== BLOG ===== */
 .blog-hero {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
@@ -914,32 +913,10 @@ a:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.blog-image {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
-}
-
-.blog-image img {
+.blog-card img {
   width: 100%;
-  height: 100%;
+  height: 220px;
   object-fit: cover;
-  transition: var(--transition);
-}
-
-.blog-card:hover .blog-image img {
-  transform: scale(1.1);
-}
-
-.blog-category {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: var(--primary);
-  color: white;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
 }
 
 .blog-content {
@@ -947,14 +924,8 @@ a:hover {
 }
 
 .blog-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.blog-excerpt {
-  color: var(--gray);
-  margin-bottom: 15px;
 }
 
 .blog-meta {
@@ -963,205 +934,19 @@ a:hover {
   margin-bottom: 15px;
 }
 
-.blog-meta span {
-  margin-right: 15px;
+.blog-desc {
+  color: var(--gray);
+  margin-bottom: 15px;
 }
 
-.read-more {
+.blog-readmore {
   color: var(--primary);
   font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  gap: 10px;
-  color: var(--primary-dark);
-}
-
-/* Sidebar */
-.sidebar-widget {
-  background: var(--card-bg);
-  padding: 25px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 30px;
-}
-
-.widget-title {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--primary);
-}
-
-.categories-list {
-  list-style: none;
-  padding: 0;
-}
-
-.categories-list li {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--gray);
-}
-
-.categories-list a {
-  display: flex;
-  justify-content: space-between;
-  color: var(--dark);
-  text-decoration: none;
-}
-
-.categories-list a:hover {
-  color: var(--primary);
-}
-
-.count {
-  background: var(--primary);
-  color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-}
-
-.recent-post {
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--gray);
-}
-
-.recent-post:last-child {
-  border-bottom: none;
-}
-
-.recent-post a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.recent-post a:hover {
-  color: var(--primary);
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tag {
-  background: var(--light);
-  color: var(--dark);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
   transition: var(--transition);
-  text-decoration: none;
-  display: inline-block;
 }
 
-.tag:hover {
-  background: var(--primary);
-  color: white;
+.blog-readmore:hover {
+  padding-left: 5px;
 }
 
-/* Pagination */
-.pagination .page-link {
-  color: var(--primary);
-  border: 1px solid var(--gray);
-}
-
-.pagination .page-item.active .page-link {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-/* ====== RESPONSIVE DESIGN ====== */
-@media (max-width: 992px) {
-  .hero-title {
-    font-size: 2.8rem;
-  }
-
-  .hero-stats {
-    flex-wrap: wrap;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .cart-sidebar {
-    width: 100%;
-    right: -100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-nav {
-    margin-top: 20px;
-  }
-
-  .nav-actions {
-    margin-top: 15px;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .sale-offer {
-    font-size: 3rem;
-  }
-
-  .countdown {
-    flex-wrap: wrap;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .theme-toggle {
-    top: 70px;
-    right: 15px;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    padding: 0 15px;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .countdown-item span {
-    font-size: 1.8rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer .row > div {
-    margin-bottom: 30px;
-  }
-
-  .theme-toggle {
-    top: 60px;
-    right: 10px;
-  }
-
-  .theme-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 1rem;
-  }
-}
+/* END */
