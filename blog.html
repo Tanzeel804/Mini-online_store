@@ -1,301 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Tech Blog - TechStore</title>
 
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=DM+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- AOS Animation -->
+    <!-- Bootstrap & AOS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./images/main-logo.png" />
 
+    <!-- Full page CSS -->
     <style>
-      /* Blog Page Specific Styles */
+      /* ====== ROOT VARIABLES ====== */
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #0f172a;
+        --gray: #64748b;
+        --card-bg: #ffffff;
+        --shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
+        --transition: all 0.28s ease;
+      }
+      [data-theme="dark"] {
+        --light: #0b1220;
+        --dark: #f1f5f9;
+        --card-bg: #0f172a;
+        --gray: #94a3b8;
+        --shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      /* ====== Reset & base ====== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ====== Buttons ====== */
+      .btn {
+        transition: var(--transition);
+        border-radius: 10px;
+      }
+      .btn-primary {
+        background: var(--primary);
+        border: 1px solid var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.16);
+      }
+      .btn-outline-primary {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+      }
+      .btn-outline-primary:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      /* ====== Theme toggle ====== */
+      .theme-toggle {
+        position: fixed;
+        top: 80px;
+        right: 18px;
+        z-index: 9999;
+      }
+      .theme-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: none;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: transform 0.35s;
+      }
+      .theme-btn:hover {
+        transform: rotate(20deg) scale(1.05);
+      }
+
+      /* ====== Top notice ====== */
+      .top-notice {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: #fff;
+        padding: 9px;
+        text-align: center;
+        font-size: 0.95rem;
+      }
+      .top-notice a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      /* ====== NAV ====== */
+      .navbar {
+        padding: 14px 0;
+        background: var(--card-bg);
+        box-shadow: var(--shadow);
+      }
+      .brand-text {
+        font-family: "Zen Dots", sans-serif;
+        font-size: 1.35rem;
+        color: var(--primary);
+        margin-left: 8px;
+      }
+      .nav-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--gray);
+        cursor: pointer;
+        background: transparent;
+        transition: var(--transition);
+      }
+      .nav-icon:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        transform: translateY(-3px);
+      }
+      .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: var(--danger);
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+      }
+
+      /* search bar */
+      .search-bar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        padding: 12px;
+        box-shadow: var(--shadow);
+        display: none;
+        z-index: 1000;
+      }
+      .search-bar.active {
+        display: flex;
+        gap: 10px;
+      }
+
+      /* ====== CART SIDEBAR ====== */
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -420px;
+        width: 380px;
+        height: 100vh;
+        background: var(--card-bg);
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
+        z-index: 1001;
+        transition: right 0.28s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .cart-sidebar.active {
+        right: 0;
+      }
+      .cart-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+      .cart-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .cart-header {
+        padding: 18px;
+        border-bottom: 1px solid var(--gray);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .cart-items {
+        flex: 1;
+        padding: 18px;
+        overflow: auto;
+      }
+      .cart-footer {
+        padding: 18px;
+        border-top: 1px solid var(--gray);
+      }
+      .close-cart {
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: var(--gray);
+      }
+
+      /* ====== HERO / BLOG HERO ====== */
       .blog-hero {
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-        color: white;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: #fff;
         padding: 100px 0;
         text-align: center;
       }
+      .display-4 {
+        font-weight: 800;
+      }
+      .lead {
+        opacity: 0.95;
+      }
 
+      /* ====== BLOG CARDS ====== */
       .blog-card {
         background: var(--card-bg);
         border-radius: var(--radius);
         overflow: hidden;
         box-shadow: var(--shadow);
-        transition: all 0.3s ease;
+        transition: transform 0.28s, box-shadow 0.28s;
         height: 100%;
-        margin-bottom: 30px;
       }
-
       .blog-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.14);
       }
-
       .blog-image {
         height: 250px;
         overflow: hidden;
         position: relative;
       }
-
       .blog-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
-
       .blog-card:hover .blog-image img {
-        transform: scale(1.1);
+        transform: scale(1.08);
       }
-
       .blog-category {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 14px;
+        right: 14px;
         background: var(--primary);
-        color: white;
-        padding: 5px 15px;
-        border-radius: 20px;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 18px;
+        font-weight: 700;
         font-size: 0.9rem;
-        font-weight: 600;
       }
-
       .blog-content {
-        padding: 25px;
+        padding: 22px;
       }
-
       .blog-title {
-        font-size: 1.3rem;
+        font-size: 1.35rem;
         font-weight: 700;
         margin-bottom: 10px;
-        line-height: 1.4;
         color: var(--dark);
       }
-
       .blog-excerpt {
         color: var(--gray);
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         line-height: 1.6;
       }
-
       .blog-meta {
         color: var(--gray);
         font-size: 0.9rem;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         display: flex;
-        align-items: center;
+        gap: 12px;
         flex-wrap: wrap;
-        gap: 15px;
+        align-items: center;
       }
-
-      .blog-meta i {
-        margin-right: 5px;
-      }
-
       .read-more {
         color: var(--primary);
-        font-weight: 600;
-        text-decoration: none;
+        font-weight: 700;
         display: inline-flex;
         align-items: center;
-        transition: all 0.3s ease;
+        gap: 8px;
+        transition: transform 0.25s, color 0.25s;
       }
-
       .read-more:hover {
         color: var(--primary-dark);
-        transform: translateX(5px);
+        transform: translateX(6px);
       }
-
       .read-more i {
-        margin-left: 5px;
-        transition: transform 0.3s ease;
+        transition: transform 0.25s;
       }
 
-      .read-more:hover i {
-        transform: translateX(5px);
-      }
-
-      /* Sidebar Styles */
+      /* ====== SIDEBAR WIDGETS ====== */
       .sidebar-widget {
         background: var(--card-bg);
-        padding: 25px;
+        padding: 22px;
         border-radius: var(--radius);
         box-shadow: var(--shadow);
-        margin-bottom: 30px;
-      }
-
-      .widget-title {
-        font-size: 1.3rem;
-        font-weight: 700;
         margin-bottom: 20px;
-        padding-bottom: 10px;
+      }
+      .widget-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
         border-bottom: 2px solid var(--primary);
         color: var(--dark);
       }
-
       .categories-list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-
       .categories-list li {
         margin-bottom: 12px;
         padding-bottom: 12px;
         border-bottom: 1px solid var(--gray);
       }
-
-      .categories-list li:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
       .categories-list a {
         display: flex;
         justify-content: space-between;
         align-items: center;
         color: var(--dark);
-        text-decoration: none;
-        transition: all 0.3s ease;
       }
-
-      .categories-list a:hover {
-        color: var(--primary);
-        padding-left: 5px;
-      }
-
       .count {
         background: var(--primary);
-        color: white;
-        padding: 3px 10px;
+        color: #fff;
+        padding: 4px 10px;
         border-radius: 12px;
+        font-weight: 700;
         font-size: 0.8rem;
-        font-weight: 600;
       }
-
       .recent-post {
-        padding-bottom: 15px;
-        margin-bottom: 15px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
         border-bottom: 1px solid var(--gray);
-      }
-
-      .recent-post:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      .recent-post a {
-        text-decoration: none;
-        color: inherit;
         display: flex;
         align-items: center;
-        transition: all 0.3s ease;
+        gap: 12px;
       }
-
-      .recent-post a:hover {
-        color: var(--primary);
-      }
-
       .recent-post img {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
         object-fit: cover;
         border-radius: 8px;
-        margin-right: 15px;
       }
-
-      .recent-post h6 {
-        font-size: 0.95rem;
-        margin-bottom: 5px;
-        line-height: 1.4;
-      }
-
-      .recent-post small {
-        color: var(--gray);
-        font-size: 0.8rem;
-      }
-
       .tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
       }
-
       .tag {
         background: var(--light);
         color: var(--dark);
-        padding: 6px 15px;
+        padding: 6px 12px;
         border-radius: 20px;
         font-size: 0.85rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
+        display: inline-block;
       }
-
       .tag:hover {
         background: var(--primary);
-        color: white;
+        color: #fff;
         transform: translateY(-3px);
       }
 
-      /* Pagination */
-      .pagination .page-link {
-        color: var(--primary);
-        border: 1px solid var(--gray);
+      /* ====== FOOTER ====== */
+      .footer {
+        background: var(--card-bg);
+        border-top: 1px solid var(--gray);
+        padding: 36px 0;
+        margin-top: 30px;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .footer-text {
+        color: var(--gray);
+        margin-top: 12px;
+      }
+      .footer h5 {
+        margin-bottom: 14px;
+        color: var(--dark);
+        font-weight: 700;
+      }
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      .payment-methods i {
+        font-size: 1.4rem;
+        color: var(--gray);
+        margin-left: 10px;
+      }
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--light);
+        color: var(--dark);
+        margin-right: 8px;
       }
 
-      .pagination .page-item.active .page-link {
-        background-color: var(--primary);
-        border-color: var(--primary);
-        color: white;
+      /* ====== small utilities/responsive ====== */
+      .text-muted {
+        color: var(--gray);
       }
-
-      .pagination .page-link:hover {
-        background-color: var(--light);
-        border-color: var(--primary);
+      .mb-0 {
+        margin-bottom: 0;
       }
-
-      /* Responsive */
-      @media (max-width: 768px) {
-        .blog-hero {
-          padding: 60px 0;
-        }
-
+      @media (max-width: 992px) {
         .blog-image {
-          height: 200px;
+          height: 220px;
         }
-
-        .blog-content {
-          padding: 20px;
+        .blog-hero {
+          padding: 70px 0;
         }
-
         .sidebar-widget {
-          padding: 20px;
+          padding: 18px;
+        }
+      }
+      @media (max-width: 576px) {
+        .blog-image {
+          height: 180px;
+        }
+        .theme-toggle {
+          top: 60px;
+          right: 10px;
         }
       }
     </style>
@@ -303,27 +515,29 @@
   <body data-theme="light">
     <!-- Theme Toggle -->
     <div class="theme-toggle">
-      <button id="themeToggle" class="theme-btn">
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
         <i class="fas fa-sun" id="sunIcon"></i>
-        <i class="fas fa-moon" id="moonIcon"></i>
+        <i class="fas fa-moon" id="moonIcon" style="display: none"></i>
       </button>
     </div>
 
     <!-- Top Notification Bar -->
     <div class="top-notice">
-      <p>
-        🎉 Read our latest tech articles! <a href="#featured">Featured Post</a>
-      </p>
+      🎉 Read our latest tech articles! <a href="#featured">Featured Post</a>
     </div>
 
     <!-- Navigation -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="./images/logo.png" alt="TechStore" height="40" />
-          <span class="brand-text">TechStore</span>
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <!-- use main-logo.png (rename if your file is logo.png) -->
+          <img
+            src="./images/main-logo.png"
+            alt="TechStore"
+            height="40"
+            onerror="this.src='./images/main-logo.png'"
+          />
+          <span class="brand-text ms-2">TechStore</span>
         </a>
 
         <button
@@ -331,6 +545,7 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -338,14 +553,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="fas fa-home me-1"></i> Home
-              </a>
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home me-1"></i> Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#services">
-                <i class="fas fa-concierge-bell me-1"></i> Services
-              </a>
+              <a class="nav-link" href="index.html#services"
+                ><i class="fas fa-concierge-bell me-1"></i> Services</a
+              >
             </li>
             <li class="nav-item dropdown">
               <a
@@ -354,9 +569,8 @@
                 id="productsDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
+                ><i class="fas fa-mobile-alt me-1"></i> Products</a
               >
-                <i class="fas fa-mobile-alt me-1"></i> Products
-              </a>
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="index.html#mobiles"
@@ -381,43 +595,52 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="blog.html">
-                <i class="fas fa-blog me-1"></i> Blog
-              </a>
+              <a class="nav-link active" href="blog.html"
+                ><i class="fas fa-blog me-1"></i> Blog</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">
-                <i class="fas fa-address-book me-1"></i> Contact
-              </a>
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-address-book me-1"></i> Contact</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#sale">
-                <i class="fas fa-tag me-1"></i> Sale
-              </a>
+              <a class="nav-link" href="index.html#sale"
+                ><i class="fas fa-tag me-1"></i> Sale</a
+              >
             </li>
           </ul>
 
-          <div class="nav-actions">
-            <button class="nav-icon" id="searchToggle">
+          <div class="nav-actions d-flex align-items-center gap-2">
+            <button
+              class="nav-icon position-relative"
+              id="searchToggle"
+              aria-label="Search"
+            >
               <i class="fas fa-search"></i>
             </button>
-            <a href="login.html" class="nav-icon">
-              <i class="fas fa-user"></i>
-            </a>
-            <button class="nav-icon cart-btn" id="cartToggle">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-count">0</span>
+            <a href="login.html" class="nav-icon" title="Login"
+              ><i class="fas fa-user"></i
+            ></a>
+            <button
+              class="nav-icon position-relative"
+              id="cartToggle"
+              aria-label="Cart"
+            >
+              <i class="fas fa-shopping-cart"></i
+              ><span class="cart-count">0</span>
             </button>
           </div>
 
           <!-- Search Bar -->
-          <div class="search-bar" id="searchBar">
+          <div class="search-bar" id="searchBar" role="search">
             <input
               type="text"
+              id="searchInput"
               class="form-control"
               placeholder="Search articles..."
             />
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" id="searchBtn">
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -429,26 +652,28 @@
     <section class="blog-hero">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h1 class="display-4 fw-bold mb-4" data-aos="fade-up">
+          <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 fw-bold mb-3" data-aos="fade-up">
               TechStore Blog
             </h1>
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
               Discover the latest technology trends, expert reviews, and helpful
               guides.
             </p>
+
             <div
               class="input-group mb-3 mx-auto"
-              style="max-width: 500px"
+              style="max-width: 520px"
               data-aos="fade-up"
               data-aos-delay="200"
             >
               <input
                 type="text"
+                id="heroSearch"
                 class="form-control"
                 placeholder="Search articles..."
               />
-              <button class="btn btn-light" type="button">
+              <button class="btn btn-light" id="heroSearchBtn" type="button">
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -461,10 +686,10 @@
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <!-- Main Content -->
+          <!-- MAIN -->
           <div class="col-lg-8">
-            <!-- Featured Post -->
-            <div class="blog-card" id="featured" data-aos="fade-up">
+            <!-- Featured -->
+            <article class="blog-card mb-4" id="featured" data-aos="fade-up">
               <div class="blog-image">
                 <img
                   src="./images/blog-featured.jpg"
@@ -490,16 +715,17 @@
                   photography, AI is changing how we interact with our
                   devices...
                 </p>
-                <a href="#" class="read-more">
-                  Read Full Article <i class="fas fa-arrow-right"></i>
-                </a>
+                <a href="#" class="read-more"
+                  ><span>Read Full Article</span>
+                  <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
-            </div>
+            </article>
 
-            <!-- Blog Posts Grid -->
+            <!-- posts grid -->
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="blog-card h-100">
+                <article class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog1.jpg"
@@ -522,15 +748,15 @@
                       Find the perfect laptop for your academic needs with our
                       comprehensive guide.
                     </p>
-                    <a href="#" class="read-more">
-                      Read More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="#" class="read-more"
+                      >Read More <i class="fas fa-arrow-right"></i
+                    ></a>
                   </div>
-                </div>
+                </article>
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="blog-card h-100">
+                <article class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog2.jpg"
@@ -553,15 +779,15 @@
                       We tested the new Apple Watch Series 9 for two weeks.
                       Here's our honest review.
                     </p>
-                    <a href="#" class="read-more">
-                      Read More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="#" class="read-more"
+                      >Read More <i class="fas fa-arrow-right"></i
+                    ></a>
                   </div>
-                </div>
+                </article>
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="blog-card h-100">
+                <article class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog3.jpg"
@@ -584,15 +810,15 @@
                       Simple yet effective tips to make your smartphone battery
                       last longer.
                     </p>
-                    <a href="#" class="read-more">
-                      Read More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="#" class="read-more"
+                      >Read More <i class="fas fa-arrow-right"></i
+                    ></a>
                   </div>
-                </div>
+                </article>
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="blog-card h-100">
+                <article class="blog-card h-100">
                   <div class="blog-image">
                     <img
                       src="./images/blog4.jpg"
@@ -613,11 +839,11 @@
                       Level up your gaming experience with these must-have
                       accessories.
                     </p>
-                    <a href="#" class="read-more">
-                      Read More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="#" class="read-more"
+                      >Read More <i class="fas fa-arrow-right"></i
+                    ></a>
                   </div>
-                </div>
+                </article>
               </div>
             </div>
 
@@ -625,9 +851,9 @@
             <nav aria-label="Blog navigation" class="mt-5">
               <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">
-                    <i class="fas fa-chevron-left"></i>
-                  </a>
+                  <a class="page-link" href="#" tabindex="-1"
+                    ><i class="fas fa-chevron-left"></i
+                  ></a>
                 </li>
                 <li class="page-item active">
                   <a class="page-link" href="#">1</a>
@@ -635,17 +861,16 @@
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#">
-                    <i class="fas fa-chevron-right"></i>
-                  </a>
+                  <a class="page-link" href="#"
+                    ><i class="fas fa-chevron-right"></i
+                  ></a>
                 </li>
               </ul>
             </nav>
           </div>
 
-          <!-- Sidebar -->
-          <div class="col-lg-4">
-            <!-- Categories Widget -->
+          <!-- SIDEBAR -->
+          <aside class="col-lg-4">
             <div class="sidebar-widget" data-aos="fade-left">
               <h4 class="widget-title">Categories</h4>
               <ul class="categories-list">
@@ -670,7 +895,6 @@
               </ul>
             </div>
 
-            <!-- Recent Posts -->
             <div
               class="sidebar-widget"
               data-aos="fade-left"
@@ -687,10 +911,11 @@
                     />
                     <div>
                       <h6>iPhone 15 Pro Max Review</h6>
-                      <small>Sep 20, 2024</small>
+                      <small class="text-muted">Sep 20, 2024</small>
                     </div>
                   </a>
                 </div>
+
                 <div class="recent-post">
                   <a href="#">
                     <img
@@ -700,10 +925,11 @@
                     />
                     <div>
                       <h6>Best Wireless Earbuds 2024</h6>
-                      <small>Sep 15, 2024</small>
+                      <small class="text-muted">Sep 15, 2024</small>
                     </div>
                   </a>
                 </div>
+
                 <div class="recent-post">
                   <a href="#">
                     <img
@@ -713,14 +939,13 @@
                     />
                     <div>
                       <h6>Android 14 Features Explained</h6>
-                      <small>Sep 10, 2024</small>
+                      <small class="text-muted">Sep 10, 2024</small>
                     </div>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- Tags Widget -->
             <div
               class="sidebar-widget"
               data-aos="fade-left"
@@ -728,26 +953,24 @@
             >
               <h4 class="widget-title">Popular Tags</h4>
               <div class="tags">
-                <a href="#" class="tag">Smartphone</a>
-                <a href="#" class="tag">Review</a>
-                <a href="#" class="tag">Apple</a>
-                <a href="#" class="tag">Android</a>
-                <a href="#" class="tag">Gaming</a>
-                <a href="#" class="tag">Laptop</a>
-                <a href="#" class="tag">Tips</a>
-                <a href="#" class="tag">Technology</a>
-                <a href="#" class="tag">Innovation</a>
+                <a class="tag" href="#">Smartphone</a>
+                <a class="tag" href="#">Review</a>
+                <a class="tag" href="#">Apple</a>
+                <a class="tag" href="#">Android</a>
+                <a class="tag" href="#">Gaming</a>
+                <a class="tag" href="#">Laptop</a>
+                <a class="tag" href="#">Tips</a>
+                <a class="tag" href="#">Technology</a>
               </div>
             </div>
 
-            <!-- Newsletter Widget -->
             <div
               class="sidebar-widget bg-primary text-white"
               data-aos="fade-left"
               data-aos-delay="300"
             >
               <h4 class="widget-title text-white">Subscribe</h4>
-              <p class="mb-3">
+              <p>
                 Get the latest tech news and updates directly in your inbox.
               </p>
               <form class="newsletter-form">
@@ -759,199 +982,204 @@
                     required
                   />
                 </div>
-                <button type="submit" class="btn btn-light w-100">
+                <button class="btn btn-light w-100" type="submit">
                   Subscribe Now
                 </button>
               </form>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer py-5">
+    <!-- FOOTER -->
+    <footer class="footer">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-3 mb-4">
-            <a href="index.html" class="footer-logo">
-              <img src="./images/logo.png" alt="TechStore" height="40" />
-              <span class="brand-text">TechStore</span>
+        <div class="row gy-4">
+          <div class="col-lg-3">
+            <a href="index.html" class="footer-logo d-flex align-items-center">
+              <img
+                src="./images/main-logo.png"
+                alt="TechStore"
+                height="36"
+                onerror="this.src='./images/main-logo.png'"
+              />
+              <span class="brand-text ms-2">TechStore</span>
             </a>
             <p class="footer-text mt-3">
               Your one-stop destination for premium electronics and gadgets at
               unbeatable prices.
             </p>
-            <div class="social-links mt-3">
-              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
+            <div class="social-links mt-2">
+              <a
+                href="https://www.facebook.com/tanzeelahmedpov"
+                target="_blank"
+                class="me-2"
                 ><i class="fab fa-facebook"></i
               ></a>
-              <a href="https://twitter.com/TanzeelOnX" target="_blank"
+              <a
+                href="https://twitter.com/TanzeelOnX"
+                target="_blank"
+                class="me-2"
                 ><i class="fab fa-twitter"></i
               ></a>
               <a
                 href="https://www.instagram.com/tanzeelahmedpov"
                 target="_blank"
+                class="me-2"
                 ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
-                target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://www.youtube.com" target="_blank"
-                ><i class="fab fa-youtube"></i
               ></a>
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-4 mb-4">
+          <div class="col-lg-2 col-md-4">
             <h5>Quick Links</h5>
-            <ul class="footer-links">
+            <ul class="footer-links list-unstyled">
               <li><a href="index.html">Home</a></li>
               <li><a href="index.html#products">Products</a></li>
               <li><a href="index.html#sale">Sale</a></li>
               <li><a href="blog.html">Blog</a></li>
-              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-2 col-md-4 mb-4">
+          <div class="col-lg-2 col-md-4">
             <h5>Categories</h5>
-            <ul class="footer-links">
+            <ul class="footer-links list-unstyled">
               <li><a href="index.html#mobiles">Smartphones</a></li>
               <li><a href="index.html#watches">Smart Watches</a></li>
               <li><a href="index.html#laptops">Laptops</a></li>
               <li><a href="index.html#accessories">Accessories</a></li>
-              <li><a href="index.html#gadgets">Gadgets</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-2 col-md-4 mb-4">
-            <h5>Support</h5>
-            <ul class="footer-links">
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Track Order</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Shipping</a></li>
-              <li><a href="#">FAQs</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 mb-4">
+          <div class="col-lg-5">
             <h5>Contact Info</h5>
-            <ul class="footer-contact">
+            <ul class="list-unstyled footer-contact">
               <li>
-                <i class="fas fa-envelope me-2"></i>
-                <a href="mailto:tanzeel.ahmed.se@gmail.com"
+                <i class="fas fa-envelope me-2 text-primary"></i
+                ><a href="mailto:tanzeel.ahmed.se@gmail.com"
                   >tanzeel.ahmed.se@gmail.com</a
                 >
               </li>
               <li>
-                <i class="fas fa-phone me-2"></i>
-                <a href="tel:+5511122233344">+55 111 222 333 44</a>
+                <i class="fas fa-phone me-2 text-primary"></i
+                ><a href="tel:+923101400966">+92 310 1400966</a>
               </li>
               <li>
-                <i class="fas fa-map-marker-alt me-2"></i>
-                123 Tech Street, Digital City
+                <i class="fas fa-map-marker-alt me-2 text-primary"></i> Lodhran,
+                Punjab, Pakistan
               </li>
             </ul>
           </div>
         </div>
 
         <hr class="my-4" />
-
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
-          </div>
-          <div class="col-md-6 text-md-end">
-            <div class="payment-methods">
-              <span class="me-2">We accept:</span>
-              <i class="fab fa-cc-visa me-2"></i>
-              <i class="fab fa-cc-mastercard me-2"></i>
-              <i class="fab fa-cc-paypal me-2"></i>
-              <i class="fab fa-cc-apple-pay"></i>
-            </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted"
+            >&copy; 2024 TechStore. All rights reserved.</small
+          >
+          <div class="payment-methods">
+            <img
+              src="./images/visa.jpg"
+              alt="visa"
+              height="22"
+              style="margin-right: 8px"
+              onerror="this.style.display='none'"
+            />
+            <img
+              src="./images/mastercard.jpg"
+              alt="mastercard"
+              height="22"
+              style="margin-right: 8px"
+              onerror="this.style.display='none'"
+            />
+            <img
+              src="./images/paypal.jpg"
+              alt="paypal"
+              height="22"
+              onerror="this.style.display='none'"
+            />
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
+    <!-- CART SIDEBAR (hidden by default) -->
+    <div class="cart-sidebar" id="cartSidebar" aria-hidden="true">
       <div class="cart-header">
-        <h4><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
-        <button class="close-cart">&times;</button>
+        <h4 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
+        <button class="close-cart" aria-label="Close cart">&times;</button>
       </div>
       <div class="cart-items" id="cartItems">
-        <!-- Cart items will be loaded here -->
+        <p class="text-muted m-3">Your cart is empty.</p>
       </div>
       <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span class="total-price">$0.00</span>
+        <div
+          class="cart-total d-flex justify-content-between align-items-center mb-3"
+        >
+          <strong>Total:</strong><strong class="total-price">$0.00</strong>
         </div>
         <button class="btn btn-primary w-100">Checkout</button>
       </div>
     </div>
-    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-    <script src="cart.js"></script>
 
     <script>
-      // Initialize AOS
-      AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100,
-      });
+      // --- AOS init
+      if (window.AOS) AOS.init({ duration: 900, once: true, offset: 80 });
 
-      // Theme toggle functionality
+      // --- THEME toggle with localStorage
       const themeToggle = document.getElementById("themeToggle");
       const body = document.body;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
       const savedTheme = localStorage.getItem("theme") || "light";
-
       body.setAttribute("data-theme", savedTheme);
-
-      themeToggle.addEventListener("click", () => {
-        const currentTheme = body.getAttribute("data-theme");
-        const newTheme = currentTheme === "light" ? "dark" : "light";
-
-        body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-
-        themeToggle.style.transform = "rotate(360deg)";
-        setTimeout(() => {
-          themeToggle.style.transform = "";
-        }, 500);
-      });
-
-      // Search toggle functionality
-      const searchToggle = document.getElementById("searchToggle");
-      const searchBar = document.getElementById("searchBar");
-
-      if (searchToggle && searchBar) {
-        searchToggle.addEventListener("click", () => {
-          searchBar.classList.toggle("active");
-        });
-
-        // Close search when clicking outside
-        document.addEventListener("click", (e) => {
-          if (
-            !searchToggle.contains(e.target) &&
-            !searchBar.contains(e.target)
-          ) {
-            searchBar.classList.remove("active");
-          }
-        });
+      if (savedTheme === "dark") {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "inline-block";
+      } else {
+        sunIcon.style.display = "inline-block";
+        moonIcon.style.display = "none";
       }
 
-      // Cart toggle functionality
+      themeToggle.addEventListener("click", () => {
+        const current = body.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        body.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        // little spin animation
+        themeToggle.style.transform = "rotate(360deg)";
+        setTimeout(() => (themeToggle.style.transform = ""), 450);
+        sunIcon.style.display = next === "light" ? "inline-block" : "none";
+        moonIcon.style.display = next === "dark" ? "inline-block" : "none";
+      });
+
+      // --- SEARCH toggle & outside click handling
+      const searchToggle = document.getElementById("searchToggle");
+      const searchBar = document.getElementById("searchBar");
+      searchToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        searchBar.classList.toggle("active");
+        if (searchBar.classList.contains("active"))
+          searchBar.style.display = "flex";
+        else searchBar.style.display = "none";
+      });
+      // close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+          searchBar.classList.remove("active");
+          searchBar.style.display = "none";
+        }
+      });
+      // prevent closing when clicking inside searchBar
+      searchBar.addEventListener("click", (e) => e.stopPropagation());
+
+      // --- CART sidebar
       const cartToggle = document.getElementById("cartToggle");
       const cartSidebar = document.getElementById("cartSidebar");
       const cartOverlay = document.getElementById("cartOverlay");
@@ -960,76 +1188,81 @@
       function openCart() {
         cartSidebar.classList.add("active");
         cartOverlay.classList.add("active");
+        cartSidebar.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
       }
-
       function closeCartFunc() {
         cartSidebar.classList.remove("active");
         cartOverlay.classList.remove("active");
+        cartSidebar.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
-
       if (cartToggle) cartToggle.addEventListener("click", openCart);
       if (closeCart) closeCart.addEventListener("click", closeCartFunc);
       if (cartOverlay) cartOverlay.addEventListener("click", closeCartFunc);
 
-      // Newsletter form submission
-      const newsletterForms = document.querySelectorAll(".newsletter-form");
-      newsletterForms.forEach((form) => {
+      // --- Newsletter forms
+      document.querySelectorAll(".newsletter-form").forEach((form) => {
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           const email = this.querySelector('input[type="email"]').value;
-
-          if (email) {
-            // Show success message
-            const originalHTML = this.innerHTML;
-            this.innerHTML = `
-                        <div class="text-center">
-                            <i class="fas fa-check-circle fa-2x mb-3"></i>
-                            <p class="mb-0">Thank you for subscribing!</p>
-                        </div>
-                    `;
-
-            setTimeout(() => {
-              this.innerHTML = originalHTML;
-              this.reset();
-            }, 3000);
-          }
+          if (!email) return;
+          const original = this.innerHTML;
+          this.innerHTML =
+            '<div class="text-center text-white"><i class="fas fa-check-circle fa-2x mb-3"></i><p class="mb-0">Thank you for subscribing!</p></div>';
+          setTimeout(() => {
+            this.innerHTML = original;
+            this.reset();
+          }, 2200);
         });
       });
 
-      // Blog card click animation
-      const blogCards = document.querySelectorAll(".blog-card");
-      blogCards.forEach((card) => {
-        card.addEventListener("click", function (e) {
-          if (!e.target.closest("a") && !e.target.closest("button")) {
-            this.style.transform = "scale(0.98)";
-            setTimeout(() => {
-              this.style.transform = "";
-            }, 200);
-          }
-        });
-      });
-
-      // Read more button animation
-      const readMoreLinks = document.querySelectorAll(".read-more");
-      readMoreLinks.forEach((link) => {
+      // --- Read More behaviour (demo)
+      document.querySelectorAll(".read-more").forEach((link) => {
         link.addEventListener("click", function (e) {
           e.preventDefault();
           this.style.color = "var(--primary-dark)";
-          this.querySelector("i").style.transform = "translateX(10px)";
-
+          const icon = this.querySelector("i");
+          if (icon) icon.style.transform = "translateX(10px)";
           setTimeout(() => {
+            if (icon) icon.style.transform = "";
             this.style.color = "";
-            this.querySelector("i").style.transform = "";
-            alert(
-              "This is a demo. In a real blog, this would open the full article."
-            );
+            // demo: alert (remove in production)
+            alert("Demo: open full article here.");
           }, 300);
         });
       });
 
-      console.log("Blog page loaded successfully!");
+      // --- Blog card click scale (visual feedback)
+      document.querySelectorAll(".blog-card").forEach((card) => {
+        card.addEventListener("click", function (e) {
+          if (!e.target.closest("a") && !e.target.closest("button")) {
+            this.style.transform = "scale(.995)";
+            setTimeout(() => (this.style.transform = ""), 160);
+          }
+        });
+      });
+
+      // --- Simple hero search & top search functionality
+      document.getElementById("heroSearchBtn").addEventListener("click", () => {
+        const q = document.getElementById("heroSearch").value.trim();
+        if (!q) {
+          alert("Type a search term (demo).");
+          return;
+        }
+        alert("Searching for: " + q + " (demo)");
+      });
+      document.getElementById("searchBtn")?.addEventListener("click", () => {
+        const q = document.getElementById("searchInput").value.trim();
+        if (!q) {
+          alert("Type a search term (demo).");
+          return;
+        }
+        alert("Searching articles for: " + q + " (demo)");
+      });
+
+      // --- optional console message
+      console.log("Blog page loaded and scripts initialized.");
     </script>
   </body>
 </html>
