@@ -60,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Product Data
+  // Product Data - Updated with correct image paths
   const products = [
     {
       id: 1,
       name: "iPhone 15 Pro Max",
       price: 1299,
-      image: "images/product1.jpg",
+      image: "./images/iphone.jpg",
       category: "mobile",
       rating: 4.8,
       badge: "New",
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 2,
       name: "Samsung Galaxy S24",
       price: 1099,
-      image: "images/product2.jpg",
+      image: "./images/samsung.jpg",
       category: "mobile",
       rating: 4.7,
       badge: "Hot",
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 3,
       name: "Apple Watch Ultra 2",
       price: 799,
-      image: "images/product3.jpg",
+      image: "./images/watch.jpg",
       category: "watch",
       rating: 4.9,
       badge: "New",
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 4,
       name: "MacBook Pro M3",
       price: 1999,
-      image: "images/product4.jpg",
+      image: "./images/laptop.jpg",
       category: "laptop",
       rating: 4.8,
     },
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 5,
       name: "Sony WH-1000XM5",
       price: 399,
-      image: "images/product5.jpg",
+      image: "./images/headphones.jpg",
       category: "audio",
       rating: 4.6,
       badge: "Sale",
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 6,
       name: "iPad Pro M2",
       price: 899,
-      image: "images/product6.jpg",
+      image: "./images/tablet.jpg",
       category: "tablet",
       rating: 4.7,
     },
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 7,
       name: "Google Pixel 8 Pro",
       price: 999,
-      image: "images/product7.jpg",
+      image: "./images/pixel.jpg",
       category: "mobile",
       rating: 4.5,
     },
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: 8,
       name: "DJI Mini 4 Pro",
       price: 759,
-      image: "images/product8.jpg",
+      image: "./images/drone.jpg",
       category: "drone",
       rating: 4.8,
       badge: "New",
@@ -445,7 +445,7 @@ function updateCartItems() {
     cartItem.innerHTML = `
             <img src="${item.image}" alt="${
       item.name
-    }" width="60" height="60" class="rounded me-3">
+    }" width="60" height="60" class="rounded me-3" onerror="this.src='https://via.placeholder.com/60x60?text=Product'">
             <div class="flex-grow-1">
                 <h6 class="mb-1">${item.name}</h6>
                 <div class="d-flex justify-content-between align-items-center">
@@ -477,3 +477,24 @@ function updateCartItems() {
 
 // Initialize cart on page load
 updateCartDisplay();
+
+// Developer section animations (global functions)
+function animateSkill(element) {
+  element.style.transform = "scale(1.1)";
+  element.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+
+  setTimeout(() => {
+    element.style.transform = "scale(1)";
+    element.style.boxShadow = "";
+  }, 500);
+}
+
+function animateProject(element) {
+  element.style.transform = "translateY(-10px)";
+  element.style.boxShadow = "0 15px 30px rgba(0,0,0,0.15)";
+
+  setTimeout(() => {
+    element.style.transform = "translateY(0)";
+    element.style.boxShadow = "";
+  }, 500);
+}
