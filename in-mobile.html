@@ -1,63 +1,60 @@
 <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Store</title>
-        <link
-          href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-          rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-        <style>
-        @media screen and (min-width:576px) {
-            .ul{
-                flex-direction: column;
-            }
-            .top-nav{
-                flex-direction: column;
-                gap: 25px;
-            }
-            .hero-parent{
-                flex-direction: column;
-                justify-content: center;
-            }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @media screen and (min-width: 576px) {
+        .ul {
+          flex-direction: column;
         }
-    
-        </style>
-      </head>
-      <body>
-        <nav class="container">
-          <div class="top-nav">
-            <div class="logo">
-              <img src="./images/main-logo.png" />
-            </div>
-            <div class="menu">
-              <ul>
-                <li><a class="list_ul" href="#">Home</a></li>
-                <li><a class="list_ul" href="#">Services</a></li>
-                <li><a class="list_ul" href="#">Watches</a></li>
-                <li><a class="list_ul" href="#">Sale</a></li>
-                <li><a class="list_ul" href="#">Products</a></li>
-                <li><a class="list_ul" href="#">Blog</a></li>
-              </ul>
-            </div>
+        .top-nav {
+          flex-direction: column;
+          gap: 25px;
+        }
+        .hero-parent {
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="container">
+      <div class="top-nav">
+        <div class="logo">
+          <img src="./images/main-logo.png" />
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a class="list_ul" href="#">Home</a></li>
+            <li><a class="list_ul" href="#">Services</a></li>
+            <li><a class="list_ul" href="#">Watches</a></li>
+            <li><a class="list_ul" href="#">Sale</a></li>
+            <li><a class="list_ul" href="#">Products</a></li>
+            <li><a class="list_ul" href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section id="hero">
+      <div class="container">
+        <div class="hero-parent">
+          <div class="hero-left">
+            <h1>Your Products Are Great.</h1>
+            <a class="btn" href="#">Shop Product</a>
           </div>
-        </nav>
-        <section id="hero">
-          <div class="container">
-            <div class="hero-parent">
-              <div class="hero-left">
-                <h1>Your Products Are Great.</h1>
-                <a class="btn" href="#">Shop Product</a>
-              </div>
-              <div class="hero-right">
-                <img src="./images/banner-image.png" />
-              </div>
-            </div>
+          <div class="hero-right">
+            <img src="./images/banner-image.png" />
           </div>
-        </section>
-      </body>
-    </html>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
