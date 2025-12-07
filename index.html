@@ -3,26 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechStore Pro - Modern E-commerce</title>
+    <title>TechStore - Premium Electronics</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Icons -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=DM+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <!-- Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
     <!-- AOS Animation -->
@@ -32,589 +32,760 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://img.icons8.com/color/96/shopping-bag.png"
-    />
-
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#72aec8" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
 
     <style>
       :root {
-        --primary-color: #72aec8;
-        --secondary-color: #212529;
-        --accent-color: #ff6b6b;
-        --light-bg: #f8f9fa;
-        --dark-bg: #1a1a1a;
-        --text-light: #ffffff;
-        --text-dark: #212529;
-        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --gray: #64748b;
+        --card-bg: #ffffff;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
         --transition: all 0.3s ease;
       }
 
       [data-theme="dark"] {
-        --light-bg: #1a1a1a;
-        --text-dark: #ffffff;
-        --secondary-color: #f8f9fa;
-        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --light: #0f172a;
+        --dark: #f1f5f9;
+        --card-bg: #1e293b;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --gray: #94a3b8;
       }
     </style>
   </head>
-
   <body data-theme="light">
     <!-- Theme Toggle -->
     <div class="theme-toggle">
       <button id="themeToggle" class="theme-btn">
-        <i class="ri-sun-line" id="sunIcon"></i>
-        <i class="ri-moon-line" id="moonIcon"></i>
+        <i class="fas fa-sun" id="sunIcon"></i>
+        <i class="fas fa-moon" id="moonIcon"></i>
       </button>
     </div>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-      <div class="cart-header">
-        <h3><i class="ri-shopping-cart-line"></i> Shopping Cart</h3>
-        <button class="close-cart" id="closeCart">&times;</button>
-      </div>
-      <div class="cart-items" id="cartItems">
-        <!-- Cart items will be added dynamically -->
-      </div>
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span id="cartTotal">$0.00</span>
-        </div>
-        <button class="checkout-btn">Checkout</button>
-      </div>
+    <!-- Top Notification Bar -->
+    <div class="top-notice">
+      <p>
+        🎉 Free shipping on all orders over $50! <a href="#sale">Shop Now</a>
+      </p>
     </div>
-    <div class="cart-overlay" id="cartOverlay"></div>
 
     <!-- Navigation -->
-    <nav class="container" data-aos="fade-down">
-      <div class="top-nav">
-        <div class="logo">
-          <img src="./images/main-logo.png" alt="TechStore Logo" />
-        </div>
-        <div class="menu">
-          <ul>
-            <li>
-              <a class="list_ul" href="#"><i class="ri-home-line"></i> Home</a>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" alt="TechStore" height="40" />
+          <span class="brand-text">TechStore</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">
+                <i class="fas fa-home me-1"></i> Home
+              </a>
             </li>
-            <li>
-              <a class="list_ul" href="#"
-                ><i class="ri-service-line"></i> Services</a
+            <li class="nav-item">
+              <a class="nav-link" href="#services">
+                <i class="fas fa-concierge-bell me-1"></i> Services
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="productsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
               >
+                <i class="fas fa-mobile-alt me-1"></i> Products
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#mobiles"
+                    ><i class="fas fa-mobile me-2"></i> Mobiles</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#watches"
+                    ><i class="fas fa-clock me-2"></i> Smart Watches</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#laptops"
+                    ><i class="fas fa-laptop me-2"></i> Laptops</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#accessories"
+                    ><i class="fas fa-headphones me-2"></i> Accessories</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li>
-              <a class="list_ul" href="#"
-                ><i class="ri-smartphone-line"></i> Products</a
-              >
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">
+                <i class="fas fa-blog me-1"></i> Blog
+              </a>
             </li>
-            <li>
-              <a class="list_ul" href="#"><i class="ri-sale-line"></i> Sale</a>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-address-book me-1"></i> Contact
+              </a>
             </li>
-            <li>
-              <a class="list_ul" href="#"
-                ><i class="ri-watch-line"></i> Watches</a
-              >
-            </li>
-            <li>
-              <a class="list_ul" href="#"
-                ><i class="ri-article-line"></i> Blog</a
-              >
+            <li class="nav-item">
+              <a class="nav-link" href="#sale">
+                <i class="fas fa-tag me-1"></i> Sale
+              </a>
             </li>
           </ul>
-        </div>
-        <div class="nav-actions">
-          <button class="cart-btn" id="openCart">
-            <i class="ri-shopping-cart-line"></i>
-            <span class="cart-count" id="cartCount">0</span>
-          </button>
-          <button class="user-btn"><i class="ri-user-line"></i></button>
+
+          <div class="nav-actions">
+            <button class="nav-icon" id="searchToggle">
+              <i class="fas fa-search"></i>
+            </button>
+            <a href="login.html" class="nav-icon">
+              <i class="fas fa-user"></i>
+            </a>
+            <button class="nav-icon cart-btn" id="cartToggle">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="search-bar" id="searchBar">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search products..."
+            />
+            <button class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h4><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
+        <button class="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be loaded here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span class="total-price">$0.00</span>
+        </div>
+        <button class="btn btn-primary w-100">Checkout</button>
+      </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
     <!-- Hero Section -->
-    <section id="hero" data-aos="fade-up">
+    <section class="hero-section">
       <div class="container">
-        <div class="hero-parent">
-          <div class="hero-left">
-            <h1 class="zen-dots">Your Tech Journey Starts Here</h1>
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h1 class="hero-title">Experience The Future Of Technology</h1>
             <p class="hero-subtitle">
-              Discover the latest gadgets with premium quality and unbeatable
-              prices
+              Discover the latest gadgets, smartphones, and smart watches at
+              unbeatable prices with premium quality guarantee.
             </p>
-            <a class="btn hero-btn" href="#products">
-              <span>Shop Now</span>
-              <i class="ri-arrow-right-line"></i>
-            </a>
-          </div>
-          <div class="hero-right">
-            <img
-              src="./images/banner-image.png"
-              alt="Latest Gadgets"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" data-aos="fade-up">
-      <div class="container">
-        <div class="section-title">
-          <h2 class="zen-dots">Why Choose Us</h2>
-          <p>We provide the best shopping experience</p>
-        </div>
-        <div class="boxes">
-          <div class="box" data-aos="flip-left" data-aos-delay="100">
-            <div class="feature-left">
-              <i class="ri-shopping-cart-line ri-2x"></i>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary btn-lg">
+                <i class="fas fa-shopping-bag me-2"></i> Shop Now
+              </a>
+              <a href="#sale" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-tag me-2"></i> View Sale
+              </a>
             </div>
-            <div class="feature-right">
-              <h3>Free Delivery</h3>
-              <p>Free shipping on all orders over $50</p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h3>10K+</h3>
+                <p>Happy Customers</p>
+              </div>
+              <div class="stat-item">
+                <h3>500+</h3>
+                <p>Products</p>
+              </div>
+              <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Support</p>
+              </div>
             </div>
           </div>
-          <div class="box" data-aos="flip-left" data-aos-delay="200">
-            <div class="feature-left">
-              <i class="ri-price-tag-3-line ri-2x"></i>
-            </div>
-            <div class="feature-right">
-              <h3>Best Prices</h3>
-              <p>Price match guarantee on all products</p>
-            </div>
-          </div>
-          <div class="box" data-aos="flip-left" data-aos-delay="300">
-            <div class="feature-left">
-              <i class="ri-award-line ri-2x"></i>
-            </div>
-            <div class="feature-right">
-              <h3>Quality Guarantee</h3>
-              <p>1-year warranty on all products</p>
-            </div>
-          </div>
-          <div class="box" data-aos="flip-left" data-aos-delay="400">
-            <div class="feature-left">
-              <i class="ri-secure-payment-line ri-2x"></i>
-            </div>
-            <div class="feature-right">
-              <h3>Secure Payments</h3>
-              <p>100% secure payment processing</p>
+          <div class="col-lg-6" data-aos="fade-left">
+            <div class="hero-image">
+              <img
+                src="images/hero-banner.png"
+                alt="Hero Banner"
+                class="img-fluid"
+              />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Mobile Products -->
-    <section id="products" data-aos="fade-up">
+    <!-- Features Section -->
+    <section class="features-section py-5" id="services">
       <div class="container">
-        <div class="section-header">
-          <h2 class="zen-dots">Mobile Products</h2>
-          <a class="view-all" href="#">
-            View All <i class="ri-arrow-right-line"></i>
-          </a>
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Why Choose TechStore</h2>
+          <p class="section-subtitle">
+            We provide the best shopping experience for tech enthusiasts
+          </p>
         </div>
-        <div class="products-grid">
+
+        <div class="row g-4">
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shipping-fast"></i>
+              </div>
+              <h4>Free Delivery</h4>
+              <p>Free shipping on all orders over $50 with 2-3 days delivery</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4>Secure Payment</h4>
+              <p>100% secure payment with SSL encryption</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-undo-alt"></i>
+              </div>
+              <h4>30-Day Returns</h4>
+              <p>Easy returns within 30 days of purchase</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h4>24/7 Support</h4>
+              <p>Round-the-clock customer support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section py-5 bg-light" id="products">
+      <div class="container">
+        <div
+          class="section-header d-flex justify-content-between align-items-center mb-5"
+          data-aos="fade-up"
+        >
+          <div>
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Latest tech gadgets at best prices</p>
+          </div>
+          <a href="#products" class="btn btn-outline-primary">View All</a>
+        </div>
+
+        <div class="row g-4" id="productsContainer">
           <!-- Products will be loaded dynamically -->
         </div>
       </div>
     </section>
 
-    <!-- Watches Section -->
-    <section id="watches" data-aos="fade-up">
+    <!-- Categories Section -->
+    <section class="categories-section py-5" id="categories">
       <div class="container">
-        <div class="section-header">
-          <h2 class="zen-dots">Smart Watches</h2>
-          <a class="view-all" href="#">
-            View All <i class="ri-arrow-right-line"></i>
-          </a>
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Shop By Category</h2>
+          <p class="section-subtitle">Find your favorite tech products</p>
         </div>
-        <div class="watches-grid">
-          <!-- Watches will be loaded dynamically -->
+
+        <div class="row g-4">
+          <div class="col-md-3" data-aos="zoom-in">
+            <a href="#mobiles" class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h4>Smartphones</h4>
+              <p>Latest phones from top brands</p>
+            </a>
+          </div>
+          <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+            <a href="#watches" class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h4>Smart Watches</h4>
+              <p>Wearable technology</p>
+            </a>
+          </div>
+          <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+            <a href="#laptops" class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <h4>Laptops</h4>
+              <p>Powerful computing devices</p>
+            </a>
+          </div>
+          <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+            <a href="#accessories" class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-headphones"></i>
+              </div>
+              <h4>Accessories</h4>
+              <p>Cases, chargers & more</p>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Sale Banner -->
-    <section id="sale-banner" data-aos="zoom-in">
+    <section class="sale-banner py-5" id="sale" data-aos="zoom-in">
       <div class="container">
-        <div class="sale-content">
-          <div class="sale-text">
-            <span class="sale-badge">Limited Time</span>
-            <h2 class="zen-dots">New Year Sale 2024</h2>
-            <h1>UP TO 50% OFF</h1>
-            <p>On selected mobile phones and accessories</p>
-            <div class="countdown">
-              <div class="countdown-item">
-                <span id="days">00</span>
-                <small>Days</small>
-              </div>
-              <div class="countdown-item">
-                <span id="hours">00</span>
-                <small>Hours</small>
-              </div>
-              <div class="countdown-item">
-                <span id="minutes">00</span>
-                <small>Minutes</small>
-              </div>
-              <div class="countdown-item">
-                <span id="seconds">00</span>
-                <small>Seconds</small>
-              </div>
-            </div>
-            <a href="#" class="sale-btn"
-              >Shop Sale <i class="ri-arrow-right-line"></i
-            ></a>
-          </div>
-          <div class="sale-image">
-            <img src="./images/single-image1.png" alt="Sale Product" />
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="sale-content">
+              <span class="sale-badge">Limited Time</span>
+              <h2 class="sale-title">Summer Sale 2024</h2>
+              <h1 class="sale-offer">UP TO 50% OFF</h1>
+              <p class="sale-text">
+                On all smartphones and accessories. Don't miss this opportunity!
+              </p>
 
-    <!-- Blog Section -->
-    <section id="blog" data-aos="fade-up">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="zen-dots">Latest Tech News</h2>
-          <a class="view-all" href="#">
-            Read Blog <i class="ri-arrow-right-line"></i>
-          </a>
-        </div>
-        <div class="blog-grid">
-          <div class="blog-card" data-aos="flip-left">
-            <div class="blog-image">
-              <img src="./images/post-item1.jpg" alt="Gadgets" />
-              <span class="blog-category">Gadgets</span>
-            </div>
-            <div class="blog-content">
-              <span class="blog-date">Feb 22, 2024</span>
-              <h3>Get Some Cool Gadgets in 2024</h3>
-              <p>
-                Discover the latest tech gadgets that will revolutionize your
-                daily life...
-              </p>
-              <a href="#" class="read-more">Read More</a>
-            </div>
-          </div>
-          <div class="blog-card" data-aos="flip-left" data-aos-delay="100">
-            <div class="blog-image">
-              <img src="./images/post-item2.jpg" alt="Technology" />
-              <span class="blog-category">Technology</span>
-            </div>
-            <div class="blog-content">
-              <span class="blog-date">Feb 25, 2024</span>
-              <h3>Technology Hack You Won't Get</h3>
-              <p>
-                Secret tech hacks that can improve your productivity and
-                efficiency...
-              </p>
-              <a href="#" class="read-more">Read More</a>
+              <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                  <span class="days">00</span>
+                  <small>Days</small>
+                </div>
+                <div class="countdown-item">
+                  <span class="hours">00</span>
+                  <small>Hours</small>
+                </div>
+                <div class="countdown-item">
+                  <span class="minutes">00</span>
+                  <small>Minutes</small>
+                </div>
+                <div class="countdown-item">
+                  <span class="seconds">00</span>
+                  <small>Seconds</small>
+                </div>
+              </div>
+
+              <a href="#products" class="btn btn-light btn-lg mt-4">
+                <i class="fas fa-bolt me-2"></i> Shop Sale Now
+              </a>
             </div>
           </div>
-          <div class="blog-card" data-aos="flip-left" data-aos-delay="200">
-            <div class="blog-image">
-              <img src="./images/post-item3.jpg" alt="Camera" />
-              <span class="blog-category">Camera</span>
-            </div>
-            <div class="blog-content">
-              <span class="blog-date">Feb 28, 2024</span>
-              <h3>Top 10 Small Camera In The World</h3>
-              <p>
-                Explore the world's most compact yet powerful cameras for
-                photography...
-              </p>
-              <a href="#" class="read-more">Read More</a>
+          <div class="col-lg-6">
+            <div class="sale-image">
+              <img src="images/sale-banner.png" alt="Sale" class="img-fluid" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" data-aos="fade-up">
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5" id="testimonials">
       <div class="container">
-        <div class="section-header">
-          <h2 class="zen-dots">Customer Reviews</h2>
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">What Our Customers Say</h2>
+          <p class="section-subtitle">
+            Trusted by thousands of tech enthusiasts
+          </p>
         </div>
-        <div class="testimonial-slider">
-          <div class="testimonial active">
-            <div class="testimonial-icon">
-              <i class="ri-double-quotes-l"></i>
-            </div>
-            <p>
-              "Excellent service and high-quality products! The iPhone I bought
-              works perfectly and the delivery was super fast. Highly
-              recommended!"
-            </p>
-            <div class="testimonial-author">
-              <div class="stars">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-fill"></i>
+
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="testimonial-card">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
-              <h4>Emma Chamberlain</h4>
-              <span>Verified Customer</span>
+              <p class="testimonial-text">
+                "Best shopping experience ever! Got my iPhone 15 at an amazing
+                price with fast delivery."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://randomuser.me/api/portraits/women/32.jpg"
+                  alt="Sarah Johnson"
+                />
+                <div>
+                  <h5>Sarah Johnson</h5>
+                  <span>Verified Buyer</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="testimonial">
-            <div class="testimonial-icon">
-              <i class="ri-double-quotes-l"></i>
-            </div>
-            <p>
-              "The smart watch I purchased exceeded my expectations. Great
-              battery life and features. Will definitely shop here again!"
-            </p>
-            <div class="testimonial-author">
-              <div class="stars">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-card">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
               </div>
-              <h4>Michael Chen</h4>
-              <span>Verified Customer</span>
+              <p class="testimonial-text">
+                "Excellent customer service and product quality. My smart watch
+                works perfectly!"
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://randomuser.me/api/portraits/men/54.jpg"
+                  alt="Michael Chen"
+                />
+                <div>
+                  <h5>Michael Chen</h5>
+                  <span>Verified Buyer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-card">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Quick delivery and authentic products. Will definitely shop
+                here again!"
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
+                  alt="Emma Davis"
+                />
+                <div>
+                  <h5>Emma Davis</h5>
+                  <span>Verified Buyer</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimonial-dots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- Meet the Developer -->
+    <section class="developer-section py-5" id="developer">
+      <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Meet The Developer</h2>
+          <p class="section-subtitle">The mind behind TechStore</p>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-lg-4" data-aos="fade-right">
+            <div class="developer-card text-center">
+              <div class="developer-image">
+                <img
+                  src="https://avatars.githubusercontent.com/u/12345678?v=4"
+                  alt="Tanzeel Ahmed"
+                />
+              </div>
+              <h3 class="developer-name">Tanzeel Ahmed</h3>
+              <p class="developer-title">Full Stack Developer</p>
+              <p class="developer-bio">
+                Passionate about creating amazing web experiences with modern
+                technologies.
+              </p>
+
+              <div class="social-links">
+                <a
+                  href="mailto:tanzeel.ahmed.se@gmail.com"
+                  class="social-link"
+                  title="Email"
+                >
+                  <i class="fas fa-envelope"></i>
+                </a>
+                <a
+                  href="https://github.com/Tanzeel804"
+                  target="_blank"
+                  class="social-link"
+                  title="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="https://linkedin.com/in/tanzeel-ahmed-b21288397"
+                  target="_blank"
+                  class="social-link"
+                  title="LinkedIn"
+                >
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a
+                  href="https://twitter.com/TanzeelOnX"
+                  target="_blank"
+                  class="social-link"
+                  title="Twitter"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="https://instagram.com/tanzeelahmedpov"
+                  target="_blank"
+                  class="social-link"
+                  title="Instagram"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://tiktok.com/@thereadtanzeel"
+                  target="_blank"
+                  class="social-link"
+                  title="TikTok"
+                >
+                  <i class="fab fa-tiktok"></i>
+                </a>
+              </div>
+
+              <a
+                href="https://tanzeel804.github.io/portfolio-main/"
+                target="_blank"
+                class="btn btn-outline-primary mt-3"
+              >
+                View Portfolio <i class="fas fa-external-link-alt ms-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-left">
+            <div class="developer-skills">
+              <h4>Skills & Technologies</h4>
+              <div class="skills-grid">
+                <div class="skill-item">
+                  <i class="fab fa-html5 text-danger"></i>
+                  <span>HTML5</span>
+                </div>
+                <div class="skill-item">
+                  <i class="fab fa-css3-alt text-primary"></i>
+                  <span>CSS3</span>
+                </div>
+                <div class="skill-item">
+                  <i class="fab fa-js-square text-warning"></i>
+                  <span>JavaScript</span>
+                </div>
+                <div class="skill-item">
+                  <i class="fab fa-react text-info"></i>
+                  <span>React</span>
+                </div>
+                <div class="skill-item">
+                  <i class="fab fa-node-js text-success"></i>
+                  <span>Node.js</span>
+                </div>
+                <div class="skill-item">
+                  <i class="fas fa-database"></i>
+                  <span>MongoDB</span>
+                </div>
+              </div>
+
+              <h4 class="mt-5">Recent Projects</h4>
+              <div class="projects-grid">
+                <div class="project-card">
+                  <h5>E-com Demo</h5>
+                  <p>Complete e-commerce website with cart functionality</p>
+                  <a
+                    href="https://tanzeel804.github.io/E-com-Demo/"
+                    target="_blank"
+                    >Live Demo</a
+                  >
+                </div>
+                <div class="project-card">
+                  <h5>Mini Online Store</h5>
+                  <p>Responsive online store with modern UI</p>
+                  <a
+                    href="https://tanzeel804.github.io/Mini-online_store/"
+                    target="_blank"
+                    >Live Demo</a
+                  >
+                </div>
+                <div class="project-card">
+                  <h5>Portfolio</h5>
+                  <p>Personal portfolio website</p>
+                  <a
+                    href="https://tanzeel804.github.io/portfolio-main/"
+                    target="_blank"
+                    >View</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Newsletter -->
-    <section id="newsletter" data-aos="fade-up">
+    <section class="newsletter-section py-5 bg-primary text-white">
       <div class="container">
-        <div class="newsletter-content">
-          <div class="newsletter-text">
-            <h2 class="zen-dots">Subscribe to Our Newsletter</h2>
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h2>Stay Updated</h2>
             <p>
-              Get latest updates, exclusive offers, and tech tips delivered to
-              your inbox
+              Subscribe to our newsletter for the latest tech news, deals, and
+              exclusive offers.
             </p>
           </div>
-          <div class="newsletter-form">
-            <form id="subscribeForm">
-              <input type="email" placeholder="Enter your email" required />
-              <button type="submit">
-                Subscribe <i class="ri-send-plane-line"></i>
-              </button>
+          <div class="col-lg-6" data-aos="fade-left">
+            <form class="newsletter-form">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  required
+                />
+                <button class="btn btn-light" type="submit">
+                  Subscribe <i class="fas fa-paper-plane ms-2"></i>
+                </button>
+              </div>
+              <small class="form-text">No spam, unsubscribe anytime.</small>
             </form>
-            <p class="form-note">No spam, unsubscribe anytime</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Instagram -->
-    <section id="instagram" data-aos="fade-up">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="zen-dots">Follow Us @TechStore</h2>
-          <a
-            href="https://instagram.com/tanzeelahmedpov"
-            class="view-all"
-            target="_blank"
-          >
-            Follow <i class="ri-instagram-line"></i>
-          </a>
-        </div>
-        <div class="instagram-grid">
-          <div class="insta-item">
-            <img src="./images/insta-item1.jpg" alt="Instagram" />
-            <div class="insta-overlay">
-              <i class="ri-instagram-line"></i>
-            </div>
-          </div>
-          <div class="insta-item">
-            <img src="./images/insta-item2.jpg" alt="Instagram" />
-            <div class="insta-overlay">
-              <i class="ri-instagram-line"></i>
-            </div>
-          </div>
-          <div class="insta-item">
-            <img src="./images/insta-item3.jpg" alt="Instagram" />
-            <div class="insta-overlay">
-              <i class="ri-instagram-line"></i>
-            </div>
-          </div>
-          <div class="insta-item">
-            <img src="./images/insta-item4.jpg" alt="Instagram" />
-            <div class="insta-overlay">
-              <i class="ri-instagram-line"></i>
-            </div>
-          </div>
-          <div class="insta-item">
-            <img src="./images/insta-item5.jpg" alt="Instagram" />
-            <div class="insta-overlay">
-              <i class="ri-instagram-line"></i>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
+    <footer class="footer py-5">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-col">
-            <div class="footer-logo">
-              <img src="./images/main-logo.png" alt="TechStore" />
-            </div>
-            <p class="footer-description">
-              Your one-stop shop for all tech gadgets and electronics. Quality
-              products with premium service.
+        <div class="row">
+          <div class="col-lg-3 mb-4">
+            <a href="index.html" class="footer-logo">
+              <img src="images/logo.png" alt="TechStore" height="40" />
+              <span class="brand-text">TechStore</span>
+            </a>
+            <p class="footer-text mt-3">
+              Your one-stop destination for premium electronics and gadgets at
+              unbeatable prices.
             </p>
-            <div class="social-links">
-              <a href="https://facebook.com/tanzeelahmedpov" target="_blank">
-                <i class="ri-facebook-fill"></i>
-              </a>
-              <a href="https://instagram.com/tanzeelahmedpov" target="_blank">
-                <i class="ri-instagram-line"></i>
-              </a>
-              <a href="https://twitter.com/TanzeelOnX" target="_blank">
-                <i class="ri-twitter-line"></i>
-              </a>
-              <a
-                href="https://linkedin.com/in/tanzeel-ahmed-b21288397"
-                target="_blank"
-              >
-                <i class="ri-linkedin-fill"></i>
-              </a>
-              <a href="https://tiktok.com/@thereadtanzeel" target="_blank">
-                <i class="ri-tiktok-line"></i>
-              </a>
+            <div class="social-links mt-3">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
 
-          <div class="footer-col">
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> Home</a>
-              </li>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> About Us</a>
-              </li>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> Shop</a>
-              </li>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> Blog</a>
-              </li>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> Contact</a>
-              </li>
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#sale">Sale</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
-          <div class="footer-col">
-            <h4>Customer Service</h4>
-            <ul>
-              <li>
-                <a href="#"
-                  ><i class="ri-arrow-right-s-line"></i> Track Your Order</a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  ><i class="ri-arrow-right-s-line"></i> Returns Policy</a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  ><i class="ri-arrow-right-s-line"></i> Shipping Info</a
-                >
-              </li>
-              <li>
-                <a href="#"><i class="ri-arrow-right-s-line"></i> FAQ</a>
-              </li>
-              <li>
-                <a href="#"
-                  ><i class="ri-arrow-right-s-line"></i> Help Center</a
-                >
-              </li>
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Categories</h5>
+            <ul class="footer-links">
+              <li><a href="#mobiles">Smartphones</a></li>
+              <li><a href="#watches">Smart Watches</a></li>
+              <li><a href="#laptops">Laptops</a></li>
+              <li><a href="#accessories">Accessories</a></li>
+              <li><a href="#gadgets">Gadgets</a></li>
             </ul>
           </div>
 
-          <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="contact-info">
-              <p><i class="ri-mail-line"></i> tanzeel.ahmed.se@gmail.com</p>
-              <p><i class="ri-phone-line"></i> +55 111 222 333 44</p>
-              <p>
-                <i class="ri-map-pin-line"></i> 123 Tech Street, Digital City
-              </p>
-            </div>
-            <div class="developer-info">
-              <p>Developed by <strong>Tanzeel Ahmed</strong></p>
-              <a
-                href="https://tanzeel804.github.io/portfolio-main/"
-                target="_blank"
-                class="portfolio-link"
-              >
-                View Portfolio <i class="ri-external-link-line"></i>
-              </a>
-            </div>
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Support</h5>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 mb-4">
+            <h5>Contact Info</h5>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-envelope me-2"></i>
+                <a href="mailto:tanzeel.ahmed.se@gmail.com"
+                  >tanzeel.ahmed.se@gmail.com</a
+                >
+              </li>
+              <li>
+                <i class="fas fa-phone me-2"></i>
+                <a href="tel:+5511122233344">+55 111 222 333 44</a>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt me-2"></i>
+                123 Tech Street, Digital City
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="footer-bottom">
-          <div class="payment-methods">
-            <p>We Accept:</p>
-            <div class="payment-icons">
-              <i class="ri-visa-line"></i>
-              <i class="ri-mastercard-line"></i>
-              <i class="ri-paypal-line"></i>
-              <i class="ri-bit-coin-line"></i>
+        <hr class="my-4" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="payment-methods">
+              <span class="me-2">We accept:</span>
+              <i class="fab fa-cc-visa me-2"></i>
+              <i class="fab fa-cc-mastercard me-2"></i>
+              <i class="fab fa-cc-paypal me-2"></i>
+              <i class="fab fa-cc-apple-pay"></i>
             </div>
-          </div>
-
-          <div class="copyright">
-            <p>
-              <i class="ri-copyright-line"></i> 2024 TechStore. All rights
-              reserved.
-              <br />
-              Designed & Developed by
-              <a href="https://github.com/Tanzeel804" target="_blank"
-                >Tanzeel Ahmed</a
-              >
-            </p>
-          </div>
-
-          <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookies</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button id="backToTop" class="back-to-top">
-      <i class="ri-arrow-up-line"></i>
-    </button>
-
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- JavaScript Files -->
     <script src="script.js"></script>
     <script src="cart.js"></script>
 
