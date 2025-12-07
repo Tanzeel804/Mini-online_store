@@ -67,11 +67,14 @@
         color: var(--dark);
         transition: var(--transition);
         line-height: 1.6;
+        overflow-x: hidden; /* Prevent horizontal scroll */
       }
 
       /* Make main take remaining space so footer pushes to bottom */
       main.site-main {
         flex: 1 0 auto;
+        position: relative;
+        z-index: 1; /* Main content should be below footer */
       }
 
       /* ====== Reset & base ====== */
@@ -174,7 +177,8 @@
         padding: 14px 0;
         background: var(--card-bg);
         box-shadow: var(--shadow);
-        z-index: 10;
+        z-index: 1000;
+        position: relative;
       }
       .brand-text {
         font-family: "Zen Dots", sans-serif;
@@ -225,7 +229,7 @@
         padding: 12px;
         box-shadow: var(--shadow);
         display: none;
-        z-index: 1200; /* above nav */
+        z-index: 1001;
       }
       .search-bar.active {
         display: flex;
@@ -241,7 +245,7 @@
         height: 100vh;
         background: var(--card-bg);
         box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
-        z-index: 2000; /* keep above everything */
+        z-index: 2000;
         transition: right 0.28s ease;
         display: flex;
         flex-direction: column;
@@ -296,6 +300,8 @@
         color: #fff;
         padding: 100px 0;
         text-align: center;
+        position: relative;
+        z-index: 1;
       }
       .display-4 {
         font-weight: 800;
@@ -304,7 +310,7 @@
         opacity: 0.95;
       }
 
-      /* ====== BLOG CARDS ====== */
+      /* ====== BLOG CARDS FIXED ====== */
       .blog-card {
         background: var(--card-bg);
         border-radius: var(--radius);
@@ -312,13 +318,13 @@
         box-shadow: var(--shadow);
         transition: transform 0.28s, box-shadow 0.28s;
         height: 100%;
-        position: relative; /* ensure stacking control */
-        z-index: 1; /* base */
+        position: relative;
+        /* Remove z-index from here */
       }
       .blog-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.14);
-        z-index: 5; /* rise above footer while hovering */
+        /* Remove z-index: 5; */
       }
       .blog-image {
         height: 250px;
@@ -392,6 +398,8 @@
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
       }
       .widget-title {
         font-size: 1.15rem;
@@ -458,14 +466,15 @@
         transform: translateY(-3px);
       }
 
-      /* ====== FOOTER ====== */
+      /* ====== FOOTER FIXED ====== */
       .footer {
         background: var(--card-bg);
         border-top: 1px solid var(--gray);
         padding: 36px 0;
         margin-top: 30px;
-        position: relative; /* ensure normal flow */
-        z-index: 0; /* below cards */
+        position: relative;
+        z-index: 10; /* Increase z-index for footer */
+        width: 100%;
       }
       .footer-logo {
         display: flex;
@@ -500,6 +509,14 @@
         background: var(--light);
         color: var(--dark);
         margin-right: 8px;
+      }
+
+      /* ====== Blog Content Section Fix ====== */
+      .py-5 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+        position: relative;
+        z-index: 1; /* Lower than footer */
       }
 
       /* ====== small utilities/responsive ====== */
@@ -666,7 +683,7 @@
       </div>
     </nav>
 
-    <!-- MAIN CONTENT (takes remaining height) -->
+    <!-- MAIN CONTENT -->
     <main class="site-main">
       <!-- Blog Hero -->
       <section class="blog-hero">
@@ -1020,7 +1037,7 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (now properly positioned) -->
     <footer class="footer">
       <div class="container">
         <div class="row gy-4">
