@@ -27,7 +27,6 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./images/main-logo.png" />
 
-    <!-- Full page CSS -->
     <style>
       /* ====== ROOT VARIABLES ====== */
       :root {
@@ -68,6 +67,9 @@
         color: var(--dark);
         transition: var(--transition);
         line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
       h1,
       h2,
@@ -299,6 +301,7 @@
         box-shadow: var(--shadow);
         transition: transform 0.28s, box-shadow 0.28s;
         height: 100%;
+        margin-bottom: 30px;
       }
       .blog-card:hover {
         transform: translateY(-10px);
@@ -364,9 +367,6 @@
         color: var(--primary-dark);
         transform: translateX(6px);
       }
-      .read-more i {
-        transition: transform 0.25s;
-      }
 
       /* ====== SIDEBAR WIDGETS ====== */
       .sidebar-widget {
@@ -399,6 +399,11 @@
         justify-content: space-between;
         align-items: center;
         color: var(--dark);
+        transition: var(--transition);
+      }
+      .categories-list a:hover {
+        color: var(--primary);
+        padding-left: 8px;
       }
       .count {
         background: var(--primary);
@@ -415,6 +420,15 @@
         display: flex;
         align-items: center;
         gap: 12px;
+      }
+      .recent-post a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: var(--transition);
+      }
+      .recent-post a:hover {
+        color: var(--primary);
       }
       .recent-post img {
         width: 64px;
@@ -434,6 +448,7 @@
         border-radius: 20px;
         font-size: 0.85rem;
         display: inline-block;
+        transition: var(--transition);
       }
       .tag:hover {
         background: var(--primary);
@@ -441,12 +456,18 @@
         transform: translateY(-3px);
       }
 
+      /* ====== CONTENT SECTION ====== */
+      .blog-content-section {
+        padding: 60px 0;
+        flex: 1;
+      }
+
       /* ====== FOOTER ====== */
       .footer {
         background: var(--card-bg);
         border-top: 1px solid var(--gray);
-        padding: 36px 0;
-        margin-top: 30px;
+        padding: 36px 0 20px;
+        margin-top: auto;
       }
       .footer-logo {
         display: flex;
@@ -463,13 +484,24 @@
         color: var(--dark);
         font-weight: 700;
       }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
       .footer-links li {
         margin-bottom: 10px;
       }
-      .payment-methods i {
-        font-size: 1.4rem;
+      .footer-links a {
         color: var(--gray);
-        margin-left: 10px;
+        transition: var(--transition);
+      }
+      .footer-links a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+      .payment-methods img {
+        height: 22px;
+        margin-right: 8px;
       }
       .social-links a {
         display: inline-flex;
@@ -481,6 +513,12 @@
         background: var(--light);
         color: var(--dark);
         margin-right: 8px;
+        transition: var(--transition);
+      }
+      .social-links a:hover {
+        background: var(--primary);
+        color: #fff;
+        transform: translateY(-3px);
       }
 
       /* ====== small utilities/responsive ====== */
@@ -509,6 +547,9 @@
           top: 60px;
           right: 10px;
         }
+        .blog-content-section {
+          padding: 40px 0;
+        }
       }
     </style>
   </head>
@@ -530,12 +571,11 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <!-- use main-logo.png (rename if your file is logo.png) -->
           <img
             src="./images/main-logo.png"
             alt="TechStore"
             height="40"
-            onerror="this.src='./images/main-logo.png'"
+            onerror="this.src='https://via.placeholder.com/40'"
           />
           <span class="brand-text ms-2">TechStore</span>
         </a>
@@ -683,13 +723,13 @@
     </section>
 
     <!-- Blog Content -->
-    <section class="py-5">
+    <section class="blog-content-section">
       <div class="container">
         <div class="row">
           <!-- MAIN -->
           <div class="col-lg-8">
             <!-- Featured -->
-            <article class="blog-card mb-4" id="featured" data-aos="fade-up">
+            <article class="blog-card" id="featured" data-aos="fade-up">
               <div class="blog-image">
                 <img
                   src="./images/blog-featured.jpg"
@@ -725,7 +765,7 @@
             <!-- posts grid -->
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <article class="blog-card h-100">
+                <article class="blog-card">
                   <div class="blog-image">
                     <img
                       src="./images/blog1.jpg"
@@ -756,7 +796,7 @@
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <article class="blog-card h-100">
+                <article class="blog-card">
                   <div class="blog-image">
                     <img
                       src="./images/blog2.jpg"
@@ -787,7 +827,7 @@
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <article class="blog-card h-100">
+                <article class="blog-card">
                   <div class="blog-image">
                     <img
                       src="./images/blog3.jpg"
@@ -818,7 +858,7 @@
               </div>
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <article class="blog-card h-100">
+                <article class="blog-card">
                   <div class="blog-image">
                     <img
                       src="./images/blog4.jpg"
@@ -848,421 +888,14 @@
             </div>
 
             <!-- Pagination -->
-            <nav aria-label="Blog navigation" class="mt-5">
+            <nav aria-label="Blog navigation" class="mt-4 mb-5">
               <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1"
-                    ><i class="fas fa-chevron-left"></i
-                  ></a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"
-                    ><i class="fas fa-chevron-right"></i
-                  ></a>
-                </li>
+                <li class="page-item disabled"></li>
               </ul>
             </nav>
           </div>
-
-          <!-- SIDEBAR -->
-          <aside class="col-lg-4">
-            <div class="sidebar-widget" data-aos="fade-left">
-              <h4 class="widget-title">Categories</h4>
-              <ul class="categories-list">
-                <li>
-                  <a href="#">Smartphones <span class="count">12</span></a>
-                </li>
-                <li>
-                  <a href="#">Laptops <span class="count">8</span></a>
-                </li>
-                <li>
-                  <a href="#">Smart Watches <span class="count">6</span></a>
-                </li>
-                <li>
-                  <a href="#">Accessories <span class="count">15</span></a>
-                </li>
-                <li>
-                  <a href="#">Gaming <span class="count">9</span></a>
-                </li>
-                <li>
-                  <a href="#">Technology News <span class="count">21</span></a>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="sidebar-widget"
-              data-aos="fade-left"
-              data-aos-delay="100"
-            >
-              <h4 class="widget-title">Recent Posts</h4>
-              <div class="recent-posts">
-                <div class="recent-post">
-                  <a href="#">
-                    <img
-                      src="./images/blog-small1.jpg"
-                      alt="Recent Post"
-                      onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                    />
-                    <div>
-                      <h6>iPhone 15 Pro Max Review</h6>
-                      <small class="text-muted">Sep 20, 2024</small>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="recent-post">
-                  <a href="#">
-                    <img
-                      src="./images/blog-small2.jpg"
-                      alt="Recent Post"
-                      onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                    />
-                    <div>
-                      <h6>Best Wireless Earbuds 2024</h6>
-                      <small class="text-muted">Sep 15, 2024</small>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="recent-post">
-                  <a href="#">
-                    <img
-                      src="./images/blog-small3.jpg"
-                      alt="Recent Post"
-                      onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                    />
-                    <div>
-                      <h6>Android 14 Features Explained</h6>
-                      <small class="text-muted">Sep 10, 2024</small>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="sidebar-widget"
-              data-aos="fade-left"
-              data-aos-delay="200"
-            >
-              <h4 class="widget-title">Popular Tags</h4>
-              <div class="tags">
-                <a class="tag" href="#">Smartphone</a>
-                <a class="tag" href="#">Review</a>
-                <a class="tag" href="#">Apple</a>
-                <a class="tag" href="#">Android</a>
-                <a class="tag" href="#">Gaming</a>
-                <a class="tag" href="#">Laptop</a>
-                <a class="tag" href="#">Tips</a>
-                <a class="tag" href="#">Technology</a>
-              </div>
-            </div>
-
-            <div
-              class="sidebar-widget bg-primary text-white"
-              data-aos="fade-left"
-              data-aos-delay="300"
-            >
-              <h4 class="widget-title text-white">Subscribe</h4>
-              <p>
-                Get the latest tech news and updates directly in your inbox.
-              </p>
-              <form class="newsletter-form">
-                <div class="mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Your email address"
-                    required
-                  />
-                </div>
-                <button class="btn btn-light w-100" type="submit">
-                  Subscribe Now
-                </button>
-              </form>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-3">
-            <a href="index.html" class="footer-logo d-flex align-items-center">
-              <img
-                src="./images/main-logo.png"
-                alt="TechStore"
-                height="36"
-                onerror="this.src='./images/main-logo.png'"
-              />
-              <span class="brand-text ms-2">TechStore</span>
-            </a>
-            <p class="footer-text mt-3">
-              Your one-stop destination for premium electronics and gadgets at
-              unbeatable prices.
-            </p>
-            <div class="social-links mt-2">
-              <a
-                href="https://www.facebook.com/tanzeelahmedpov"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a
-                href="https://twitter.com/TanzeelOnX"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/tanzeelahmedpov"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-instagram"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-4">
-            <h5>Quick Links</h5>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index.html#products">Products</a></li>
-              <li><a href="index.html#sale">Sale</a></li>
-              <li><a href="blog.html">Blog</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-4">
-            <h5>Categories</h5>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html#mobiles">Smartphones</a></li>
-              <li><a href="index.html#watches">Smart Watches</a></li>
-              <li><a href="index.html#laptops">Laptops</a></li>
-              <li><a href="index.html#accessories">Accessories</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-5">
-            <h5>Contact Info</h5>
-            <ul class="list-unstyled footer-contact">
-              <li>
-                <i class="fas fa-envelope me-2 text-primary"></i
-                ><a href="mailto:tanzeel.ahmed.se@gmail.com"
-                  >tanzeel.ahmed.se@gmail.com</a
-                >
-              </li>
-              <li>
-                <i class="fas fa-phone me-2 text-primary"></i
-                ><a href="tel:+923101400966">+92 310 1400966</a>
-              </li>
-              <li>
-                <i class="fas fa-map-marker-alt me-2 text-primary"></i> Lodhran,
-                Punjab, Pakistan
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <hr class="my-4" />
-        <div class="d-flex justify-content-between align-items-center">
-          <small class="text-muted"
-            >&copy; 2024 TechStore. All rights reserved.</small
-          >
-          <div class="payment-methods">
-            <img
-              src="./images/visa.jpg"
-              alt="visa"
-              height="22"
-              style="margin-right: 8px"
-              onerror="this.style.display='none'"
-            />
-            <img
-              src="./images/mastercard.jpg"
-              alt="mastercard"
-              height="22"
-              style="margin-right: 8px"
-              onerror="this.style.display='none'"
-            />
-            <img
-              src="./images/paypal.jpg"
-              alt="paypal"
-              height="22"
-              onerror="this.style.display='none'"
-            />
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- CART SIDEBAR (hidden by default) -->
-    <div class="cart-sidebar" id="cartSidebar" aria-hidden="true">
-      <div class="cart-header">
-        <h4 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
-        <button class="close-cart" aria-label="Close cart">&times;</button>
-      </div>
-      <div class="cart-items" id="cartItems">
-        <p class="text-muted m-3">Your cart is empty.</p>
-      </div>
-      <div class="cart-footer">
-        <div
-          class="cart-total d-flex justify-content-between align-items-center mb-3"
-        >
-          <strong>Total:</strong><strong class="total-price">$0.00</strong>
-        </div>
-        <button class="btn btn-primary w-100">Checkout</button>
-      </div>
-    </div>
-    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-      // --- AOS init
-      if (window.AOS) AOS.init({ duration: 900, once: true, offset: 80 });
-
-      // --- THEME toggle with localStorage
-      const themeToggle = document.getElementById("themeToggle");
-      const body = document.body;
-      const sunIcon = document.getElementById("sunIcon");
-      const moonIcon = document.getElementById("moonIcon");
-      const savedTheme = localStorage.getItem("theme") || "light";
-      body.setAttribute("data-theme", savedTheme);
-      if (savedTheme === "dark") {
-        sunIcon.style.display = "none";
-        moonIcon.style.display = "inline-block";
-      } else {
-        sunIcon.style.display = "inline-block";
-        moonIcon.style.display = "none";
-      }
-
-      themeToggle.addEventListener("click", () => {
-        const current = body.getAttribute("data-theme");
-        const next = current === "light" ? "dark" : "light";
-        body.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
-        // little spin animation
-        themeToggle.style.transform = "rotate(360deg)";
-        setTimeout(() => (themeToggle.style.transform = ""), 450);
-        sunIcon.style.display = next === "light" ? "inline-block" : "none";
-        moonIcon.style.display = next === "dark" ? "inline-block" : "none";
-      });
-
-      // --- SEARCH toggle & outside click handling
-      const searchToggle = document.getElementById("searchToggle");
-      const searchBar = document.getElementById("searchBar");
-      searchToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        searchBar.classList.toggle("active");
-        if (searchBar.classList.contains("active"))
-          searchBar.style.display = "flex";
-        else searchBar.style.display = "none";
-      });
-      // close when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
-          searchBar.classList.remove("active");
-          searchBar.style.display = "none";
-        }
-      });
-      // prevent closing when clicking inside searchBar
-      searchBar.addEventListener("click", (e) => e.stopPropagation());
-
-      // --- CART sidebar
-      const cartToggle = document.getElementById("cartToggle");
-      const cartSidebar = document.getElementById("cartSidebar");
-      const cartOverlay = document.getElementById("cartOverlay");
-      const closeCart = document.querySelector(".close-cart");
-
-      function openCart() {
-        cartSidebar.classList.add("active");
-        cartOverlay.classList.add("active");
-        cartSidebar.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-      function closeCartFunc() {
-        cartSidebar.classList.remove("active");
-        cartOverlay.classList.remove("active");
-        cartSidebar.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-      if (cartToggle) cartToggle.addEventListener("click", openCart);
-      if (closeCart) closeCart.addEventListener("click", closeCartFunc);
-      if (cartOverlay) cartOverlay.addEventListener("click", closeCartFunc);
-
-      // --- Newsletter forms
-      document.querySelectorAll(".newsletter-form").forEach((form) => {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = this.querySelector('input[type="email"]').value;
-          if (!email) return;
-          const original = this.innerHTML;
-          this.innerHTML =
-            '<div class="text-center text-white"><i class="fas fa-check-circle fa-2x mb-3"></i><p class="mb-0">Thank you for subscribing!</p></div>';
-          setTimeout(() => {
-            this.innerHTML = original;
-            this.reset();
-          }, 2200);
-        });
-      });
-
-      // --- Read More behaviour (demo)
-      document.querySelectorAll(".read-more").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          this.style.color = "var(--primary-dark)";
-          const icon = this.querySelector("i");
-          if (icon) icon.style.transform = "translateX(10px)";
-          setTimeout(() => {
-            if (icon) icon.style.transform = "";
-            this.style.color = "";
-            // demo: alert (remove in production)
-            alert("Demo: open full article here.");
-          }, 300);
-        });
-      });
-
-      // --- Blog card click scale (visual feedback)
-      document.querySelectorAll(".blog-card").forEach((card) => {
-        card.addEventListener("click", function (e) {
-          if (!e.target.closest("a") && !e.target.closest("button")) {
-            this.style.transform = "scale(.995)";
-            setTimeout(() => (this.style.transform = ""), 160);
-          }
-        });
-      });
-
-      // --- Simple hero search & top search functionality
-      document.getElementById("heroSearchBtn").addEventListener("click", () => {
-        const q = document.getElementById("heroSearch").value.trim();
-        if (!q) {
-          alert("Type a search term (demo).");
-          return;
-        }
-        alert("Searching for: " + q + " (demo)");
-      });
-      document.getElementById("searchBtn")?.addEventListener("click", () => {
-        const q = document.getElementById("searchInput").value.trim();
-        if (!q) {
-          alert("Type a search term (demo).");
-          return;
-        }
-        alert("Searching articles for: " + q + " (demo)");
-      });
-
-      // --- optional console message
-      console.log("Blog page loaded and scripts initialized.");
-    </script>
   </body>
 </html>
