@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -25,37 +25,117 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
-
     <style>
+      /* ====== ROOT VARIABLES ====== */
       :root {
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --secondary: #10b981;
-        --accent: #f59e0b;
-        --danger: #ef4444;
-        --light: #f8fafc;
-        --dark: #1e293b;
-        --gray: #64748b;
+        --primary: #3a86ff;
+        --primary-dark: #2667cc;
+        --primary-light: rgba(58, 134, 255, 0.1);
+        --secondary: #8338ec;
+        --secondary-dark: #5a2ca3;
+        --accent: #ff006e;
+        --success: #38b000;
+        --warning: #ffbe0b;
+        --danger: #fb5607;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
         --card-bg: #ffffff;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        --radius: 12px;
-        --transition: all 0.3s ease;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1),
+          0 4px 6px rgba(0, 0, 0, 0.05);
+        --radius: 10px;
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       [data-theme="dark"] {
-        --light: #0f172a;
-        --dark: #f1f5f9;
-        --card-bg: #1e293b;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        --gray: #94a3b8;
+        --primary: #5a9cff;
+        --primary-dark: #3a86ff;
+        --primary-light: rgba(90, 156, 255, 0.15);
+        --secondary: #9d4edd;
+        --secondary-dark: #8338ec;
+        --accent: #ff4081;
+        --success: #4cd964;
+        --warning: #ffd166;
+        --danger: #ff6b6b;
+        --light: #121212;
+        --dark: #f8f9fa;
+        --gray-100: #1e1e1e;
+        --gray-200: #2d2d2d;
+        --gray-300: #3d3d3d;
+        --gray-400: #4d4d4d;
+        --gray-500: #6b6b6b;
+        --gray-600: #8a8a8a;
+        --gray-700: #a8a8a8;
+        --gray-800: #c7c7c7;
+        --gray-900: #e5e5e5;
+        --card-bg: #1a1a1a;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.35),
+          0 4px 6px rgba(0, 0, 0, 0.25);
       }
 
-      /* Theme Toggle Fix */
+      /* ====== BASE STYLES ====== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--dark);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      a:hover {
+        color: var(--primary);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ====== THEME TOGGLE ====== */
       .theme-toggle {
         position: fixed;
         top: 80px;
@@ -67,7 +147,7 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         border: none;
         color: white;
         font-size: 1.2rem;
@@ -82,6 +162,7 @@
 
       .theme-btn:hover {
         transform: rotate(30deg) scale(1.1);
+        box-shadow: 0 8px 20px rgba(58, 134, 255, 0.3);
       }
 
       #moonIcon {
@@ -95,25 +176,521 @@
       [data-theme="dark"] #moonIcon {
         display: block;
       }
+
+      /* ====== NAVIGATION ====== */
+      .navbar {
+        padding: 1rem 0;
+        background-color: var(--card-bg) !important;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .brand-text {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-left: 0.5rem;
+      }
+
+      .navbar-nav .nav-link {
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        margin: 0 0.25rem;
+        color: var(--dark);
+        transition: var(--transition);
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background-color: var(--primary-light);
+        color: var(--primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .nav-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid var(--gray-300);
+        background: transparent;
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-icon:hover {
+        background-color: var(--primary);
+        color: white;
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--danger);
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ====== CONTACT HERO ====== */
+      .contact-hero {
+        padding: 5rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(58, 134, 255, 0.08),
+          rgba(131, 56, 236, 0.08)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark);
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .contact-hero .lead {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+
+      .info-item {
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+      }
+
+      .info-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary);
+      }
+
+      .info-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .info-item h5 {
+        color: var(--dark);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-item p {
+        color: var(--gray-600);
+        margin: 0;
+      }
+
+      /* ====== CONTACT FORM ====== */
+      .contact-form {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--gray-200);
+      }
+
+      .contact-form h3 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+        position: relative;
+        padding-bottom: 0.75rem;
+      }
+
+      .contact-form h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .form-control,
+      .form-select {
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--gray-300);
+        border-radius: var(--radius);
+        background-color: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+        font-size: 1rem;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+        outline: none;
+        background-color: var(--card-bg);
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border-radius: var(--radius);
+        transition: var(--transition);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(58, 134, 255, 0.3);
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--secondary-dark)
+        );
+      }
+
+      /* ====== FAQ SECTION ====== */
+      .faq-section {
+        padding: 5rem 0;
+        background: var(--light);
+      }
+
+      .section-header {
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+        color: var(--dark);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        color: var(--gray-600);
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .accordion-item {
+        background: var(--card-bg);
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius) !important;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .accordion-item:hover {
+        border-color: var(--primary);
+      }
+
+      .accordion-button {
+        background-color: var(--card-bg);
+        color: var(--dark);
+        font-weight: 600;
+        padding: 1.25rem 1.5rem;
+        border: none;
+        box-shadow: none;
+        transition: var(--transition);
+      }
+
+      .accordion-button:not(.collapsed) {
+        background-color: var(--primary-light);
+        color: var(--primary);
+        box-shadow: none;
+      }
+
+      .accordion-button:focus {
+        box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+        border-color: var(--primary);
+      }
+
+      .accordion-button::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233a86ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+      }
+
+      .accordion-button:not(.collapsed)::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233a86ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+      }
+
+      .accordion-body {
+        padding: 1.5rem;
+        background-color: var(--light);
+        color: var(--gray-700);
+        border-top: 1px solid var(--gray-300);
+        line-height: 1.7;
+      }
+
+      /* ====== FOOTER ====== */
+      .footer {
+        background: var(--card-bg);
+        border-top: 1px solid var(--gray-200);
+        padding: 4rem 0 2rem;
+        margin-top: auto;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-text {
+        color: var(--gray-600);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer h5 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        color: var(--dark);
+        font-weight: 700;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-links a {
+        color: var(--gray-600);
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .footer-contact {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-contact li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+
+      .footer-contact i {
+        color: var(--primary);
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+        font-size: 1.1rem;
+      }
+
+      .footer-contact a {
+        color: var(--gray-600);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-contact a:hover {
+        color: var(--primary);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gray-100);
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--gray-200);
+        text-align: center;
+        color: var(--gray-600);
+        font-size: 0.9rem;
+      }
+
+      /* ====== RESPONSIVE DESIGN ====== */
+      @media (max-width: 992px) {
+        .contact-hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title {
+          font-size: 2.25rem;
+        }
+
+        .contact-form {
+          padding: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contact-hero h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .theme-toggle {
+          top: 20px;
+          right: 20px;
+        }
+
+        .theme-btn {
+          width: 45px;
+          height: 45px;
+        }
+
+        .info-item {
+          padding: 1rem;
+        }
+
+        .info-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.25rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .contact-hero h1 {
+          font-size: 1.75rem;
+        }
+
+        .section-title {
+          font-size: 1.75rem;
+        }
+
+        .contact-form {
+          padding: 1.5rem;
+        }
+
+        .info-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .info-icon {
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+      }
     </style>
   </head>
   <body data-theme="light">
     <!-- Theme Toggle -->
     <div class="theme-toggle">
-      <button id="themeToggle" class="theme-btn">
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
         <i class="fas fa-sun" id="sunIcon"></i>
         <i class="fas fa-moon" id="moonIcon"></i>
       </button>
     </div>
 
     <!-- Navigation -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="./images/logo.png" alt="TechStore" height="40" />
-          <span class="brand-text">TechStore</span>
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <i class="fas fa-microchip fa-2x" style="color: var(--primary)"></i>
+          <span class="brand-text ms-2">TechStore</span>
         </a>
 
         <button
@@ -121,6 +698,7 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -161,20 +739,21 @@
     </nav>
 
     <!-- Contact Hero -->
-    <section class="contact-hero py-5 bg-light">
+    <section class="contact-hero py-5">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-6" data-aos="fade-right">
-            <h1 class="display-4 fw-bold mb-4">Get In Touch</h1>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="fw-bold mb-4">Get In Touch</h1>
             <p class="lead mb-4">
               Have questions? We'd love to hear from you. Send us a message and
-              we'll respond as soon as possible.
+              we'll respond as soon as possible. Our team is available to help
+              you with any inquiries about our products, services, or technical
+              support.
             </p>
+
             <div class="contact-info">
-              <div class="info-item d-flex align-items-center mb-3">
-                <div
-                  class="info-icon bg-primary text-white rounded-circle p-3 me-3"
-                >
+              <div class="info-item d-flex align-items-start">
+                <div class="info-icon bg-primary text-white">
                   <i class="fas fa-envelope"></i>
                 </div>
                 <div>
@@ -182,33 +761,32 @@
                   <p class="mb-0">tanzeel.ahmed.se@gmail.com</p>
                 </div>
               </div>
-              <div class="info-item d-flex align-items-center mb-3">
-                <div
-                  class="info-icon bg-success text-white rounded-circle p-3 me-3"
-                >
+
+              <div class="info-item d-flex align-items-start">
+                <div class="info-icon bg-success text-white">
                   <i class="fas fa-phone"></i>
                 </div>
                 <div>
                   <h5 class="mb-1">Phone</h5>
-                  <p class="mb-0">+55 111 222 333 44</p>
+                  <p class="mb-0">+92 300 1234567</p>
                 </div>
               </div>
-              <div class="info-item d-flex align-items-center">
-                <div
-                  class="info-icon bg-warning text-white rounded-circle p-3 me-3"
-                >
+
+              <div class="info-item d-flex align-items-start">
+                <div class="info-icon bg-warning text-white">
                   <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div>
                   <h5 class="mb-1">Location</h5>
-                  <p class="mb-0">123 Tech Street, Digital City</p>
+                  <p class="mb-0">123 Tech Street, Digital City, Pakistan</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6" data-aos="fade-left">
-            <div class="contact-form bg-white p-4 rounded shadow">
-              <h3 class="mb-4">Send Message</h3>
+
+          <div class="col-lg-6">
+            <div class="contact-form">
+              <h3>Send Message</h3>
               <form id="contactForm">
                 <div class="row g-3">
                   <div class="col-md-6">
@@ -252,7 +830,7 @@
                   <textarea class="form-control" rows="5" required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mt-4">
+                <button type="submit" class="btn btn-primary w-100 mt-4 py-3">
                   <i class="fas fa-paper-plane me-2"></i> Send Message
                 </button>
               </form>
@@ -265,13 +843,13 @@
     <!-- FAQ Section -->
     <section class="faq-section py-5">
       <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
+        <div class="section-header text-center mb-5">
           <h2 class="section-title">Frequently Asked Questions</h2>
           <p class="section-subtitle">Find quick answers to common questions</p>
         </div>
 
         <div class="accordion" id="faqAccordion">
-          <div class="accordion-item" data-aos="fade-up">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button"
@@ -289,12 +867,14 @@
             >
               <div class="accordion-body">
                 We offer a 30-day return policy for all products. Items must be
-                in original condition with all accessories.
+                in original condition with all accessories and packaging.
+                Refunds will be processed within 5-7 business days after we
+                receive the returned items.
               </div>
             </div>
           </div>
 
-          <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button collapsed"
@@ -311,13 +891,15 @@
               data-bs-parent="#faqAccordion"
             >
               <div class="accordion-body">
-                Standard shipping takes 3-5 business days. Express shipping is
-                available for delivery within 1-2 days.
+                Standard shipping takes 3-5 business days within the country.
+                Express shipping is available for delivery within 1-2 days for
+                an additional fee. International shipping typically takes 7-14
+                business days depending on the destination.
               </div>
             </div>
           </div>
 
-          <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button collapsed"
@@ -335,12 +917,14 @@
             >
               <div class="accordion-body">
                 Yes, we ship to over 50 countries worldwide. Shipping rates and
-                delivery times vary by location.
+                delivery times vary by location. You can check shipping costs at
+                checkout. Please note that international orders may be subject
+                to customs fees and import taxes.
               </div>
             </div>
           </div>
 
-          <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button collapsed"
@@ -357,7 +941,61 @@
               data-bs-parent="#faqAccordion"
             >
               <div class="accordion-body">
-                We accept Visa, MasterCard, PayPal, Apple Pay, and Google Pay.
+                We accept Visa, MasterCard, American Express, PayPal, Apple Pay,
+                Google Pay, and bank transfers. All payments are processed
+                securely through encrypted connections. Your payment information
+                is never stored on our servers.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq5"
+              >
+                What is your warranty policy?
+              </button>
+            </h2>
+            <div
+              id="faq5"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                All our products come with a manufacturer's warranty ranging
+                from 1 to 3 years depending on the product. Warranty covers
+                manufacturing defects but does not cover damage caused by
+                accidents, misuse, or normal wear and tear. Please register your
+                product online to activate the warranty.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq6"
+              >
+                How can I track my order?
+              </button>
+            </h2>
+            <div
+              id="faq6"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Once your order ships, you will receive a confirmation email
+                with a tracking number and a link to track your package. You can
+                also log into your account on our website to view the status of
+                all your orders and tracking information in real-time.
               </div>
             </div>
           </div>
@@ -371,33 +1009,41 @@
         <div class="row">
           <div class="col-lg-3 mb-4">
             <a href="index.html" class="footer-logo">
-              <img src="./images/logo.png" alt="TechStore" height="40" />
+              <i
+                class="fas fa-microchip fa-2x"
+                style="color: var(--primary)"
+              ></i>
               <span class="brand-text">TechStore</span>
             </a>
             <p class="footer-text mt-3">
               Your one-stop destination for premium electronics and gadgets at
-              unbeatable prices.
+              unbeatable prices. We bring you the future, today.
             </p>
             <div class="social-links mt-3">
-              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a href="https://twitter.com/TanzeelOnX" target="_blank"
-                ><i class="fab fa-twitter"></i
-              ></a>
+              <a
+                href="https://www.facebook.com/tanzeelahmedpov"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com/TanzeelOnX" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
               <a
                 href="https://www.instagram.com/tanzeelahmedpov"
                 target="_blank"
-                ><i class="fab fa-instagram"></i
-              ></a>
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
               <a
                 href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
                 target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://www.youtube.com" target="_blank"
-                ><i class="fab fa-youtube"></i
-              ></a>
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.youtube.com" target="_blank">
+                <i class="fab fa-youtube"></i>
+              </a>
             </div>
           </div>
 
@@ -445,11 +1091,15 @@
               </li>
               <li>
                 <i class="fas fa-phone me-2"></i>
-                <a href="tel:+5511122233344">+55 111 222 333 44</a>
+                <a href="tel:+923001234567">+92 300 1234567</a>
               </li>
               <li>
                 <i class="fas fa-map-marker-alt me-2"></i>
-                123 Tech Street, Digital City
+                123 Tech Street, Digital City, Pakistan
+              </li>
+              <li>
+                <i class="fas fa-clock me-2"></i>
+                Mon-Fri: 9AM-6PM, Sat: 10AM-4PM
               </li>
             </ul>
           </div>
@@ -476,40 +1126,91 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-    <script src="cart.js"></script>
 
     <script>
-      AOS.init();
-
-      // Theme toggle functionality
+      // Theme Toggle Functionality
       const themeToggle = document.getElementById("themeToggle");
       const body = document.body;
-      const savedTheme = localStorage.getItem("theme") || "light";
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
 
+      // Check local storage for saved theme
+      const savedTheme = localStorage.getItem("techstore-theme") || "light";
       body.setAttribute("data-theme", savedTheme);
 
+      // Set initial icon state
+      if (savedTheme === "dark") {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      } else {
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      }
+
+      // Theme toggle event
       themeToggle.addEventListener("click", () => {
         const currentTheme = body.getAttribute("data-theme");
         const newTheme = currentTheme === "light" ? "dark" : "light";
 
         body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
+        localStorage.setItem("techstore-theme", newTheme);
 
-        themeToggle.style.transform = "rotate(360deg)";
+        // Update icons
+        if (newTheme === "dark") {
+          sunIcon.style.display = "none";
+          moonIcon.style.display = "block";
+        } else {
+          sunIcon.style.display = "block";
+          moonIcon.style.display = "none";
+        }
+
+        // Add animation effect
+        themeToggle.style.transform = "rotate(360deg) scale(1.1)";
         setTimeout(() => {
           themeToggle.style.transform = "";
         }, 500);
       });
 
+      // Form Submission
       document
         .getElementById("contactForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-          alert("Thank you for your message! We will get back to you soon.");
+
+          // Get form data
+          const formData = new FormData(this);
+          const formObject = Object.fromEntries(formData.entries());
+
+          // Show success message
+          alert(
+            "Thank you for your message! We will get back to you within 24 hours."
+          );
+
+          // Reset form
           this.reset();
+
+          // Log form data (in real app, you would send to server)
+          console.log("Form submitted:", formObject);
         });
+
+      // Cart count update (placeholder)
+      function updateCartCount() {
+        const cartCount = document.querySelector(".cart-count");
+        // In a real app, you would get this from localStorage or API
+        const cart = JSON.parse(localStorage.getItem("techstore-cart")) || [];
+        const totalItems = cart.reduce(
+          (sum, item) => sum + (item.quantity || 1),
+          0
+        );
+
+        if (cartCount) {
+          cartCount.textContent = totalItems;
+          cartCount.style.display = totalItems > 0 ? "flex" : "none";
+        }
+      }
+
+      // Initialize cart count
+      updateCartCount();
     </script>
   </body>
 </html>
