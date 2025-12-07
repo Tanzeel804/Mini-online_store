@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - TechStore</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --light: #f8fafc;
+        --dark: #1e293b;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .auth-container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .auth-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .auth-header h2 {
+        color: var(--dark);
+        font-weight: 700;
+      }
+
+      .auth-header p {
+        color: #64748b;
+      }
+
+      .auth-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .auth-logo img {
+        height: 50px;
+      }
+
+      .form-control {
+        padding: 12px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        transition: all 0.3s;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #64748b;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .auth-footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .social-login {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .social-login .btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .btn-google {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+      }
+
+      .btn-facebook {
+        background: #1877f2;
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <a href="index.html">
+            <img src="images/logo.png" alt="TechStore" />
+          </a>
+        </div>
+
+        <div class="auth-header">
+          <h2>Create Account</h2>
+          <p>Join TechStore for exclusive deals and updates</p>
+        </div>
+
+        <form id="signupForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" required />
+          </div>
+
+          <div class="form-group mt-3">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" required />
+          </div>
+
+          <div class="form-group mt-3 position-relative">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('password')"
+            >
+              <i class="far fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="form-group mt-3 position-relative">
+            <label class="form-label">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('confirmPassword')"
+            >
+              <i class="far fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="form-check mt-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="terms"
+              required
+            />
+            <label class="form-check-label" for="terms">
+              I agree to the
+              <a href="#" class="text-primary">Terms & Conditions</a> and
+              <a href="#" class="text-primary">Privacy Policy</a>
+            </label>
+          </div>
+
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" id="newsletter" />
+            <label class="form-check-label" for="newsletter">
+              Subscribe to our newsletter for updates
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mt-4">
+            Create Account
+          </button>
+        </form>
+
+        <div class="social-login mt-4">
+          <button class="btn btn-google">
+            <i class="fab fa-google me-2"></i> Google
+          </button>
+          <button class="btn btn-facebook">
+            <i class="fab fa-facebook-f me-2"></i> Facebook
+          </button>
+        </div>
+
+        <div class="auth-footer">
+          <p class="mb-0">
+            Already have an account?
+            <a href="login.html" class="text-primary fw-bold">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = input.nextElementSibling.querySelector("i");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          input.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      }
+
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          // Simulate signup process
+          alert("Account created successfully! Redirecting to login...");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>
