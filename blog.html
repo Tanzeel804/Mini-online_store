@@ -1,396 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - TechStore</title>
-    
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Navigation (Same as index.html) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" alt="TechStore" height="40">
-                <span class="brand-text">TechStore</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --gray: #64748b;
+        --card-bg: #ffffff;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
+        --transition: all 0.3s ease;
+      }
+
+      [data-theme="dark"] {
+        --light: #0f172a;
+        --dark: #f1f5f9;
+        --card-bg: #1e293b;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --gray: #94a3b8;
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+      <button id="themeToggle" class="theme-btn">
+        <i class="fas fa-sun" id="sunIcon"></i>
+        <i class="fas fa-moon" id="moonIcon"></i>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="./images/logo.png" alt="TechStore" height="40" />
+          <span class="brand-text">TechStore</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="fas fa-home me-1"></i> Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#services">
+                <i class="fas fa-concierge-bell me-1"></i> Services
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="productsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-mobile-alt me-1"></i> Products
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="index.html#mobiles"
+                    ><i class="fas fa-mobile me-2"></i> Mobiles</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="index.html#watches"
+                    ><i class="fas fa-clock me-2"></i> Smart Watches</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="index.html#laptops"
+                    ><i class="fas fa-laptop me-2"></i> Laptops</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="index.html#accessories"
+                    ><i class="fas fa-headphones me-2"></i> Accessories</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="blog.html">
+                <i class="fas fa-blog me-1"></i> Blog
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-address-book me-1"></i> Contact
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#sale">
+                <i class="fas fa-tag me-1"></i> Sale
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <button class="nav-icon" id="searchToggle">
+              <i class="fas fa-search"></i>
             </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#products">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
+            <a href="login.html" class="nav-icon">
+              <i class="fas fa-user"></i>
+            </a>
+            <button class="nav-icon cart-btn" id="cartToggle">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="search-bar" id="searchBar">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search articles..."
+            />
+            <button class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Blog Hero -->
-    <section class="blog-hero py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
-                    <h1 class="display-4 fw-bold mb-4">TechStore Blog</h1>
-                    <p class="lead mb-4">Latest technology news, reviews, and tips from our experts</p>
-                    <div class="search-box">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search articles...">
-                            <button class="btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <section class="blog-hero py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 fw-bold mb-4" data-aos="fade-up">
+              TechStore Blog
+            </h1>
+            <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+              Latest news, tips, and insights about technology, gadgets, and
+              innovation.
+            </p>
+            <div
+              class="input-group mb-3 mx-auto"
+              style="max-width: 500px"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search articles..."
+              />
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Featured Post -->
-    <section class="featured-post py-5">
-        <div class="container">
-            <div class="row align-items-center" data-aos="fade-up">
-                <div class="col-lg-6">
-                    <div class="featured-image">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                             alt="Featured Post" class="img-fluid rounded">
-                        <span class="featured-badge">Featured</span>
-                    </div>
+    <!-- Blog Content -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Main Content -->
+          <div class="col-lg-8">
+            <!-- Featured Post -->
+            <div class="blog-card mb-5" data-aos="fade-up">
+              <div class="blog-image">
+                <img
+                  src="./images/blog-featured.jpg"
+                  alt="Featured Post"
+                  onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'"
+                />
+                <span class="blog-category">Featured</span>
+              </div>
+              <div class="blog-content">
+                <div class="blog-meta">
+                  <span
+                    ><i class="far fa-calendar me-1"></i> October 15, 2024</span
+                  >
+                  <span class="ms-3"
+                    ><i class="far fa-user me-1"></i> Tanzeel Ahmed</span
+                  >
+                  <span class="ms-3"
+                    ><i class="far fa-comments me-1"></i> 24 Comments</span
+                  >
                 </div>
-                <div class="col-lg-6">
-                    <div class="featured-content">
-                        <span class="post-category text-primary">Technology</span>
-                        <h2 class="post-title mt-2">The Future of Smartphones: What to Expect in 2024</h2>
-                        <p class="post-excerpt">
-                            Discover the latest trends in smartphone technology, from foldable displays to AI-powered cameras and beyond. 
-                            We explore what major brands have in store for the upcoming year.
-                        </p>
-                        <div class="post-meta d-flex align-items-center mt-3">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
-                                 alt="Author" class="rounded-circle me-2" width="40">
-                            <div>
-                                <h6 class="mb-0">John Doe</h6>
-                                <small class="text-muted">March 15, 2024 • 5 min read</small>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary mt-4">Read More <i class="fas fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
+                <h2 class="blog-title">
+                  The Future of Smartphones: AI Integration and Beyond
+                </h2>
+                <p class="blog-excerpt">
+                  Discover how artificial intelligence is revolutionizing
+                  smartphone technology. From predictive text to advanced
+                  photography, AI is changing how we interact with our
+                  devices...
+                </p>
+                <a href="#" class="read-more"
+                  >Read More <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Blog Posts -->
-    <section class="blog-posts py-5">
-        <div class="container">
+            <!-- Blog Posts Grid -->
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="row g-4">
-                        <!-- Post 1 -->
-                        <div class="col-md-6" data-aos="fade-up">
-                            <div class="blog-card">
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                         alt="Laptop Review" class="img-fluid">
-                                    <span class="blog-category">Reviews</span>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="blog-title">Top 5 Gaming Laptops of 2024</h3>
-                                    <p class="blog-excerpt">
-                                        We tested and reviewed the best gaming laptops for hardcore gamers and casual users alike.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <span><i class="far fa-calendar me-1"></i> March 10, 2024</span>
-                                        <span><i class="far fa-comment me-1 ms-3"></i> 12 Comments</span>
-                                    </div>
-                                    <a href="#" class="read-more">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Post 2 -->
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="blog-card">
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                         alt="Smart Watch" class="img-fluid">
-                                    <span class="blog-category">Wearables</span>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="blog-title">Smart Watches: Health vs Fashion</h3>
-                                    <p class="blog-excerpt">
-                                        Are smart watches more about health tracking or fashion statements? We break down the options.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <span><i class="far fa-calendar me-1"></i> March 5, 2024</span>
-                                        <span><i class="far fa-comment me-1 ms-3"></i> 8 Comments</span>
-                                    </div>
-                                    <a href="#" class="read-more">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Post 3 -->
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-card">
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                         alt="Wireless Earbuds" class="img-fluid">
-                                    <span class="blog-category">Audio</span>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="blog-title">Best Wireless Earbuds Under $100</h3>
-                                    <p class="blog-excerpt">
-                                        High-quality sound doesn't have to break the bank. Here are our top picks for budget-friendly earbuds.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <span><i class="far fa-calendar me-1"></i> March 1, 2024</span>
-                                        <span><i class="far fa-comment me-1 ms-3"></i> 15 Comments</span>
-                                    </div>
-                                    <a href="#" class="read-more">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Post 4 -->
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="blog-card">
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                         alt="Gaming Setup" class="img-fluid">
-                                    <span class="blog-category">Gaming</span>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="blog-title">Ultimate Gaming Setup Guide 2024</h3>
-                                    <p class="blog-excerpt">
-                                        From monitors to chairs, we help you build the perfect gaming setup on any budget.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <span><i class="far fa-calendar me-1"></i> February 25, 2024</span>
-                                        <span><i class="far fa-comment me-1 ms-3"></i> 22 Comments</span>
-                                    </div>
-                                    <a href="#" class="read-more">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+              <div class="col-md-6 mb-4" data-aos="fade-up">
+                <div class="blog-card h-100">
+                  <div class="blog-image">
+                    <img
+                      src="./images/blog1.jpg"
+                      alt="Blog Post 1"
+                      onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'"
+                    />
+                    <span class="blog-category">Technology</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span
+                        ><i class="far fa-calendar me-1"></i> October 10,
+                        2024</span
+                      >
                     </div>
-                    
-                    <!-- Pagination -->
-                    <nav class="mt-5" data-aos="fade-up">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                
-                <!-- Sidebar -->
-                <div class="col-lg-4" data-aos="fade-left">
-                    <div class="sidebar">
-                        <!-- Categories -->
-                        <div class="sidebar-widget mb-4">
-                            <h4 class="widget-title">Categories</h4>
-                            <ul class="categories-list">
-                                <li><a href="#">Smartphones <span class="count">12</span></a></li>
-                                <li><a href="#">Laptops <span class="count">8</span></a></li>
-                                <li><a href="#">Wearables <span class="count">6</span></a></li>
-                                <li><a href="#">Audio <span class="count">10</span></a></li>
-                                <li><a href="#">Gaming <span class="count">15</span></a></li>
-                                <li><a href="#">Accessories <span class="count">7</span></a></li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Popular Posts -->
-                        <div class="sidebar-widget mb-4">
-                            <h4 class="widget-title">Popular Posts</h4>
-                            <div class="popular-post">
-                                <div class="d-flex mb-3">
-                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                                         alt="Post" class="rounded me-3" width="60">
-                                    <div>
-                                        <h6 class="mb-1">iPhone 15 Pro Review</h6>
-                                        <small class="text-muted">March 12, 2024</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                                         alt="Post" class="rounded me-3" width="60">
-                                    <div>
-                                        <h6 class="mb-1">Best Laptops for Students</h6>
-                                        <small class="text-muted">March 8, 2024</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                                         alt="Post" class="rounded me-3" width="60">
-                                    <div>
-                                        <h6 class="mb-1">Camera Buying Guide 2024</h6>
-                                        <small class="text-muted">March 3, 2024</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Tags -->
-                        <div class="sidebar-widget">
-                            <h4 class="widget-title">Tags</h4>
-                            <div class="tags">
-                                <a href="#" class="tag">Smartphones</a>
-                                <a href="#" class="tag">Reviews</a>
-                                <a href="#" class="tag">Gaming</a>
-                                <a href="#" class="tag">Audio</a>
-                                <a href="#" class="tag">Tech News</a>
-                                <a href="#" class="tag">Buying Guide</a>
-                                <a href="#" class="tag">Comparisons</a>
-                                <a href="#" class="tag">Tips</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter-section py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h3>Subscribe to Our Newsletter</h3>
-                    <p class="mb-0">Get the latest tech news and updates directly in your inbox.</p>
-                </div>
-                <div class="col-lg-6">
-                    <form class="newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Your email address" required>
-                            <button class="btn btn-light" type="submit">
-                                Subscribe <i class="fas fa-paper-plane ms-2"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Same as index.html) -->
-    <footer class="footer py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 mb-4">
-                    <a href="index.html" class="footer-logo">
-                        <img src="images/logo.png" alt="TechStore" height="40">
-                        <span class="brand-text">TechStore</span>
-                    </a>
-                    <p class="footer-text mt-3">
-                        Your one-stop destination for premium electronics and gadgets at unbeatable prices.
+                    <h3 class="blog-title">
+                      Top 5 Laptops for Students in 2024
+                    </h3>
+                    <p class="blog-excerpt">
+                      Find the perfect laptop for your academic needs with our
+                      comprehensive guide to the best student laptops.
                     </p>
+                    <a href="#" class="read-more">Read More</a>
+                  </div>
                 </div>
-                
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#products">Products</a></li>
-                        <li><a href="index.html#sale">Sale</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <h5>Support</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Track Order</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h5>Contact Info</h5>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-envelope me-2"></i>
-                            <a href="mailto:tanzeel.ahmed.se@gmail.com">tanzeel.ahmed.se@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone me-2"></i>
-                            <a href="tel:+5511122233344">+55 111 222 333 44</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt me-2"></i>
-                            123 Tech Street, Digital City
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <hr class="my-4">
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="payment-methods">
-                        <span class="me-2">We accept:</span>
-                        <i class="fab fa-cc-visa me-2"></i>
-                        <i class="fab fa-cc-mastercard me-2"></i>
-                        <i class="fab fa-cc-paypal me-2"></i>
-                        <i class="fab fa-cc-apple-pay"></i>
+              </div>
+
+              <div
+                class="col-md-6 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <div class="blog-card h-100">
+                  <div class="blog-image">
+                    <img
+                      src="./images/blog2.jpg"
+                      alt="Blog Post 2"
+                      onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1142&q=80'"
+                    />
+                    <span class="blog-category">Reviews</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span
+                        ><i class="far fa-calendar me-1"></i> October 5,
+                        2024</span
+                      >
                     </div>
+                    <h3 class="blog-title">
+                      Apple Watch Series 9: In-Depth Review
+                    </h3>
+                    <p class="blog-excerpt">
+                      We tested the new Apple Watch Series 9 for two weeks.
+                      Here's our honest review of its features and performance.
+                    </p>
+                    <a href="#" class="read-more">Read More</a>
+                  </div>
                 </div>
+              </div>
+
+              <div
+                class="col-md-6 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div class="blog-card h-100">
+                  <div class="blog-image">
+                    <img
+                      src="./images/blog3.jpg"
+                      alt="Blog Post 3"
+                      onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1120&q=80'"
+                    />
+                    <span class="blog-category">Tips & Tricks</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span
+                        ><i class="far fa-calendar me-1"></i> October 1,
+                        2024</span
+                      >
+                    </div>
+                    <h3 class="blog-title">
+                      How to Extend Your Smartphone Battery Life
+                    </h3>
+                    <p class="blog-excerpt">
+                      Simple yet effective tips to make your smartphone battery
+                      last longer throughout the day.
+                    </p>
+                    <a href="#" class="read-more">Read More</a>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="col-md-6 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <div class="blog-card h-100">
+                  <div class="blog-image">
+                    <img
+                      src="./images/blog4.jpg"
+                      alt="Blog Post 4"
+                      onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'"
+                    />
+                    <span class="blog-category">Gaming</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span
+                        ><i class="far fa-calendar me-1"></i> September 25,
+                        2024</span
+                      >
+                    </div>
+                    <h3 class="blog-title">Best Gaming Accessories for 2024</h3>
+                    <p class="blog-excerpt">
+                      Level up your gaming experience with these must-have
+                      accessories for serious gamers.
+                    </p>
+                    <a href="#" class="read-more">Read More</a>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Blog navigation" class="mt-5">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-4">
+            <!-- Categories Widget -->
+            <div class="sidebar-widget mb-4" data-aos="fade-left">
+              <h4 class="widget-title">Categories</h4>
+              <ul class="categories-list">
+                <li>
+                  <a href="#">Smartphones <span class="count">12</span></a>
+                </li>
+                <li>
+                  <a href="#">Laptops <span class="count">8</span></a>
+                </li>
+                <li>
+                  <a href="#">Smart Watches <span class="count">6</span></a>
+                </li>
+                <li>
+                  <a href="#">Accessories <span class="count">15</span></a>
+                </li>
+                <li>
+                  <a href="#">Gaming <span class="count">9</span></a>
+                </li>
+                <li>
+                  <a href="#">Technology News <span class="count">21</span></a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Recent Posts -->
+            <div
+              class="sidebar-widget mb-4"
+              data-aos="fade-left"
+              data-aos-delay="100"
+            >
+              <h4 class="widget-title">Recent Posts</h4>
+              <div class="recent-posts">
+                <div class="recent-post mb-3">
+                  <a href="#" class="d-flex align-items-center">
+                    <img
+                      src="./images/blog-small1.jpg"
+                      alt="Recent Post"
+                      width="60"
+                      height="60"
+                      class="rounded me-3"
+                      onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
+                    />
+                    <div>
+                      <h6 class="mb-1">iPhone 15 Pro Max Review</h6>
+                      <small class="text-muted">Sep 20, 2024</small>
+                    </div>
+                  </a>
+                </div>
+                <div class="recent-post mb-3">
+                  <a href="#" class="d-flex align-items-center">
+                    <img
+                      src="./images/blog-small2.jpg"
+                      alt="Recent Post"
+                      width="60"
+                      height="60"
+                      class="rounded me-3"
+                      onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
+                    />
+                    <div>
+                      <h6 class="mb-1">Best Wireless Earbuds 2024</h6>
+                      <small class="text-muted">Sep 15, 2024</small>
+                    </div>
+                  </a>
+                </div>
+                <div class="recent-post mb-3">
+                  <a href="#" class="d-flex align-items-center">
+                    <img
+                      src="./images/blog-small3.jpg"
+                      alt="Recent Post"
+                      width="60"
+                      height="60"
+                      class="rounded me-3"
+                      onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
+                    />
+                    <div>
+                      <h6 class="mb-1">Android 14 Features Explained</h6>
+                      <small class="text-muted">Sep 10, 2024</small>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tags Widget -->
+            <div
+              class="sidebar-widget mb-4"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
+              <h4 class="widget-title">Popular Tags</h4>
+              <div class="tags">
+                <a href="#" class="tag">Smartphone</a>
+                <a href="#" class="tag">Review</a>
+                <a href="#" class="tag">Apple</a>
+                <a href="#" class="tag">Android</a>
+                <a href="#" class="tag">Gaming</a>
+                <a href="#" class="tag">Laptop</a>
+                <a href="#" class="tag">Tips</a>
+                <a href="#" class="tag">Technology</a>
+                <a href="#" class="tag">Innovation</a>
+              </div>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div
+              class="sidebar-widget bg-primary text-white p-4 rounded"
+              data-aos="fade-left"
+              data-aos-delay="300"
+            >
+              <h4 class="widget-title text-white">Subscribe</h4>
+              <p class="mb-3">
+                Get the latest tech news and updates directly in your inbox.
+              </p>
+              <form class="newsletter-form">
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Your email address"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-light w-100">
+                  Subscribe Now
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Footer (Same as index.html with corrected links) -->
+    <footer class="footer py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-4">
+            <a href="index.html" class="footer-logo">
+              <img src="./images/logo.png" alt="TechStore" height="40" />
+              <span class="brand-text">TechStore</span>
+            </a>
+            <p class="footer-text mt-3">
+              Your one-stop destination for premium electronics and gadgets at
+              unbeatable prices.
+            </p>
+            <div class="social-links mt-3">
+              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://twitter.com/TanzeelOnX" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/tanzeelahmedpov"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://www.youtube.com" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#products">Products</a></li>
+              <li><a href="index.html#sale">Sale</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Categories</h5>
+            <ul class="footer-links">
+              <li><a href="index.html#mobiles">Smartphones</a></li>
+              <li><a href="index.html#watches">Smart Watches</a></li>
+              <li><a href="index.html#laptops">Laptops</a></li>
+              <li><a href="index.html#accessories">Accessories</a></li>
+              <li><a href="index.html#gadgets">Gadgets</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-4">
+            <h5>Support</h5>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 mb-4">
+            <h5>Contact Info</h5>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-envelope me-2"></i>
+                <a href="mailto:tanzeel.ahmed.se@gmail.com"
+                  >tanzeel.ahmed.se@gmail.com</a
+                >
+              </li>
+              <li>
+                <i class="fas fa-phone me-2"></i>
+                <a href="tel:+5511122233344">+55 111 222 333 44</a>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt me-2"></i>
+                123 Tech Street, Digital City
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">&copy; 2024 TechStore. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="payment-methods">
+              <span class="me-2">We accept:</span>
+              <i class="fab fa-cc-visa me-2"></i>
+              <i class="fab fa-cc-mastercard me-2"></i>
+              <i class="fab fa-cc-paypal me-2"></i>
+              <i class="fab fa-cc-apple-pay"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+
     <script>
-        AOS.init();
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      });
+
+      // Initialize theme toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
+      const savedTheme = localStorage.getItem("theme") || "light";
+
+      body.setAttribute("data-theme", savedTheme);
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+
+        themeToggle.style.transform = "rotate(360deg)";
+        setTimeout(() => {
+          themeToggle.style.transform = "";
+        }, 500);
+      });
+
+      // Initialize search toggle
+      const searchToggle = document.getElementById("searchToggle");
+      const searchBar = document.getElementById("searchBar");
+
+      if (searchToggle && searchBar) {
+        searchToggle.addEventListener("click", () => {
+          searchBar.classList.toggle("active");
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
