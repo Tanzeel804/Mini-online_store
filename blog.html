@@ -24,9 +24,6 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./images/main-logo.png" />
-
     <style>
       /* ====== ROOT VARIABLES ====== */
       :root {
@@ -46,7 +43,7 @@
       [data-theme="dark"] {
         --light: #0b1220;
         --dark: #f1f5f9;
-        --card-bg: #0f172a;
+        --card-bg: #1e293b;
         --gray: #94a3b8;
         --shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
       }
@@ -55,6 +52,7 @@
       html,
       body {
         height: 100%;
+        overflow-x: hidden; /* Prevents side scrolling from animations */
       }
       body {
         display: flex;
@@ -67,14 +65,11 @@
         color: var(--dark);
         transition: var(--transition);
         line-height: 1.6;
-        overflow-x: hidden; /* Prevent horizontal scroll */
       }
 
       /* Make main take remaining space so footer pushes to bottom */
       main.site-main {
         flex: 1 0 auto;
-        position: relative;
-        z-index: 1; /* Main content should be below footer */
       }
 
       /* ====== Reset & base ====== */
@@ -84,12 +79,7 @@
       html {
         scroll-behavior: smooth;
       }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
+      h1, h2, h3, h4, h5, h6 {
         font-weight: 700;
         line-height: 1.2;
       }
@@ -156,11 +146,7 @@
 
       /* ====== Top notice ====== */
       .top-notice {
-        background: linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
         color: #fff;
         padding: 9px;
         text-align: center;
@@ -177,8 +163,7 @@
         padding: 14px 0;
         background: var(--card-bg);
         box-shadow: var(--shadow);
-        z-index: 1000;
-        position: relative;
+        z-index: 100; /* Increased z-index */
       }
       .brand-text {
         font-family: "Zen Dots", sans-serif;
@@ -197,6 +182,7 @@
         cursor: pointer;
         background: transparent;
         transition: var(--transition);
+        color: var(--dark);
       }
       .nav-icon:hover {
         background: var(--primary);
@@ -229,79 +215,19 @@
         padding: 12px;
         box-shadow: var(--shadow);
         display: none;
-        z-index: 1001;
+        z-index: 1200; 
       }
       .search-bar.active {
         display: flex;
         gap: 10px;
       }
 
-      /* ====== CART SIDEBAR ====== */
-      .cart-sidebar {
-        position: fixed;
-        top: 0;
-        right: -420px;
-        width: 380px;
-        height: 100vh;
-        background: var(--card-bg);
-        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
-        z-index: 2000;
-        transition: right 0.28s ease;
-        display: flex;
-        flex-direction: column;
-      }
-      .cart-sidebar.active {
-        right: 0;
-      }
-      .cart-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: 1500;
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition);
-      }
-      .cart-overlay.active {
-        opacity: 1;
-        visibility: visible;
-      }
-      .cart-header {
-        padding: 18px;
-        border-bottom: 1px solid var(--gray);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .cart-items {
-        flex: 1;
-        padding: 18px;
-        overflow: auto;
-      }
-      .cart-footer {
-        padding: 18px;
-        border-top: 1px solid var(--gray);
-      }
-      .close-cart {
-        background: none;
-        border: none;
-        font-size: 1.6rem;
-        cursor: pointer;
-        color: var(--gray);
-      }
-
       /* ====== HERO / BLOG HERO ====== */
       .blog-hero {
-        background: linear-gradient(
-          135deg,
-          var(--primary) 0%,
-          var(--primary-dark) 100%
-        );
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         color: #fff;
         padding: 100px 0;
         text-align: center;
-        position: relative;
-        z-index: 1;
       }
       .display-4 {
         font-weight: 800;
@@ -310,7 +236,7 @@
         opacity: 0.95;
       }
 
-      /* ====== BLOG CARDS FIXED ====== */
+      /* ====== BLOG CARDS ====== */
       .blog-card {
         background: var(--card-bg);
         border-radius: var(--radius);
@@ -319,17 +245,20 @@
         transition: transform 0.28s, box-shadow 0.28s;
         height: 100%;
         position: relative;
-        /* Remove z-index from here */
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
       }
       .blog-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.14);
-        /* Remove z-index: 5; */
+        z-index: 5;
       }
       .blog-image {
         height: 250px;
         overflow: hidden;
         position: relative;
+        flex-shrink: 0;
       }
       .blog-image img {
         width: 100%;
@@ -354,6 +283,9 @@
       }
       .blog-content {
         padding: 22px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
       }
       .blog-title {
         font-size: 1.35rem;
@@ -365,6 +297,7 @@
         color: var(--gray);
         margin-bottom: 12px;
         line-height: 1.6;
+        flex-grow: 1;
       }
       .blog-meta {
         color: var(--gray);
@@ -382,13 +315,11 @@
         align-items: center;
         gap: 8px;
         transition: transform 0.25s, color 0.25s;
+        margin-top: auto; /* Pushes button to bottom */
       }
       .read-more:hover {
         color: var(--primary-dark);
         transform: translateX(6px);
-      }
-      .read-more i {
-        transition: transform 0.25s;
       }
 
       /* ====== SIDEBAR WIDGETS ====== */
@@ -398,8 +329,6 @@
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
       }
       .widget-title {
         font-size: 1.15rem;
@@ -419,11 +348,18 @@
         padding-bottom: 12px;
         border-bottom: 1px solid var(--gray);
       }
+      .categories-list li:last-child {
+        border-bottom: none;
+      }
       .categories-list a {
         display: flex;
         justify-content: space-between;
         align-items: center;
         color: var(--dark);
+        transition: color 0.2s;
+      }
+      .categories-list a:hover {
+        color: var(--primary);
       }
       .count {
         background: var(--primary);
@@ -441,11 +377,20 @@
         align-items: center;
         gap: 12px;
       }
+      .recent-post:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
       .recent-post img {
         width: 64px;
         height: 64px;
         object-fit: cover;
         border-radius: 8px;
+      }
+      .recent-post h6 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+        color: var(--dark);
       }
       .tags {
         display: flex;
@@ -459,6 +404,7 @@
         border-radius: 20px;
         font-size: 0.85rem;
         display: inline-block;
+        transition: all 0.2s;
       }
       .tag:hover {
         background: var(--primary);
@@ -466,38 +412,45 @@
         transform: translateY(-3px);
       }
 
-      /* ====== FOOTER FIXED ====== */
+      /* ====== FOOTER ====== */
+      /* FIXED: Added z-index and relative position to prevent cards from covering it */
       .footer {
         background: var(--card-bg);
         border-top: 1px solid var(--gray);
-        padding: 36px 0;
+        padding: 50px 0 20px;
         margin-top: 30px;
-        position: relative;
-        z-index: 10; /* Increase z-index for footer */
-        width: 100%;
+        position: relative; 
+        z-index: 10; /* Ensures footer stays on top of card hover effects if they overlap */
       }
       .footer-logo {
         display: flex;
         align-items: center;
         gap: 10px;
         text-decoration: none;
+        margin-bottom: 1rem;
       }
       .footer-text {
         color: var(--gray);
         margin-top: 12px;
       }
       .footer h5 {
-        margin-bottom: 14px;
+        margin-bottom: 20px;
         color: var(--dark);
         font-weight: 700;
       }
-      .footer-links li {
-        margin-bottom: 10px;
+      .footer-links {
+        list-style: none;
+        padding: 0;
       }
-      .payment-methods i {
-        font-size: 1.4rem;
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+      .footer-links a {
         color: var(--gray);
-        margin-left: 10px;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--primary);
       }
       .social-links a {
         display: inline-flex;
@@ -509,19 +462,17 @@
         background: var(--light);
         color: var(--dark);
         margin-right: 8px;
+        transition: all 0.3s;
       }
-
-      /* ====== Blog Content Section Fix ====== */
-      .py-5 {
-        padding-top: 3rem !important;
-        padding-bottom: 3rem !important;
-        position: relative;
-        z-index: 1; /* Lower than footer */
+      .social-links a:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
       }
 
       /* ====== small utilities/responsive ====== */
       .text-muted {
-        color: var(--gray);
+        color: var(--gray) !important;
       }
       .mb-0 {
         margin-bottom: 0;
@@ -535,6 +486,7 @@
         }
         .sidebar-widget {
           padding: 18px;
+          margin-top: 30px; /* Space between content and sidebar on mobile */
         }
       }
       @media (max-width: 576px) {
@@ -565,13 +517,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img
-            src="./images/main-logo.png"
-            alt="TechStore"
-            height="40"
-            onerror="this.src='./images/main-logo.png'"
-          />
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <!-- Used font awesome icon as logo placeholder -->
+          <i class="fas fa-microchip fa-2x text-primary"></i>
           <span class="brand-text ms-2">TechStore</span>
         </a>
 
@@ -588,94 +536,51 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html"
-                ><i class="fas fa-home me-1"></i> Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#services"
-                ><i class="fas fa-concierge-bell me-1"></i> Services</a
-              >
+              <a class="nav-link" href="#"><i class="fas fa-home me-1"></i> Home</a>
             </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
-                id="productsDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 ><i class="fas fa-mobile-alt me-1"></i> Products</a
               >
               <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="index.html#mobiles"
-                    ><i class="fas fa-mobile me-2"></i> Mobiles</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="index.html#watches"
-                    ><i class="fas fa-clock me-2"></i> Smart Watches</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="index.html#laptops"
-                    ><i class="fas fa-laptop me-2"></i> Laptops</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="index.html#accessories"
-                    ><i class="fas fa-headphones me-2"></i> Accessories</a
-                  >
-                </li>
+                <li><a class="dropdown-item" href="#">Mobiles</a></li>
+                <li><a class="dropdown-item" href="#">Laptops</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="blog.html"
+              <a class="nav-link active" href="#"
                 ><i class="fas fa-blog me-1"></i> Blog</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html"
-                ><i class="fas fa-address-book me-1"></i> Contact</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#sale"
+              <a class="nav-link" href="#"
                 ><i class="fas fa-tag me-1"></i> Sale</a
               >
             </li>
           </ul>
 
           <div class="nav-actions d-flex align-items-center gap-2">
-            <button
-              class="nav-icon position-relative"
-              id="searchToggle"
-              aria-label="Search"
-            >
+            <button class="nav-icon position-relative" id="searchToggle">
               <i class="fas fa-search"></i>
             </button>
-            <a href="login.html" class="nav-icon" title="Login"
-              ><i class="fas fa-user"></i
-            ></a>
-            <button
-              class="nav-icon position-relative"
-              id="cartToggle"
-              aria-label="Cart"
-            >
-              <i class="fas fa-shopping-cart"></i
-              ><span class="cart-count">0</span>
+            <a href="#" class="nav-icon"><i class="fas fa-user"></i></a>
+            <button class="nav-icon position-relative">
+              <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
             </button>
           </div>
 
           <!-- Search Bar -->
-          <div class="search-bar" id="searchBar" role="search">
+          <div class="search-bar" id="searchBar">
             <input
               type="text"
-              id="searchInput"
               class="form-control"
               placeholder="Search articles..."
             />
-            <button class="btn btn-primary" id="searchBtn">
+            <button class="btn btn-primary">
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -694,10 +599,9 @@
                 TechStore Blog
               </h1>
               <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
-                Discover the latest technology trends, expert reviews, and
-                helpful guides.
+                Discover the latest technology trends, expert reviews, and helpful
+                guides.
               </p>
-
               <div
                 class="input-group mb-3 mx-auto"
                 style="max-width: 520px"
@@ -706,11 +610,10 @@
               >
                 <input
                   type="text"
-                  id="heroSearch"
                   class="form-control"
                   placeholder="Search articles..."
                 />
-                <button class="btn btn-light" id="heroSearchBtn" type="button">
+                <button class="btn btn-light" type="button">
                   <i class="fas fa-search"></i>
                 </button>
               </div>
@@ -722,29 +625,25 @@
       <!-- Blog Content -->
       <section class="py-5">
         <div class="container">
+          <!-- MAIN ROW STARTS HERE -->
           <div class="row">
-            <!-- MAIN -->
+            
+            <!-- LEFT COLUMN: Content (8 Columns) -->
             <div class="col-lg-8">
-              <!-- Featured -->
+              <!-- Featured Article -->
               <article class="blog-card mb-4" id="featured" data-aos="fade-up">
                 <div class="blog-image">
                   <img
-                    src="./images/blog-featured.jpg"
+                    src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
                     alt="Featured Post"
-                    onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
                   />
                   <span class="blog-category">Featured</span>
                 </div>
                 <div class="blog-content">
                   <div class="blog-meta">
-                    <span
-                      ><i class="far fa-calendar me-1"></i> October 15,
-                      2024</span
-                    >
+                    <span><i class="far fa-calendar me-1"></i> Oct 15, 2024</span>
                     <span><i class="far fa-user me-1"></i> Tanzeel Ahmed</span>
-                    <span
-                      ><i class="far fa-comments me-1"></i> 24 Comments</span
-                    >
+                    <span><i class="far fa-comments me-1"></i> 24 Comments</span>
                   </div>
                   <h2 class="blog-title">
                     The Future of Smartphones: AI Integration and Beyond
@@ -762,552 +661,293 @@
                 </div>
               </article>
 
-              <!-- posts grid -->
-              <div class="row">
+              <!-- Nested Row for 4 Cards Grid -->
+              <div class="row g-4"> <!-- Added g-4 for gap -->
+                
+                <!-- Card 1 -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                   <article class="blog-card h-100">
                     <div class="blog-image">
                       <img
-                        src="./images/blog1.jpg"
-                        alt="Blog Post 1"
-                        onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
+                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Laptops"
                       />
                       <span class="blog-category">Technology</span>
                     </div>
                     <div class="blog-content">
                       <div class="blog-meta">
-                        <span
-                          ><i class="far fa-calendar me-1"></i> October 10,
-                          2024</span
-                        >
+                        <span><i class="far fa-calendar me-1"></i> Oct 10, 2024</span>
                       </div>
-                      <h3 class="blog-title">
-                        Top 5 Laptops for Students in 2024
-                      </h3>
+                      <h3 class="blog-title">Top 5 Laptops for Students</h3>
                       <p class="blog-excerpt">
-                        Find the perfect laptop for your academic needs with our
-                        comprehensive guide.
+                        Find the perfect laptop for your academic needs with our guide.
                       </p>
-                      <a href="#" class="read-more"
-                        >Read More <i class="fas fa-arrow-right"></i
-                      ></a>
+                      <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                   </article>
                 </div>
 
+                <!-- Card 2 -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                   <article class="blog-card h-100">
                     <div class="blog-image">
                       <img
-                        src="./images/blog2.jpg"
-                        alt="Blog Post 2"
-                        onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1142&q=80'"
+                        src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1142&q=80"
+                        alt="Watch"
                       />
                       <span class="blog-category">Reviews</span>
                     </div>
                     <div class="blog-content">
                       <div class="blog-meta">
-                        <span
-                          ><i class="far fa-calendar me-1"></i> October 5,
-                          2024</span
-                        >
+                        <span><i class="far fa-calendar me-1"></i> Oct 5, 2024</span>
                       </div>
-                      <h3 class="blog-title">
-                        Apple Watch Series 9: In-Depth Review
-                      </h3>
+                      <h3 class="blog-title">Apple Watch Series 9 Review</h3>
                       <p class="blog-excerpt">
-                        We tested the new Apple Watch Series 9 for two weeks.
-                        Here's our honest review.
+                        We tested the new Apple Watch Series 9 for two weeks. Here's our verdict.
                       </p>
-                      <a href="#" class="read-more"
-                        >Read More <i class="fas fa-arrow-right"></i
-                      ></a>
+                      <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                   </article>
                 </div>
 
+                <!-- Card 3 -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                   <article class="blog-card h-100">
                     <div class="blog-image">
                       <img
-                        src="./images/blog3.jpg"
-                        alt="Blog Post 3"
-                        onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1120&q=80'"
+                        src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1120&q=80"
+                        alt="Battery"
                       />
-                      <span class="blog-category">Tips & Tricks</span>
+                      <span class="blog-category">Tips</span>
                     </div>
                     <div class="blog-content">
                       <div class="blog-meta">
-                        <span
-                          ><i class="far fa-calendar me-1"></i> October 1,
-                          2024</span
-                        >
+                        <span><i class="far fa-calendar me-1"></i> Oct 1, 2024</span>
                       </div>
-                      <h3 class="blog-title">
-                        How to Extend Your Smartphone Battery Life
-                      </h3>
+                      <h3 class="blog-title">Extend Battery Life</h3>
                       <p class="blog-excerpt">
-                        Simple yet effective tips to make your smartphone
-                        battery last longer.
+                        Simple yet effective tips to make your smartphone battery last longer.
                       </p>
-                      <a href="#" class="read-more"
-                        >Read More <i class="fas fa-arrow-right"></i
-                      ></a>
+                      <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                   </article>
                 </div>
 
+                <!-- Card 4 -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
                   <article class="blog-card h-100">
                     <div class="blog-image">
                       <img
-                        src="./images/blog4.jpg"
-                        alt="Blog Post 4"
-                        onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
+                        src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Gaming"
                       />
                       <span class="blog-category">Gaming</span>
                     </div>
                     <div class="blog-content">
                       <div class="blog-meta">
-                        <span
-                          ><i class="far fa-calendar me-1"></i> September 25,
-                          2024</span
-                        >
+                        <span><i class="far fa-calendar me-1"></i> Sep 25, 2024</span>
                       </div>
-                      <h3 class="blog-title">
-                        Best Gaming Accessories for 2024
-                      </h3>
+                      <h3 class="blog-title">Best Gaming Gear 2024</h3>
                       <p class="blog-excerpt">
-                        Level up your gaming experience with these must-have
-                        accessories.
+                        Level up your gaming experience with these accessories.
                       </p>
-                      <a href="#" class="read-more"
-                        >Read More <i class="fas fa-arrow-right"></i
-                      ></a>
+                      <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                   </article>
                 </div>
-              </div>
+
+              </div> <!-- End Nested Row -->
 
               <!-- Pagination -->
               <nav aria-label="Blog navigation" class="mt-5">
                 <ul class="pagination justify-content-center">
                   <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"
-                      ><i class="fas fa-chevron-left"></i
-                    ></a>
+                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
                   </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"
-                      ><i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
+                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
                 </ul>
               </nav>
-            </div>
 
-            <!-- SIDEBAR -->
+            </div> <!-- END COL-LG-8 (This was missing in your code!) -->
+
+            <!-- RIGHT COLUMN: Sidebar (4 Columns) -->
             <aside class="col-lg-4">
+              <!-- Categories Widget -->
               <div class="sidebar-widget" data-aos="fade-left">
                 <h4 class="widget-title">Categories</h4>
                 <ul class="categories-list">
-                  <li>
-                    <a href="#">Smartphones <span class="count">12</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Laptops <span class="count">8</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Smart Watches <span class="count">6</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Accessories <span class="count">15</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Gaming <span class="count">9</span></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Technology News <span class="count">21</span></a
-                    >
-                  </li>
+                  <li><a href="#">Smartphones <span class="count">12</span></a></li>
+                  <li><a href="#">Laptops <span class="count">8</span></a></li>
+                  <li><a href="#">Smart Watches <span class="count">6</span></a></li>
+                  <li><a href="#">Accessories <span class="count">15</span></a></li>
+                  <li><a href="#">Gaming <span class="count">9</span></a></li>
                 </ul>
               </div>
 
-              <div
-                class="sidebar-widget"
-                data-aos="fade-left"
-                data-aos-delay="100"
-              >
+              <!-- Recent Posts Widget -->
+              <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="100">
                 <h4 class="widget-title">Recent Posts</h4>
                 <div class="recent-posts">
                   <div class="recent-post">
-                    <a href="#">
-                      <img
-                        src="./images/blog-small1.jpg"
-                        alt="Recent Post"
-                        onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                      />
-                      <div>
-                        <h6>iPhone 15 Pro Max Review</h6>
-                        <small class="text-muted">Sep 20, 2024</small>
-                      </div>
-                    </a>
+                    <img
+                      src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                      alt="Recent"
+                    />
+                    <div>
+                      <h6>iPhone 15 Review</h6>
+                      <small class="text-muted">Sep 20, 2024</small>
+                    </div>
                   </div>
-
                   <div class="recent-post">
-                    <a href="#">
-                      <img
-                        src="./images/blog-small2.jpg"
-                        alt="Recent Post"
-                        onerror="this.src='https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                      />
-                      <div>
-                        <h6>Best Wireless Earbuds 2024</h6>
-                        <small class="text-muted">Sep 15, 2024</small>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="recent-post">
-                    <a href="#">
-                      <img
-                        src="./images/blog-small3.jpg"
-                        alt="Recent Post"
-                        onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'"
-                      />
-                      <div>
-                        <h6>Android 14 Features Explained</h6>
-                        <small class="text-muted">Sep 10, 2024</small>
-                      </div>
-                    </a>
+                    <img
+                      src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                      alt="Recent"
+                    />
+                    <div>
+                      <h6>Best Earbuds</h6>
+                      <small class="text-muted">Sep 15, 2024</small>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div
-                class="sidebar-widget"
-                data-aos="fade-left"
-                data-aos-delay="200"
-              >
+              <!-- Tags Widget -->
+              <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="200">
                 <h4 class="widget-title">Popular Tags</h4>
                 <div class="tags">
                   <a class="tag" href="#">Smartphone</a>
                   <a class="tag" href="#">Review</a>
                   <a class="tag" href="#">Apple</a>
-                  <a class="tag" href="#">Android</a>
                   <a class="tag" href="#">Gaming</a>
-                  <a class="tag" href="#">Laptop</a>
-                  <a class="tag" href="#">Tips</a>
-                  <a class="tag" href="#">Technology</a>
+                  <a class="tag" href="#">Tech</a>
                 </div>
               </div>
 
-              <div
-                class="sidebar-widget bg-primary text-white"
-                data-aos="fade-left"
-                data-aos-delay="300"
-              >
-                <h4 class="widget-title text-white">Subscribe</h4>
-                <p>
-                  Get the latest tech news and updates directly in your inbox.
-                </p>
-                <form class="newsletter-form">
+              <!-- Subscribe Widget (Completed) -->
+              <div class="sidebar-widget bg-primary text-white" data-aos="fade-left" data-aos-delay="300">
+                <h4 class="widget-title text-white" style="border-color: rgba(255,255,255,0.3)">Subscribe</h4>
+                <p>Get the latest tech news and updates directly in your inbox.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
                   <div class="mb-3">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Your email address"
-                      required
-                    />
+                    <input type="email" class="form-control" placeholder="Enter email..." required>
                   </div>
-                  <button class="btn btn-light w-100" type="submit">
-                    Subscribe Now
-                  </button>
+                  <button type="submit" class="btn btn-light w-100">Subscribe</button>
                 </form>
               </div>
-            </aside>
-          </div>
+            </aside> <!-- END COL-LG-4 -->
+
+          </div> <!-- END MAIN ROW -->
         </div>
       </section>
     </main>
 
-    <!-- FOOTER (now properly positioned) -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-3">
-            <a href="index.html" class="footer-logo d-flex align-items-center">
-              <img
-                src="./images/main-logo.png"
-                alt="TechStore"
-                height="36"
-                onerror="this.src='./images/main-logo.png'"
-              />
-              <span class="brand-text ms-2">TechStore</span>
+        <div class="row">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <a class="footer-logo" href="#">
+              <i class="fas fa-microchip fa-2x text-primary"></i>
+              <span class="brand-text text-dark">TechStore</span>
             </a>
-            <p class="footer-text mt-3">
-              Your one-stop destination for premium electronics and gadgets at
-              unbeatable prices.
+            <p class="footer-text">
+              Your one-stop destination for the latest in technology, gadget reviews, and tech guides.
             </p>
-            <div class="social-links mt-2">
-              <a
-                href="https://www.facebook.com/tanzeelahmedpov"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a
-                href="https://twitter.com/TanzeelOnX"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/tanzeelahmedpov"
-                target="_blank"
-                class="me-2"
-                ><i class="fab fa-instagram"></i
-              ></a>
+            <div class="social-links mt-3">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
-
-          <div class="col-lg-2 col-md-4">
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
             <h5>Quick Links</h5>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index.html#products">Products</a></li>
-              <li><a href="index.html#sale">Sale</a></li>
-              <li><a href="blog.html">Blog</a></li>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
             </ul>
           </div>
-
-          <div class="col-lg-2 col-md-4">
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
             <h5>Categories</h5>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html#mobiles">Smartphones</a></li>
-              <li><a href="index.html#watches">Smart Watches</a></li>
-              <li><a href="index.html#laptops">Laptops</a></li>
-              <li><a href="index.html#accessories">Accessories</a></li>
+            <ul class="footer-links">
+              <li><a href="#">Mobiles</a></li>
+              <li><a href="#">Laptops</a></li>
+              <li><a href="#">Smart Watches</a></li>
+              <li><a href="#">Audio</a></li>
+              <li><a href="#">Gaming</a></li>
             </ul>
           </div>
-
-          <div class="col-lg-5">
-            <h5>Contact Info</h5>
-            <ul class="list-unstyled footer-contact">
-              <li>
-                <i class="fas fa-envelope me-2 text-primary"></i
-                ><a href="mailto:tanzeel.ahmed.se@gmail.com"
-                  >tanzeel.ahmed.se@gmail.com</a
-                >
-              </li>
-              <li>
-                <i class="fas fa-phone me-2 text-primary"></i
-                ><a href="tel:+923101400966">+92 310 1400966</a>
-              </li>
-              <li>
-                <i class="fas fa-map-marker-alt me-2 text-primary"></i> Lodhran,
-                Punjab, Pakistan
-              </li>
+          <div class="col-lg-4">
+            <h5>Contact Us</h5>
+            <ul class="footer-links">
+              <li><i class="fas fa-map-marker-alt me-2"></i> 123 Tech Street, Digital City</li>
+              <li><i class="fas fa-phone me-2"></i> +92 300 1234567</li>
+              <li><i class="fas fa-envelope me-2"></i> info@techstore.com</li>
             </ul>
           </div>
         </div>
-
-        <hr class="my-4" />
-        <div class="d-flex justify-content-between align-items-center">
-          <small class="text-muted"
-            >&copy; 2024 TechStore. All rights reserved.</small
-          >
-          <div class="payment-methods">
-            <img
-              src="./images/visa.jpg"
-              alt="visa"
-              height="22"
-              style="margin-right: 8px"
-              onerror="this.style.display='none'"
-            />
-            <img
-              src="./images/mastercard.jpg"
-              alt="mastercard"
-              height="22"
-              style="margin-right: 8px"
-              onerror="this.style.display='none'"
-            />
-            <img
-              src="./images/paypal.jpg"
-              alt="paypal"
-              height="22"
-              onerror="this.style.display='none'"
-            />
+        <div class="row mt-4 pt-4 border-top">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="text-muted mb-0">&copy; 2024 TechStore. All rights reserved.</p>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- CART SIDEBAR (hidden by default) -->
-    <div class="cart-sidebar" id="cartSidebar" aria-hidden="true">
-      <div class="cart-header">
-        <h4 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h4>
-        <button class="close-cart" aria-label="Close cart">&times;</button>
-      </div>
-      <div class="cart-items" id="cartItems">
-        <p class="text-muted m-3">Your cart is empty.</p>
-      </div>
-      <div class="cart-footer">
-        <div
-          class="cart-total d-flex justify-content-between align-items-center mb-3"
-        >
-          <strong>Total:</strong><strong class="total-price">$0.00</strong>
-        </div>
-        <button class="btn btn-primary w-100">Checkout</button>
-      </div>
-    </div>
-    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    
     <script>
-      // --- AOS init
-      if (window.AOS) AOS.init({ duration: 900, once: true, offset: 80 });
+      // Init AOS (Animations)
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
 
-      // --- THEME toggle with localStorage
-      const themeToggle = document.getElementById("themeToggle");
+      // Search Bar Toggle
+      const searchToggle = document.getElementById('searchToggle');
+      const searchBar = document.getElementById('searchBar');
+      if(searchToggle && searchBar){
+        searchToggle.addEventListener('click', () => {
+          searchBar.classList.toggle('active');
+        });
+      }
+
+      // Theme Toggle Logic
+      const themeBtn = document.getElementById('themeToggle');
       const body = document.body;
-      const sunIcon = document.getElementById("sunIcon");
-      const moonIcon = document.getElementById("moonIcon");
-      const savedTheme = localStorage.getItem("theme") || "light";
-      body.setAttribute("data-theme", savedTheme);
-      if (savedTheme === "dark") {
-        sunIcon.style.display = "none";
-        moonIcon.style.display = "inline-block";
-      } else {
-        sunIcon.style.display = "inline-block";
-        moonIcon.style.display = "none";
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+
+      // Check local storage
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme) {
+        body.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+        }
       }
 
-      themeToggle.addEventListener("click", () => {
-        const current = body.getAttribute("data-theme");
-        const next = current === "light" ? "dark" : "light";
-        body.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
-        // little spin animation
-        themeToggle.style.transform = "rotate(360deg)";
-        setTimeout(() => (themeToggle.style.transform = ""), 450);
-        sunIcon.style.display = next === "light" ? "inline-block" : "none";
-        moonIcon.style.display = next === "dark" ? "inline-block" : "none";
-      });
-
-      // --- SEARCH toggle & outside click handling
-      const searchToggle = document.getElementById("searchToggle");
-      const searchBar = document.getElementById("searchBar");
-      searchToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        searchBar.classList.toggle("active");
-        if (searchBar.classList.contains("active"))
-          searchBar.style.display = "flex";
-        else searchBar.style.display = "none";
-      });
-      // close when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
-          searchBar.classList.remove("active");
-          searchBar.style.display = "none";
+      themeBtn.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+          body.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
         }
       });
-      // prevent closing when clicking inside searchBar
-      searchBar.addEventListener("click", (e) => e.stopPropagation());
-
-      // --- CART sidebar
-      const cartToggle = document.getElementById("cartToggle");
-      const cartSidebar = document.getElementById("cartSidebar");
-      const cartOverlay = document.getElementById("cartOverlay");
-      const closeCart = document.querySelector(".close-cart");
-
-      function openCart() {
-        cartSidebar.classList.add("active");
-        cartOverlay.classList.add("active");
-        cartSidebar.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-      function closeCartFunc() {
-        cartSidebar.classList.remove("active");
-        cartOverlay.classList.remove("active");
-        cartSidebar.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-      if (cartToggle) cartToggle.addEventListener("click", openCart);
-      if (closeCart) closeCart.addEventListener("click", closeCartFunc);
-      if (cartOverlay) cartOverlay.addEventListener("click", closeCartFunc);
-
-      // --- Newsletter forms
-      document.querySelectorAll(".newsletter-form").forEach((form) => {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = this.querySelector('input[type="email"]').value;
-          if (!email) return;
-          const original = this.innerHTML;
-          this.innerHTML =
-            '<div class="text-center text-white"><i class="fas fa-check-circle fa-2x mb-3"></i><p class="mb-0">Thank you for subscribing!</p></div>';
-          setTimeout(() => {
-            this.innerHTML = original;
-            this.reset();
-          }, 2200);
-        });
-      });
-
-      // --- Read More behaviour (demo)
-      document.querySelectorAll(".read-more").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          this.style.color = "var(--primary-dark)";
-          const icon = this.querySelector("i");
-          if (icon) icon.style.transform = "translateX(10px)";
-          setTimeout(() => {
-            if (icon) icon.style.transform = "";
-            this.style.color = "";
-            // demo: alert (remove in production)
-            alert("Demo: open full article here.");
-          }, 300);
-        });
-      });
-
-      // --- Blog card click scale (visual feedback)
-      document.querySelectorAll(".blog-card").forEach((card) => {
-        card.addEventListener("click", function (e) {
-          if (!e.target.closest("a") && !e.target.closest("button")) {
-            this.style.transform = "scale(.995)";
-            setTimeout(() => (this.style.transform = ""), 160);
-          }
-        });
-      });
-
-      // --- Simple hero search & top search functionality
-      document.getElementById("heroSearchBtn").addEventListener("click", () => {
-        const q = document.getElementById("heroSearch").value.trim();
-        if (!q) {
-          alert("Type a search term (demo).");
-          return;
-        }
-        alert("Searching for: " + q + " (demo)");
-      });
-      document.getElementById("searchBtn")?.addEventListener("click", () => {
-        const q = document.getElementById("searchInput").value.trim();
-        if (!q) {
-          alert("Type a search term (demo).");
-          return;
-        }
-        alert("Searching articles for: " + q + " (demo)");
-      });
-
-      // --- optional console message
-      console.log("Blog page loaded and scripts initialized.");
     </script>
   </body>
 </html>
