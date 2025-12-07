@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
 
     <style>
       :root {
@@ -56,6 +56,68 @@
         --card-bg: #1e293b;
         --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         --gray: #94a3b8;
+      }
+
+      /* Theme Toggle Fix */
+      .theme-toggle {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 9999;
+      }
+
+      .theme-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        z-index: 9999;
+      }
+
+      .theme-btn:hover {
+        transform: rotate(30deg) scale(1.1);
+      }
+
+      #moonIcon {
+        display: none;
+      }
+
+      [data-theme="dark"] #sunIcon {
+        display: none;
+      }
+
+      [data-theme="dark"] #moonIcon {
+        display: block;
+      }
+
+      /* Developer Section Animations */
+      .skill-item,
+      .project-card {
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .project-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .project-link:hover {
+        color: var(--primary-dark);
+        transform: translateX(5px);
       }
     </style>
   </head>
@@ -81,7 +143,7 @@
     >
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="images/logo.png" alt="TechStore" height="40" />
+          <img src="./images/logo.png" alt="TechStore" height="40" />
           <span class="brand-text">TechStore</span>
         </a>
 
@@ -239,9 +301,10 @@
           <div class="col-lg-6" data-aos="fade-left">
             <div class="hero-image">
               <img
-                src="images/hero-banner.png"
+                src="./images/hero-banner.png"
                 alt="Hero Banner"
                 class="img-fluid"
+                onerror="this.src='https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
               />
             </div>
           </div>
@@ -408,7 +471,12 @@
           </div>
           <div class="col-lg-6">
             <div class="sale-image">
-              <img src="images/sale-banner.png" alt="Sale" class="img-fluid" />
+              <img
+                src="./images/sale-banner.png"
+                alt="Sale"
+                class="img-fluid"
+                onerror="this.src='https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'"
+              />
             </div>
           </div>
         </div>
@@ -520,8 +588,9 @@
             <div class="developer-card text-center">
               <div class="developer-image">
                 <img
-                  src="./images/developer.jpeg"
+                  src="./images/developer.jpg"
                   alt="Tanzeel Ahmed"
+                  onerror="this.src='https://github.com/Tanzeel804/Mini-online_store/blob/master/images/developer.jpg?raw=true'"
                 />
               </div>
               <h3 class="developer-name">Tanzeel Ahmed</h3>
@@ -595,27 +664,27 @@
             <div class="developer-skills">
               <h4>Skills & Technologies</h4>
               <div class="skills-grid">
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fab fa-html5 text-danger"></i>
                   <span>HTML5</span>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fab fa-css3-alt text-primary"></i>
                   <span>CSS3</span>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fab fa-js-square text-warning"></i>
                   <span>JavaScript</span>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fab fa-react text-info"></i>
                   <span>React</span>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fab fa-node-js text-success"></i>
                   <span>Node.js</span>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="animateSkill(this)">
                   <i class="fas fa-database"></i>
                   <span>MongoDB</span>
                 </div>
@@ -623,30 +692,33 @@
 
               <h4 class="mt-5">Recent Projects</h4>
               <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" onclick="animateProject(this)">
                   <h5>E-com Demo</h5>
                   <p>Complete e-commerce website with cart functionality</p>
                   <a
                     href="https://tanzeel804.github.io/E-com-Demo/"
                     target="_blank"
+                    class="project-link"
                     >Live Demo</a
                   >
                 </div>
-                <div class="project-card">
+                <div class="project-card" onclick="animateProject(this)">
                   <h5>Mini Online Store</h5>
                   <p>Responsive online store with modern UI</p>
                   <a
                     href="https://tanzeel804.github.io/Mini-online_store/"
                     target="_blank"
+                    class="project-link"
                     >Live Demo</a
                   >
                 </div>
-                <div class="project-card">
+                <div class="project-card" onclick="animateProject(this)">
                   <h5>Portfolio</h5>
                   <p>Personal portfolio website</p>
                   <a
                     href="https://tanzeel804.github.io/portfolio-main/"
                     target="_blank"
+                    class="project-link"
                     >View</a
                   >
                 </div>
@@ -694,7 +766,7 @@
         <div class="row">
           <div class="col-lg-3 mb-4">
             <a href="index.html" class="footer-logo">
-              <img src="images/logo.png" alt="TechStore" height="40" />
+              <img src="./images/logo.png" alt="TechStore" height="40" />
               <span class="brand-text">TechStore</span>
             </a>
             <p class="footer-text mt-3">
@@ -702,11 +774,25 @@
               unbeatable prices.
             </p>
             <div class="social-links mt-3">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://twitter.com/TanzeelOnX" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/tanzeelahmedpov"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://www.youtube.com" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
             </div>
           </div>
 
@@ -796,6 +882,27 @@
         once: true,
         offset: 100,
       });
+
+      // Developer section animations
+      function animateSkill(element) {
+        element.style.transform = "scale(1.1)";
+        element.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+
+        setTimeout(() => {
+          element.style.transform = "scale(1)";
+          element.style.boxShadow = "";
+        }, 500);
+      }
+
+      function animateProject(element) {
+        element.style.transform = "translateY(-10px)";
+        element.style.boxShadow = "0 15px 30px rgba(0,0,0,0.15)";
+
+        setTimeout(() => {
+          element.style.transform = "translateY(0)";
+          element.style.boxShadow = "";
+        }, 500);
+      }
     </script>
   </body>
 </html>
