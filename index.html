@@ -48,7 +48,8 @@
         --gray-900: #212529;
         --card-bg: #ffffff;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
-        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1),
+          0 4px 6px rgba(0, 0, 0, 0.05);
         --radius: 10px;
         --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -76,7 +77,8 @@
         --gray-900: #e5e5e5;
         --card-bg: #1a1a1a;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
-        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.35), 0 4px 6px rgba(0, 0, 0, 0.25);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.35),
+          0 4px 6px rgba(0, 0, 0, 0.25);
       }
 
       /* ====== BASE STYLES ====== */
@@ -91,7 +93,7 @@
       }
 
       body {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
         background-color: var(--light);
         color: var(--dark);
         transition: var(--transition);
@@ -103,8 +105,13 @@
         -moz-osx-font-smoothing: grayscale;
       }
 
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Poppins', sans-serif;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
         font-weight: 700;
         line-height: 1.2;
         color: var(--dark);
@@ -143,7 +150,11 @@
       }
 
       .btn-primary:hover {
-        background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--secondary-dark)
+        );
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(58, 134, 255, 0.25);
       }
@@ -234,7 +245,7 @@
       }
 
       .brand-text {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         font-size: 1.75rem;
         font-weight: 700;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -342,19 +353,27 @@
       /* ====== HERO SECTION ====== */
       .hero-section {
         padding: 5rem 0;
-        background: linear-gradient(135deg, var(--light) 0%, rgba(58, 134, 255, 0.05) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--light) 0%,
+          rgba(58, 134, 255, 0.05) 100%
+        );
         position: relative;
         overflow: hidden;
       }
 
       .hero-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 80% 20%, rgba(58, 134, 255, 0.1) 0%, transparent 50%);
+        background: radial-gradient(
+          circle at 80% 20%,
+          rgba(58, 134, 255, 0.1) 0%,
+          transparent 50%
+        );
         z-index: 0;
       }
 
@@ -418,7 +437,8 @@
       }
 
       @keyframes float {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0);
         }
         50% {
@@ -445,7 +465,7 @@
       }
 
       .section-title::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -8px;
         left: 0;
@@ -591,7 +611,7 @@
       }
 
       .sale-banner::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -900,7 +920,7 @@
       }
 
       .newsletter-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -1134,19 +1154,19 @@
         .hero-title {
           font-size: 2.75rem;
         }
-        
+
         .section-title {
           font-size: 2.25rem;
         }
-        
+
         .cart-sidebar {
           width: 350px;
         }
-        
+
         .hero-image {
           margin-top: 3rem;
         }
-        
+
         .sale-offer {
           font-size: 3rem;
         }
@@ -1156,38 +1176,38 @@
         .hero-title {
           font-size: 2.25rem;
         }
-        
+
         .section-title {
           font-size: 2rem;
         }
-        
+
         .hero-stats {
           justify-content: center;
         }
-        
+
         .nav-actions {
           margin-top: 1rem;
         }
-        
+
         .theme-toggle {
           top: 20px;
           right: 20px;
         }
-        
+
         .theme-btn {
           width: 45px;
           height: 45px;
         }
-        
+
         .cart-sidebar {
           width: 100%;
           max-width: 350px;
         }
-        
+
         .sale-offer {
           font-size: 2.5rem;
         }
-        
+
         .countdown-item span {
           font-size: 2rem;
           min-width: 70px;
@@ -1198,30 +1218,30 @@
         .hero-title {
           font-size: 1.875rem;
         }
-        
+
         .section-title {
           font-size: 1.75rem;
         }
-        
+
         .hero-buttons {
           flex-direction: column;
           width: 100%;
         }
-        
+
         .hero-buttons .btn {
           width: 100%;
           justify-content: center;
         }
-        
+
         .countdown {
           justify-content: center;
         }
-        
+
         .countdown-item span {
           font-size: 1.75rem;
           min-width: 60px;
         }
-        
+
         .sale-offer {
           font-size: 2rem;
         }
@@ -1387,10 +1407,13 @@
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="hero-content">
-              <h1 class="hero-title fw-bold mb-4">Experience The Future Of Technology</h1>
+              <h1 class="hero-title fw-bold mb-4">
+                Experience The Future Of Technology
+              </h1>
               <p class="hero-subtitle">
                 Discover the latest gadgets, smartphones, and smart watches at
-                unbeatable prices with premium quality guarantee. Shop the most innovative tech products with exclusive discounts.
+                unbeatable prices with premium quality guarantee. Shop the most
+                innovative tech products with exclusive discounts.
               </p>
               <div class="hero-buttons">
                 <a class="btn btn-primary btn-lg" href="#products"
@@ -1446,9 +1469,7 @@
                 <i class="fas fa-shipping-fast"></i>
               </div>
               <h5>Free Delivery</h5>
-              <p>
-                Free shipping on all orders over $50 with 2-3 days delivery
-              </p>
+              <p>Free shipping on all orders over $50 with 2-3 days delivery</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -1654,19 +1675,22 @@
                   href="mailto:tanzeel.ahmed.se@gmail.com"
                   class="social-link"
                   title="Email"
-                ><i class="fas fa-envelope"></i></a>
+                  ><i class="fas fa-envelope"></i
+                ></a>
                 <a
                   href="https://github.com/Tanzeel804"
                   target="_blank"
                   class="social-link"
                   title="GitHub"
-                ><i class="fab fa-github"></i></a>
+                  ><i class="fab fa-github"></i
+                ></a>
                 <a
                   href="https://linkedin.com/in/tanzeel-ahmed-b21288397"
                   target="_blank"
                   class="social-link"
                   title="LinkedIn"
-                ><i class="fab fa-linkedin-in"></i></a>
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
               </div>
               <a
                 href="https://tanzeel804.github.io/portfolio-main/"
@@ -1706,7 +1730,8 @@
               <div class="project-card">
                 <h6>E-com Demo</h6>
                 <p>
-                  Complete e-commerce website with cart functionality and payment integration
+                  Complete e-commerce website with cart functionality and
+                  payment integration
                 </p>
                 <a
                   href="https://tanzeel804.github.io/E-com-Demo/"
@@ -1780,7 +1805,10 @@
         <div class="row gy-4">
           <div class="col-lg-4">
             <a href="index.html" class="footer-logo d-flex align-items-center">
-              <i class="fas fa-microchip fa-2x" style="color: var(--primary)"></i>
+              <i
+                class="fas fa-microchip fa-2x"
+                style="color: var(--primary)"
+              ></i>
               <span class="brand-text ms-2">TechStore</span>
             </a>
             <p class="footer-text mt-3">
@@ -1788,22 +1816,22 @@
               unbeatable prices. We bring you the future, today.
             </p>
             <div class="social-links mt-3">
-              <a
-                href="https://www.facebook.com/tanzeelahmedpov"
-                target="_blank"
-              ><i class="fab fa-facebook-f"></i></a>
-              <a
-                href="https://twitter.com/TanzeelOnX"
-                target="_blank"
-              ><i class="fab fa-twitter"></i></a>
+              <a href="https://www.facebook.com/tanzeelahmedpov" target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://twitter.com/TanzeelOnX" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
               <a
                 href="https://www.instagram.com/tanzeelahmedpov"
                 target="_blank"
-              ><i class="fab fa-instagram"></i></a>
+                ><i class="fab fa-instagram"></i
+              ></a>
               <a
                 href="https://www.linkedin.com/in/tanzeel-ahmed-b21288397"
                 target="_blank"
-              ><i class="fab fa-linkedin-in"></i></a>
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
             </div>
           </div>
 
@@ -1843,8 +1871,8 @@
                 ><a href="tel:+923101400966">+92 310 1400966</a>
               </li>
               <li>
-                <i class="fas fa-map-marker-alt me-2"></i>Lodhran,
-                Punjab, Pakistan
+                <i class="fas fa-map-marker-alt me-2"></i>Lodhran, Punjab,
+                Pakistan
               </li>
               <li>
                 <i class="fas fa-clock me-2"></i>Mon-Fri: 9AM-6PM, Sat: 10AM-4PM
@@ -1874,98 +1902,101 @@
 
     <script>
       // ====== THEME TOGGLE ======
-      const themeBtn = document.getElementById('themeToggle');
+      const themeBtn = document.getElementById("themeToggle");
       const body = document.body;
-      const sunIcon = document.getElementById('sunIcon');
-      const moonIcon = document.getElementById('moonIcon');
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
 
       // Check local storage for saved theme
-      const savedTheme = localStorage.getItem('techstore-theme') || 'light';
-      body.setAttribute('data-theme', savedTheme);
+      const savedTheme = localStorage.getItem("techstore-theme") || "light";
+      body.setAttribute("data-theme", savedTheme);
 
       // Set initial icon state
-      if (savedTheme === 'dark') {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
+      if (savedTheme === "dark") {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
       } else {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
       }
 
       // Theme toggle event
-      themeBtn.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('techstore-theme', newTheme);
-        
+      themeBtn.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("techstore-theme", newTheme);
+
         // Update icons
-        if (newTheme === 'dark') {
-          sunIcon.style.display = 'none';
-          moonIcon.style.display = 'block';
+        if (newTheme === "dark") {
+          sunIcon.style.display = "none";
+          moonIcon.style.display = "block";
         } else {
-          sunIcon.style.display = 'block';
-          moonIcon.style.display = 'none';
+          sunIcon.style.display = "block";
+          moonIcon.style.display = "none";
         }
-        
+
         // Add animation effect
-        themeBtn.style.transform = 'rotate(360deg) scale(1.1)';
+        themeBtn.style.transform = "rotate(360deg) scale(1.1)";
         setTimeout(() => {
-          themeBtn.style.transform = '';
+          themeBtn.style.transform = "";
         }, 500);
       });
 
       // ====== SEARCH TOGGLE ======
-      const searchToggle = document.getElementById('searchToggle');
-      const searchBar = document.getElementById('searchBar');
-      const searchInput = searchBar.querySelector('input');
+      const searchToggle = document.getElementById("searchToggle");
+      const searchBar = document.getElementById("searchBar");
+      const searchInput = searchBar.querySelector("input");
 
       if (searchToggle && searchBar) {
-        searchToggle.addEventListener('click', (e) => {
+        searchToggle.addEventListener("click", (e) => {
           e.stopPropagation();
-          searchBar.classList.toggle('active');
-          if (searchBar.classList.contains('active')) {
+          searchBar.classList.toggle("active");
+          if (searchBar.classList.contains("active")) {
             setTimeout(() => searchInput.focus(), 100);
           }
         });
 
         // Close search when clicking outside
-        document.addEventListener('click', (e) => {
-          if (!searchToggle.contains(e.target) && !searchBar.contains(e.target)) {
-            searchBar.classList.remove('active');
+        document.addEventListener("click", (e) => {
+          if (
+            !searchToggle.contains(e.target) &&
+            !searchBar.contains(e.target)
+          ) {
+            searchBar.classList.remove("active");
           }
         });
 
         // Close search on Escape key
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && searchBar.classList.contains('active')) {
-            searchBar.classList.remove('active');
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && searchBar.classList.contains("active")) {
+            searchBar.classList.remove("active");
           }
         });
       }
 
       // ====== CART TOGGLE ======
-      const cartToggle = document.getElementById('cartToggle');
-      const cartSidebar = document.getElementById('cartSidebar');
-      const cartOverlay = document.getElementById('cartOverlay');
-      const closeCart = document.querySelector('.close-cart');
+      const cartToggle = document.getElementById("cartToggle");
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartOverlay = document.getElementById("cartOverlay");
+      const closeCart = document.querySelector(".close-cart");
 
       function openCart() {
-        cartSidebar.classList.add('active');
-        cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        cartSidebar.classList.add("active");
+        cartOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
 
       function closeCartFunc() {
-        cartSidebar.classList.remove('active');
-        cartOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+        document.body.style.overflow = "";
       }
 
-      if (cartToggle) cartToggle.addEventListener('click', openCart);
-      if (closeCart) closeCart.addEventListener('click', closeCartFunc);
-      if (cartOverlay) cartOverlay.addEventListener('click', closeCartFunc);
+      if (cartToggle) cartToggle.addEventListener("click", openCart);
+      if (closeCart) closeCart.addEventListener("click", closeCartFunc);
+      if (cartOverlay) cartOverlay.addEventListener("click", closeCartFunc);
 
       // ====== PRODUCTS ======
       const products = [
@@ -1975,23 +2006,23 @@
           title: "Wireless Earbuds",
           price: 39.99,
           category: "audio",
-          rating: 4.5
+          rating: 4.5,
         },
-        { 
-          id: 2, 
-          img: "product-item2.jpg", 
-          title: "Smart Watch", 
+        {
+          id: 2,
+          img: "product-item2.jpg",
+          title: "Smart Watch",
           price: 79.99,
           category: "watch",
-          rating: 4.7
+          rating: 4.7,
         },
-        { 
-          id: 3, 
-          img: "product-item3.jpg", 
-          title: "Phone Case", 
+        {
+          id: 3,
+          img: "product-item3.jpg",
+          title: "Phone Case",
           price: 14.99,
           category: "accessories",
-          rating: 4.2
+          rating: 4.2,
         },
         {
           id: 4,
@@ -1999,7 +2030,7 @@
           title: "Portable Charger",
           price: 24.99,
           category: "accessories",
-          rating: 4.3
+          rating: 4.3,
         },
         {
           id: 5,
@@ -2007,7 +2038,7 @@
           title: "Bluetooth Speaker",
           price: 49.99,
           category: "audio",
-          rating: 4.6
+          rating: 4.6,
         },
         {
           id: 6,
@@ -2015,23 +2046,23 @@
           title: "Noise Cancelling Headphones",
           price: 129.99,
           category: "audio",
-          rating: 4.8
+          rating: 4.8,
         },
-        { 
-          id: 7, 
-          img: "product-item7.jpg", 
-          title: "Mini Camera", 
+        {
+          id: 7,
+          img: "product-item7.jpg",
+          title: "Mini Camera",
           price: 59.99,
           category: "gadgets",
-          rating: 4.4
+          rating: 4.4,
         },
-        { 
-          id: 8, 
-          img: "product-item8.jpg", 
-          title: "USB-C Hub", 
+        {
+          id: 8,
+          img: "product-item8.jpg",
+          title: "USB-C Hub",
           price: 29.99,
           category: "accessories",
-          rating: 4.1
+          rating: 4.1,
         },
         {
           id: 9,
@@ -2039,7 +2070,7 @@
           title: "Action Camera",
           price: 99.99,
           category: "gadgets",
-          rating: 4.7
+          rating: 4.7,
         },
         {
           id: 10,
@@ -2047,164 +2078,179 @@
           title: "Smartphone Gimbal",
           price: 89.99,
           category: "accessories",
-          rating: 4.5
+          rating: 4.5,
         },
       ];
 
-      const productsContainer = document.getElementById('productsContainer');
+      const productsContainer = document.getElementById("productsContainer");
 
       function createProductCard(product) {
-        const col = document.createElement('div');
-        col.className = 'col-sm-6 col-md-4 col-lg-3';
-        
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        
-        const imageDiv = document.createElement('div');
-        imageDiv.className = 'product-image';
-        
-        const img = document.createElement('img');
+        const col = document.createElement("div");
+        col.className = "col-sm-6 col-md-4 col-lg-3";
+
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        const imageDiv = document.createElement("div");
+        imageDiv.className = "product-image";
+
+        const img = document.createElement("img");
         img.src = `./images/${product.img}`;
         img.alt = product.title;
-        img.onerror = function() {
-          this.src = './images/product-item1.jpg';
+        img.onerror = function () {
+          this.src = "./images/product-item1.jpg";
         };
         imageDiv.appendChild(img);
-        
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'product-content';
-        
-        const title = document.createElement('h5');
-        title.className = 'product-title';
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "product-content";
+
+        const title = document.createElement("h5");
+        title.className = "product-title";
         title.textContent = product.title;
-        
-        const price = document.createElement('div');
-        price.className = 'product-price';
+
+        const price = document.createElement("div");
+        price.className = "product-price";
         price.textContent = `$${product.price.toFixed(2)}`;
-        
-        const rating = document.createElement('div');
-        rating.className = 'product-rating';
-        
+
+        const rating = document.createElement("div");
+        rating.className = "product-rating";
+
         // Generate stars based on rating
         const fullStars = Math.floor(product.rating);
         const hasHalfStar = product.rating % 1 >= 0.5;
-        
+
         for (let i = 1; i <= 5; i++) {
-          const star = document.createElement('i');
+          const star = document.createElement("i");
           if (i <= fullStars) {
-            star.className = 'fas fa-star';
+            star.className = "fas fa-star";
           } else if (i === fullStars + 1 && hasHalfStar) {
-            star.className = 'fas fa-star-half-alt';
+            star.className = "fas fa-star-half-alt";
           } else {
-            star.className = 'far fa-star';
+            star.className = "far fa-star";
           }
           rating.appendChild(star);
         }
-        
-        const actions = document.createElement('div');
-        actions.className = 'product-actions';
-        
-        const addBtn = document.createElement('button');
-        addBtn.className = 'btn btn-primary btn-sm w-75';
+
+        const actions = document.createElement("div");
+        actions.className = "product-actions";
+
+        const addBtn = document.createElement("button");
+        addBtn.className = "btn btn-primary btn-sm w-75";
         addBtn.innerHTML = '<i class="fas fa-cart-plus me-1"></i> Add';
-        addBtn.addEventListener('click', () => addToCart(product));
-        
-        const viewBtn = document.createElement('button');
-        viewBtn.className = 'btn btn-outline-primary btn-sm';
+        addBtn.addEventListener("click", () => addToCart(product));
+
+        const viewBtn = document.createElement("button");
+        viewBtn.className = "btn btn-outline-primary btn-sm";
         viewBtn.innerHTML = '<i class="fas fa-eye"></i>';
-        viewBtn.addEventListener('click', () => viewProduct(product));
-        
+        viewBtn.addEventListener("click", () => viewProduct(product));
+
         actions.appendChild(addBtn);
         actions.appendChild(viewBtn);
-        
+
         contentDiv.appendChild(title);
         contentDiv.appendChild(price);
         contentDiv.appendChild(rating);
         contentDiv.appendChild(actions);
-        
+
         card.appendChild(imageDiv);
         card.appendChild(contentDiv);
         col.appendChild(card);
-        
+
         return col;
       }
 
       function loadProducts() {
-        productsContainer.innerHTML = '';
-        products.forEach(product => {
+        productsContainer.innerHTML = "";
+        products.forEach((product) => {
           productsContainer.appendChild(createProductCard(product));
         });
       }
 
       // ====== CART FUNCTIONALITY ======
-      let cart = JSON.parse(localStorage.getItem('techstore-cart')) || [];
+      let cart = JSON.parse(localStorage.getItem("techstore-cart")) || [];
 
       function addToCart(product) {
-        const existingItem = cart.find(item => item.id === product.id);
-        
+        const existingItem = cart.find((item) => item.id === product.id);
+
         if (existingItem) {
           existingItem.quantity += 1;
         } else {
           cart.push({
             ...product,
-            quantity: 1
+            quantity: 1,
           });
         }
-        
-        localStorage.setItem('techstore-cart', JSON.stringify(cart));
+
+        localStorage.setItem("techstore-cart", JSON.stringify(cart));
         updateCartDisplay();
-        
+
         // Show notification
         showNotification(`${product.title} added to cart!`);
       }
 
       function updateCartDisplay() {
-        const cartCount = document.querySelector('.cart-count');
-        const cartTotal = document.querySelector('.total-price');
-        const cartItems = document.getElementById('cartItems');
-        
+        const cartCount = document.querySelector(".cart-count");
+        const cartTotal = document.querySelector(".total-price");
+        const cartItems = document.getElementById("cartItems");
+
         if (cartCount) {
           const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
           cartCount.textContent = totalItems;
-          cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+          cartCount.style.display = totalItems > 0 ? "flex" : "none";
         }
-        
+
         if (cartTotal) {
-          const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+          const totalPrice = cart.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          );
           cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
         }
-        
+
         if (cartItems) {
-          cartItems.innerHTML = '';
-          
+          cartItems.innerHTML = "";
+
           if (cart.length === 0) {
-            cartItems.innerHTML = '<p class="text-muted">Your cart is empty.</p>';
+            cartItems.innerHTML =
+              '<p class="text-muted">Your cart is empty.</p>';
             return;
           }
-          
-          cart.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'd-flex align-items-center mb-3 pb-3 border-bottom';
+
+          cart.forEach((item) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.className =
+              "d-flex align-items-center mb-3 pb-3 border-bottom";
             itemDiv.innerHTML = `
-              <img src="./images/${item.img}" alt="${item.title}" width="60" height="60" 
+              <img src="./images/${item.img}" alt="${
+              item.title
+            }" width="60" height="60" 
                    class="rounded me-3 object-fit-cover" 
                    onerror="this.src='./images/product-item1.jpg'">
               <div class="flex-grow-1">
                 <h6 class="mb-1 fw-bold">${item.title}</h6>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <span class="text-primary fw-bold">$${item.price.toFixed(2)}</span>
+                    <span class="text-primary fw-bold">$${item.price.toFixed(
+                      2
+                    )}</span>
                     <div class="quantity-controls d-flex align-items-center mt-2">
-                      <button class="btn btn-sm btn-outline-secondary decrease px-2 py-1" data-id="${item.id}">
+                      <button class="btn btn-sm btn-outline-secondary decrease px-2 py-1" data-id="${
+                        item.id
+                      }">
                         <i class="fas fa-minus"></i>
                       </button>
                       <span class="mx-2 fw-bold">${item.quantity}</span>
-                      <button class="btn btn-sm btn-outline-secondary increase px-2 py-1" data-id="${item.id}">
+                      <button class="btn btn-sm btn-outline-secondary increase px-2 py-1" data-id="${
+                        item.id
+                      }">
                         <i class="fas fa-plus"></i>
                       </button>
                     </div>
                   </div>
-                  <button class="btn btn-sm btn-danger remove" data-id="${item.id}">
+                  <button class="btn btn-sm btn-danger remove" data-id="${
+                    item.id
+                  }">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
@@ -2216,13 +2262,13 @@
       }
 
       function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
+        const notification = document.createElement("div");
+        notification.className = "notification";
         notification.innerHTML = `
           <i class="fas fa-check-circle me-2"></i>
           <span>${message}</span>
         `;
-        
+
         notification.style.cssText = `
           position: fixed;
           top: 20px;
@@ -2240,13 +2286,13 @@
           max-width: 350px;
           font-weight: 500;
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         // Add CSS for notification animation
-        if (!document.querySelector('#notification-styles')) {
-          const style = document.createElement('style');
-          style.id = 'notification-styles';
+        if (!document.querySelector("#notification-styles")) {
+          const style = document.createElement("style");
+          style.id = "notification-styles";
           style.textContent = `
             @keyframes slideInRight {
               from { transform: translateX(100%); opacity: 0; }
@@ -2259,9 +2305,9 @@
           `;
           document.head.appendChild(style);
         }
-        
+
         setTimeout(() => {
-          notification.style.animation = 'slideOutRight 0.3s ease';
+          notification.style.animation = "slideOutRight 0.3s ease";
           setTimeout(() => {
             notification.remove();
           }, 300);
@@ -2269,51 +2315,68 @@
       }
 
       function viewProduct(product) {
-        alert(`Viewing ${product.title}\nPrice: $${product.price.toFixed(2)}\nRating: ${product.rating}/5`);
+        alert(
+          `Viewing ${product.title}\nPrice: $${product.price.toFixed(
+            2
+          )}\nRating: ${product.rating}/5`
+        );
       }
 
       // ====== COUNTDOWN TIMER ======
       function startCountdown() {
-        const countdown = document.getElementById('countdown');
+        const countdown = document.getElementById("countdown");
         if (!countdown) return;
-        
+
         // Set end date 7 days from now
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 7);
-        
+
         function updateCountdown() {
           const now = new Date();
           const diff = targetDate - now;
-          
+
           if (diff <= 0) {
             clearInterval(timer);
-            countdown.innerHTML = '<div class="text-center fs-4 fw-bold">Sale Ended!</div>';
+            countdown.innerHTML =
+              '<div class="text-center fs-4 fw-bold">Sale Ended!</div>';
             return;
           }
-          
+
           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
           const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-          
-          document.querySelector('.days').textContent = String(days).padStart(2, '0');
-          document.querySelector('.hours').textContent = String(hours).padStart(2, '0');
-          document.querySelector('.minutes').textContent = String(minutes).padStart(2, '0');
-          document.querySelector('.seconds').textContent = String(seconds).padStart(2, '0');
+
+          document.querySelector(".days").textContent = String(days).padStart(
+            2,
+            "0"
+          );
+          document.querySelector(".hours").textContent = String(hours).padStart(
+            2,
+            "0"
+          );
+          document.querySelector(".minutes").textContent = String(
+            minutes
+          ).padStart(2, "0");
+          document.querySelector(".seconds").textContent = String(
+            seconds
+          ).padStart(2, "0");
         }
-        
+
         updateCountdown();
         const timer = setInterval(updateCountdown, 1000);
       }
 
       // ====== NEWSLETTER SUBSCRIPTION ======
       function subscribeNewsletter() {
-        const emailInput = document.getElementById('newsletterEmail');
+        const emailInput = document.getElementById("newsletterEmail");
         const email = emailInput.value.trim();
-        
+
         if (email && validateEmail(email)) {
           // Show success message
-          const form = emailInput.closest('form');
+          const form = emailInput.closest("form");
           form.innerHTML = `
             <div class="text-center text-white">
               <i class="fas fa-check-circle fa-2x mb-3"></i>
@@ -2321,7 +2384,7 @@
               <p class="mb-0">You'll receive our newsletter soon.</p>
             </div>
           `;
-          
+
           // Reset form after 5 seconds
           setTimeout(() => {
             form.innerHTML = `
@@ -2333,10 +2396,10 @@
             `;
           }, 5000);
         } else {
-          emailInput.style.borderColor = 'var(--danger)';
-          showNotification('Please enter a valid email address');
+          emailInput.style.borderColor = "var(--danger)";
+          showNotification("Please enter a valid email address");
           setTimeout(() => {
-            emailInput.style.borderColor = '';
+            emailInput.style.borderColor = "";
           }, 2000);
         }
       }
@@ -2347,70 +2410,84 @@
       }
 
       // ====== SEARCH FUNCTIONALITY ======
-      document.getElementById('searchBtn').addEventListener('click', function() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-        
-        if (!searchTerm) {
-          loadProducts();
-          return;
-        }
-        
-        const filteredProducts = products.filter(product => 
-          product.title.toLowerCase().includes(searchTerm) ||
-          product.category.toLowerCase().includes(searchTerm)
-        );
-        
-        productsContainer.innerHTML = '';
-        if (filteredProducts.length === 0) {
-          productsContainer.innerHTML = `
+      document
+        .getElementById("searchBtn")
+        .addEventListener("click", function () {
+          const searchTerm = document
+            .getElementById("searchInput")
+            .value.toLowerCase()
+            .trim();
+
+          if (!searchTerm) {
+            loadProducts();
+            return;
+          }
+
+          const filteredProducts = products.filter(
+            (product) =>
+              product.title.toLowerCase().includes(searchTerm) ||
+              product.category.toLowerCase().includes(searchTerm)
+          );
+
+          productsContainer.innerHTML = "";
+          if (filteredProducts.length === 0) {
+            productsContainer.innerHTML = `
             <div class="col-12 text-center py-5">
               <i class="fas fa-search fa-3x text-muted mb-3"></i>
               <h4 class="mb-2">No products found</h4>
               <p class="text-muted">Try searching with different keywords</p>
             </div>
           `;
-        } else {
-          filteredProducts.forEach(product => {
-            productsContainer.appendChild(createProductCard(product));
-          });
-        }
-      });
+          } else {
+            filteredProducts.forEach((product) => {
+              productsContainer.appendChild(createProductCard(product));
+            });
+          }
+        });
 
       // Press Enter to search
-      document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          document.getElementById('searchBtn').click();
-        }
-      });
+      document
+        .getElementById("searchInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            document.getElementById("searchBtn").click();
+          }
+        });
 
       // ====== INITIALIZE EVERYTHING ======
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         loadProducts();
         startCountdown();
         updateCartDisplay();
-        
+
         // Initialize cart event listeners
-        document.addEventListener('click', function(e) {
-          if (e.target.closest('.decrease')) {
-            const productId = parseInt(e.target.closest('.decrease').getAttribute('data-id'));
+        document.addEventListener("click", function (e) {
+          if (e.target.closest(".decrease")) {
+            const productId = parseInt(
+              e.target.closest(".decrease").getAttribute("data-id")
+            );
             updateCartItemQuantity(productId, -1);
           }
-          
-          if (e.target.closest('.increase')) {
-            const productId = parseInt(e.target.closest('.increase').getAttribute('data-id'));
+
+          if (e.target.closest(".increase")) {
+            const productId = parseInt(
+              e.target.closest(".increase").getAttribute("data-id")
+            );
             updateCartItemQuantity(productId, 1);
           }
-          
-          if (e.target.closest('.remove')) {
-            const productId = parseInt(e.target.closest('.remove').getAttribute('data-id'));
+
+          if (e.target.closest(".remove")) {
+            const productId = parseInt(
+              e.target.closest(".remove").getAttribute("data-id")
+            );
             removeFromCart(productId);
           }
         });
-        
+
         // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
+        const newsletterForm = document.querySelector(".newsletter-form");
         if (newsletterForm) {
-          newsletterForm.addEventListener('submit', function(e) {
+          newsletterForm.addEventListener("submit", function (e) {
             e.preventDefault();
             subscribeNewsletter();
           });
@@ -2418,32 +2495,32 @@
       });
 
       function updateCartItemQuantity(productId, change) {
-        const itemIndex = cart.findIndex(item => item.id === productId);
-        
+        const itemIndex = cart.findIndex((item) => item.id === productId);
+
         if (itemIndex !== -1) {
           cart[itemIndex].quantity += change;
-          
+
           if (cart[itemIndex].quantity <= 0) {
             cart.splice(itemIndex, 1);
           }
-          
-          localStorage.setItem('techstore-cart', JSON.stringify(cart));
+
+          localStorage.setItem("techstore-cart", JSON.stringify(cart));
           updateCartDisplay();
         }
       }
 
       function removeFromCart(productId) {
-        cart = cart.filter(item => item.id !== productId);
-        localStorage.setItem('techstore-cart', JSON.stringify(cart));
+        cart = cart.filter((item) => item.id !== productId);
+        localStorage.setItem("techstore-cart", JSON.stringify(cart));
         updateCartDisplay();
-        showNotification('Item removed from cart');
+        showNotification("Item removed from cart");
       }
 
       // Developer section animations
       function animateSkill(element) {
         element.style.transform = "scale(1.1)";
         element.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
-        
+
         setTimeout(() => {
           element.style.transform = "scale(1)";
           element.style.boxShadow = "";
@@ -2453,7 +2530,7 @@
       function animateProject(element) {
         element.style.transform = "translateY(-10px)";
         element.style.boxShadow = "0 15px 30px rgba(0,0,0,0.15)";
-        
+
         setTimeout(() => {
           element.style.transform = "translateY(0)";
           element.style.boxShadow = "";
@@ -2461,14 +2538,14 @@
       }
 
       // Add event listeners for animations
-      document.querySelectorAll('.skill-item').forEach(item => {
-        item.addEventListener('mouseenter', function() {
+      document.querySelectorAll(".skill-item").forEach((item) => {
+        item.addEventListener("mouseenter", function () {
           animateSkill(this);
         });
       });
 
-      document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
+      document.querySelectorAll(".project-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
           animateProject(this);
         });
       });
